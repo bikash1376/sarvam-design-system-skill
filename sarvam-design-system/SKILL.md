@@ -2,7 +2,7 @@
 name: sarvam-design-system
 description: Sarvam AI brand and design system. Use whenever creating ANYTHING branded as Sarvam / Sarvam AI — web pages, landing pages, UI, social banners (Meta, LinkedIn, X), event key visuals, decks, SVG illustrations, icons, or marketing copy. Encodes Sarvam's real production tokens (colours, Season Mix + Matter + Geist type, spacing, radius, gradients), the Gateway / Monogram / mandala visual language, logo and co-branding rules, responsive behaviour across 375/768/1440, banner archetypes, and copywriting rules (4-element hero, word budgets, no placeholders/urgency/emoji). Triggers on "Sarvam", "sarvam.ai", "Indus", "Bulbul", "Saaras", "Sarvam 105B", "Sarvam Voice Agents", "AI for all from India", or any request for on-brand Sarvam output.
 metadata:
-  internal: true   # private: hidden from public skill listings (skills.sh) and discovery
+  internal: true
 ---
 
 # Sarvam Design System
