@@ -17,3 +17,6 @@ sarvam-design-system-docs/public/skill/
 .DS_Store
 Thumbs.db
 .env*
+
+# local explorations (not published)
+explorations/
