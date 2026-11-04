@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
-import { useState } from "react";
-import { motion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Copy01Icon, Download04Icon, RefreshIcon, Cancel01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { SButton } from "@/components/sarvam/button";
@@ -167,29 +167,110 @@ export function IconButtonPreview() {
     </div>
   );
 }
+const NAV_LINKS = ["Products", "Developers", "Resources", "Company"];
+/** Navbar (skill: navbar.md). Responds to its container, so it is correct inside any frame:
+ *  < ~1024px: 64px, wordmark 16px, "Log In" secondary + hamburger (menu sheet)
+ *  ≥ ~1024px: 68px, wordmark 18px, centre links, "Log In" primary + "Contact Us" secondary
+ *  Transparent over the hero; frosted with a hairline once the page scrolls. */
 export function NavbarPreview() {
+  const [view, setView] = useState<"desktop" | "mobile">("desktop");
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  // desktop = a true 1280px frame, scaled to fit the docs column (so the ≥1024 layout really shows)
+  const outer = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+  useEffect(() => {
+    const el = outer.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([e]) => setScale(Math.min(1, e.contentRect.width / 1280)));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const frameW = view === "mobile" ? 375 : 1280;
+  const z = view === "mobile" ? 1 : scale;
   return (
-    <div className="overflow-hidden rounded-2xl" style={{ background: "var(--aura-hero), var(--sf)" }}>
-      <div className="m-3 flex h-14 items-center justify-between rounded-full bg-white/70 px-5 backdrop-blur shadow-[var(--shadow-elev-sm)]">
-        <img src={`${A}/logos/sarvam-wordmark-black.svg`} alt="sarvam" className="h-5" />
-        <nav className="hidden gap-6 text-[14px] sm:flex">{["Products", "Developers", "Enterprise", "Company"].map((n) => <a key={n} href="#" className="text-[var(--tx-secondary)] hover:text-[var(--tx)]">{n}</a>)}</nav>
-        <SButton size="sm">Get started</SButton>
+    <div className="space-y-4" ref={outer}>
+      <div className="inline-flex rounded-full bg-[var(--sf-secondary)] p-1">
+        {(["desktop", "mobile"] as const).map((v) => (
+          <button key={v} onClick={() => { setView(v); setOpen(false); }} className={cn("relative rounded-full px-4 py-1.5 text-[13px] capitalize", view === v ? "text-[var(--tx)]" : "text-[var(--tx-tertiary)]")}>
+            {view === v && <motion.span layoutId="nav-view" className="absolute inset-0 rounded-full bg-white shadow-[var(--shadow-seg-active)]" transition={{ type: "spring", bounce: 0.15, duration: 0.4 }} />}
+            <span className="relative">{v}</span>
+          </button>
+        ))}
       </div>
-      <div className="h-40" />
+      <motion.div layout transition={{ duration: 0.35, ease: [0.2, 0, 0, 1] }} className="@container mx-auto overflow-hidden rounded-2xl border border-[var(--st)]" style={{ width: frameW, zoom: z }}>
+        <div className="relative h-[360px] overflow-y-auto" onScroll={(e) => setScrolled(e.currentTarget.scrollTop > 8)}>
+          <header className={cn("sticky top-0 z-10 transition-[background,backdrop-filter,box-shadow] duration-300", scrolled ? "bg-[rgba(252,252,252,.8)] shadow-[0_1px_0_var(--st)] backdrop-blur-md" : "bg-transparent")}>
+            <nav aria-label="Main" className="mx-auto flex h-16 w-[88%] items-center justify-between @[1000px]:h-[68px] @[1000px]:w-[83.333%]">
+              <img src={`${A}/logos/sarvam-wordmark-black.svg`} alt="sarvam" className="h-4 w-auto shrink-0 @[1000px]:h-[18px]" />
+              <div className="hidden items-center gap-8 text-[15px] text-[var(--tx-secondary)] @[1000px]:flex">
+                {NAV_LINKS.map((n) => <a key={n} href="#" className="transition-colors hover:text-[var(--tx)]">{n}</a>)}
+              </div>
+              <div className="flex shrink-0 items-center gap-2">
+                <SButton size="sm" variant="secondary" className="@[1000px]:hidden">Log In</SButton>
+                <SButton size="sm" className="hidden @[1000px]:inline-flex">Log In</SButton>
+                <SButton size="sm" variant="secondary" className="hidden @[1000px]:inline-flex">Contact Us</SButton>
+                <button aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)} className="grid size-9 place-items-center rounded-full hover:bg-[var(--sf-secondary)] @[1000px]:hidden">
+                  <span className="relative block h-3 w-4">
+                    <motion.span className="absolute left-0 top-0 h-[1.5px] w-4 rounded bg-[var(--tx)]" animate={open ? { y: 5.25, rotate: 45 } : { y: 0, rotate: 0 }} />
+                    <motion.span className="absolute left-0 top-[5.25px] h-[1.5px] w-4 rounded bg-[var(--tx)]" animate={{ opacity: open ? 0 : 1 }} />
+                    <motion.span className="absolute left-0 top-[10.5px] h-[1.5px] w-4 rounded bg-[var(--tx)]" animate={open ? { y: -5.25, rotate: -45 } : { y: 0, rotate: 0 }} />
+                  </span>
+                </button>
+              </div>
+            </nav>
+            <AnimatePresence>
+              {open && (
+                <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: [0.2, 0, 0, 1] }} className="overflow-hidden bg-[var(--sf)] @[1000px]:hidden">
+                  <div className="mx-auto w-[88%] pb-4">
+                    {NAV_LINKS.map((n, i) => (
+                      <motion.a key={n} href="#" initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 + i * 0.04 }} className="block border-b border-[var(--st-secondary)] py-3 text-[16px]">{n}</motion.a>
+                    ))}
+                    <SButton className="mt-4 w-full">Contact Us</SButton>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </header>
+          <div className="-mt-[68px] px-6 pt-28 pb-10 text-center" style={{ background: "var(--aura-hero), var(--sf)" }}>
+            <p className="s-eyebrow">Scroll this frame</p>
+            <h3 className="s-display mx-auto mt-3 max-w-sm text-[32px] leading-[1.1]">AI for all from India</h3>
+            <p className="mx-auto mt-3 max-w-xs text-[14px] text-[var(--tx-tertiary)]">The nav is transparent over the hero and frosts once you scroll.</p>
+          </div>
+          <div className="space-y-3 px-6 py-8">{Array.from({ length: 6 }).map((_, i) => <div key={i} className="h-10 rounded-xl bg-[var(--sf-secondary)]" />)}</div>
+        </div>
+      </motion.div>
     </div>
   );
 }
 export function FooterPreview() {
+  const cols: [string, string[]][] = [["Products", ["Sarvam app", "Bulbul", "Saaras"]], ["Developers", ["API docs", "Playground", "Pricing"]], ["Company", ["About", "Careers", "Brand"]], ["Legal", ["Privacy", "Terms", "Security"]]];
   return (
-    <div className="overflow-hidden rounded-2xl bg-white p-8 shadow-[var(--shadow-card)]">
-      <div className="grid gap-8 sm:grid-cols-4">
-        <div><img src={`${A}/logos/sarvam-wordmark-black.svg`} alt="sarvam" className="h-5" /><p className="mt-3 text-[13px] text-[var(--tx-tertiary)]">AI for all from India.</p></div>
-        {[["Products", ["Sarvam app", "Bulbul", "Saaras"]], ["Developers", ["API docs", "Playground", "Pricing"]], ["Company", ["About", "Careers", "Brand"]]].map(([h, l]) => (
-          <div key={h as string}><p className="s-label mb-3 text-[12px] uppercase text-[var(--tx-tertiary)]">{h as string}</p>{(l as string[]).map((x) => <p key={x} className="py-1 text-[14px]">{x}</p>)}</div>
-        ))}
+    <footer className="overflow-hidden rounded-2xl bg-white shadow-[var(--shadow-card)]">
+      <div className="grid grid-cols-2 gap-8 p-6 sm:p-8 md:grid-cols-3 lg:grid-cols-5">
+        <div className="col-span-2 md:col-span-3 lg:col-span-1">
+          <img src={`${A}/logos/sarvam-wordmark-black.svg`} alt="sarvam" className="h-6" />
+          <p className="mt-3 text-[13px] text-[var(--tx-tertiary)]">AI for all from India.</p>
+        </div>
+        <nav aria-label="Footer" className="contents">
+          {cols.map(([h, l]) => (
+            <div key={h}><p className="s-label mb-3 text-[12px] uppercase text-[var(--tx-tertiary)]">{h}</p>{l.map((x) => <a key={x} href="#" className="block py-1 text-[14px] text-[var(--tx-tertiary)] hover:text-[var(--tx)]">{x}</a>)}</div>
+          ))}
+        </nav>
       </div>
-      <p className="s-display mt-10 select-none bg-clip-text text-center text-[96px] leading-none text-transparent" style={{ backgroundImage: "var(--grad-spectrum)" }}>sarvam</p>
-    </div>
+      {/* Giant wordmark: always the full footer width (aspect 202:32), filled with imagery, cropped by the bottom edge */}
+      <div className="px-4 sm:px-6" aria-hidden>
+        <div
+          className="w-full translate-y-[14%]"
+          style={{
+            aspectRatio: "202 / 32",
+            background: "var(--grad-sunrise)",
+            WebkitMask: `url(${A}/logos/sarvam-wordmark-black.svg) center / 100% 100% no-repeat`,
+            mask: `url(${A}/logos/sarvam-wordmark-black.svg) center / 100% 100% no-repeat`,
+          }}
+        />
+      </div>
+    </footer>
   );
 }
 export function EyebrowPreview() {

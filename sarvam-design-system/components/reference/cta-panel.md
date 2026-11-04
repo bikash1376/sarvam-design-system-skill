@@ -11,7 +11,7 @@ related: [button, footer]
 The single dark moment on a page: a closing call to action before the footer.
 
 ## Styles
-Measured on sarvam.ai: `--grad-cta-panel` (`linear-gradient(180deg,#13121e 0%,#a5bbfc 116.55%)`: near-black navy at the top, periwinkle glowing from the bottom), **radius 24px** (16px mobile), padding 80px 40px (48px 24px mobile), centred. h2 Season Mix 425 36px white over 2 lines ("Start transcribing in minutes / Powered by Saaras V4"), a small glowing white dot, concentric 1px arcs at 8% white, and a **primary slate button** with cursor glow.
+Measured on sarvam.ai: `--grad-cta-panel` (`linear-gradient(180deg,#13121e 0%,#a5bbfc 116.55%)`: near-black navy at the top, periwinkle glowing from the bottom), **radius 24px** (16px mobile), padding 80px 40px (48px 24px mobile), centred. h2 Season Mix 425 36px white over 2 lines ("Start transcribing in minutes / Powered by Saaras V4"), a glowing **white four-point star** between headline and button that turns 180° slowly (2.4s, `--ease-reveal`), eases to a stop, rests 3s and repeats (static under reduced motion; Motion `animate={{ rotate: [0, 180] }}` with `repeatDelay: 3`), concentric 1px arcs at 8% white (or the Sarvam mandala outline, `foundations/17-mandala-background.md`), and a **primary slate button** with cursor glow.
 
 ## Rules
 - **Must** appear at most once per page, right before the footer.

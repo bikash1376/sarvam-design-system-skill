@@ -7,6 +7,9 @@
    ───────────────────────────────────────────────────────────────────────────── */
 @import "./tokens.css"; /* copy of sarvam-design-system/tokens/tokens.css with :root replaced by .sarvam (see references/stack-setup.md) */
 
+/* In @layer base so Tailwind utilities on the same element (text-white, bg-*) always win. */
+@layer base {
+
 .sarvam {
   /* shadcn semantic colours → Sarvam tokens */
   --background: var(--sf-white);
@@ -55,3 +58,4 @@
 }
 .sarvam .s-glow:hover::after { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .sarvam .s-glow::after { display: none; } }
+}

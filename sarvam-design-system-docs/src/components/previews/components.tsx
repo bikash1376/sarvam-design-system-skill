@@ -386,13 +386,29 @@ function CardDemo() {
     </div>
   );
 }
+/** White four-point star: turns 180° slowly, eases to a stop, rests, repeats (static under reduced motion). */
+function CtaStar() {
+  return (
+    <div className="relative mx-auto my-6 grid size-16 place-items-center" aria-hidden>
+      <span className="absolute inset-0 rounded-full bg-white/25 blur-xl" />
+      <motion.svg
+        viewBox="0 0 64 64" className="relative size-14 drop-shadow-[0_0_12px_rgba(255,255,255,.55)]"
+        animate={{ rotate: [0, 180] }}
+        transition={{ duration: 2.4, ease: [0.25, 1, 0.5, 1], repeat: Infinity, repeatDelay: 3 }}
+      >
+        <path fill="#fff" d="M32 2c2.2 12.5 7.6 22.6 17.6 26.4 3.6 1.4 8 2.4 12.4 3.6-4.4 1.2-8.8 2.2-12.4 3.6C39.6 39.4 34.2 49.5 32 62c-2.2-12.5-7.6-22.6-17.6-26.4C10.8 34.2 6.4 33.2 2 32c4.4-1.2 8.8-2.2 12.4-3.6C24.4 24.6 29.8 14.5 32 2Z" />
+      </motion.svg>
+    </div>
+  );
+}
 function PanelDemo() {
   return (
-    <div className="relative overflow-hidden rounded-3xl px-6 py-16 text-center" style={{ background: "var(--grad-cta-panel)" }}>
+    <div className="relative overflow-hidden rounded-3xl px-6 pt-16 pb-14 text-center" style={{ background: "var(--grad-cta-panel)" }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/skill/mandala/sarvam-mandala-outline-white.png" alt="" aria-hidden className="pointer-events-none absolute left-1/2 top-[45%] w-[140%] max-w-none -translate-x-1/2 opacity-[.12]" />
-      <h3 className="s-display relative mx-auto max-w-md text-[36px] text-white">Start transcribing in minutes</h3>
-      <SButton variant="on-dark" className="relative mt-8">Get API key</SButton>
+      <img src="/skill/mandala/sarvam-mandala-outline-white.png" alt="" aria-hidden className="pointer-events-none absolute left-1/2 top-[48%] w-[140%] max-w-none -translate-x-1/2 opacity-[.12]" />
+      <h3 className="s-display relative mx-auto max-w-xl text-[36px] leading-[1.2] text-white">Start transcribing in minutes<br />Powered by Saaras V3</h3>
+      <CtaStar />
+      <SButton variant="on-dark" className="relative">Get API key</SButton>
     </div>
   );
 }

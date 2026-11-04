@@ -7,7 +7,7 @@ import type { DocContent } from "@/lib/content";
 export function DocView({ doc, human }: { doc: DocContent; human: React.ReactNode }) {
   const { mode } = useMode();
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence mode="wait">
       <motion.div
         key={`${doc.agentPath}-${mode}`}
         initial={{ opacity: 0, y: 8 }}
