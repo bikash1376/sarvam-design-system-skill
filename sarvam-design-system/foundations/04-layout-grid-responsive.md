@@ -31,9 +31,24 @@ Design mobile-first. `md` is where most layouts switch from stacked to multi-col
 | Content width | 330px (88%) | 640px (83.3%) | 1200px (83.3%) |
 | Columns | 4 | 8 | 12 |
 | Column gap | 16px | 20px | 24px |
-| Card grid | 1-up (2-up for small stat/feature tiles) | 2-up | 3-up (4-up for logo/tiles) |
+| Card grid | 1-up (2-up for small stat/feature tiles) | 2-up | 3-up · 4-up only ≥1280 and only if each card ≥260px |
 | Split (text + media) | Stacked: text first, media second | Stacked, or 50/50 for compact content | 5/7 or 6/6 side-by-side |
 | Section title align | Centre | Centre | Centre (left only inside split layouts) |
+
+## Equal cards (non-bento grids)
+Every card in a non-bento grid has the **same width and the same height**. This is a layout rule, not a content preference.
+
+```css
+.cards{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:24px;align-items:stretch}
+.cards>*{min-width:0;height:100%;display:flex;flex-direction:column}
+.cards .card-footer{margin-top:auto}
+```
+
+- Use `minmax(0,1fr)`, never bare `1fr`: items default to `min-width:auto`, so one long tag widens its column and the row goes uneven.
+- Never `align-items:start`; never let content set width; never `flex:1` in a wrapping row.
+- 4-up only at ≥1280px with ≥260px per card. Between 1024–1279 use 3-up.
+- Keep heights close with content budgets (title ≤ 4 words, body ≤ 20 words) and clamp text, not stretch it.
+- Bento is the only exception, and only with genuinely uneven tiles (see `formats/web-pages.md`).
 
 ## Vertical rhythm (spacing that scales)
 | Token | Mobile | ≥768 | Use |

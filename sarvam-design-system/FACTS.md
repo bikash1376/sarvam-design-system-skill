@@ -67,3 +67,5 @@ Show these in "India builds with Sarvam" logo bars. Use the files as-is: graysca
 1. Look here first, then on the product's page on sarvam.ai.
 2. Still missing? Write qualitative copy ("Handles noisy, real-world call audio"). Don't add a number.
 3. Never show the gap to the reader. If the uncertainty matters, note it in your reply to the person who asked.
+
+> **Marketing claims vs demo data.** Every *claim* on the page (a number, a customer, a quote, a certification) must come from this file. Sample data inside a mock UI, screenshot or transcript is different: it must be *believable* — Indian names, ₹ amounts, realistic times — and is covered in `16-copywriting.md` §8. Claims may never be invented; demo data may never be a bracket, "John Doe" or "$1,234.56".

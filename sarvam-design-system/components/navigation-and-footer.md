@@ -4,11 +4,12 @@
 | | Mobile / tablet (<1024) | Desktop (≥1024) |
 |---|---|---|
 | Height | 64px | 68px |
-| Left | Wordmark 16px tall | Wordmark 18px tall |
+| Left | Wordmark 16px tall — **the only logo in the nav** | Wordmark 18px tall — **the only logo in the nav** |
 | Centre | n/a | Products · Developers · Resources · Company (Matter 425 15px `--tx`, gap 32px, dropdowns on hover) |
 | Right | "Log In" secondary pill + 24px hamburger | "Log In" **primary** pill + "Contact Us" secondary pill |
 | Background | transparent over the hero aura → `rgba(252,252,252,.8)` + `backdrop-filter: blur(12px)` + bottom hairline on scroll | same |
 
+- **One logo, always.** The nav holds the Sarvam wordmark and nothing else. No partner logo, no "in collaboration with", no sub-brand, no model mark — even on a partner page. A co-branded lockup (`sarvam ✦ Partner`) is used only when the user asks for one, and then in the hero badge or footer. Sarvam sits first unless Sarvam is the guest in another company's programme (`aws marketplace ✦ sarvam`). See `foundations/11-logo-usage.md`.
 - Optional **secondary nav** (product pages): a 45px (mobile) / 57px (desktop) bar of icon + label use-case tabs separated by 1px dividers, sticky under the main nav (e.g. Appointment Booking · Cart Abandonment · Lead Qualification).
 - **Mobile sheet:** full-screen `--sf`, accordion groups (Matter 525 20px) with an 18px icon + label per item, and CTA pills pinned at the bottom.
 - **Mega-menu (desktop):** white card, 16px radius, `--shadow-elev-md`, 2–3 columns of `[icon] Title / one-line description` rows.

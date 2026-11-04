@@ -21,6 +21,7 @@ Transparent over the hero; on scroll it becomes `rgba(252,252,252,.8)` + `backdr
 
 ## Rules
 - **Must** align the wordmark with the content container edge.
+- **Must** show **exactly one logo**: the Sarvam wordmark. No partner mark, sub-brand, "in collaboration with" or model logo — even when the page is about a partner. A co-branded lockup appears only when explicitly requested, and in the hero badge or footer, not the nav.
 - **Must** use only the wordmark, never the logomark next to it.
 - **Should** open mega-menus as white 16px cards with `--shadow-elev-md`.
 

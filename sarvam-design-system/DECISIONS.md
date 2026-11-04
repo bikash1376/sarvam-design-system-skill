@@ -24,19 +24,29 @@ Tie-breakers: **never mix styles in one row or grid**; below 32px never use dept
 | A **capability or technology** label (STT, TTS, Python, REST) | **Capability tag**: pill, 12px, grey bg + 1px border, `#666` text | → Tag |
 | Date · type meta on a blog or update card ("Oct 27, 2026 · Research") | **Plain text** meta, 13px `--tx-tertiary`, a middle dot. No badge | — |
 | A short status ("Live", "New", "Beta") next to a title | **Category tag** in green (live/new) or indigo (beta) | → Tag |
-| The hero tagline above an h1 | **Eyebrow** (hairlines + indigo text), not a badge | → Eyebrow |
+| The hero tagline above an h1 | **Eyebrow** (hairlines + Geist `#666666` text), not a badge | → Eyebrow |
 
 Hue choice for badges and tags follows **meaning**: indigo = security/info/default · green = certified/success/live · orange = data/privacy law · pink = people/access · yellow = audit/logs · red = residency/location.
 
 ## 2b. Labels and social proof
 | You need… | Use |
 |---|---|
-| A tag line above the **home** hero h1 | Ornament + hairline **eyebrow** (indigo, 16px) |
-| A label above the logo bar | **Section label** "INDIA BUILDS WITH SARVAM" (Matter 525 12px caps, #666) |
+| A tag line above the **home** hero h1 | Ornament + hairline **eyebrow** (Geist 400, 13→16px, `#666666`) |
+| A label above the logo bar | **Section label** "INDIA BUILDS WITH SARVAM" (Geist 500, 12px caps, #666666) |
 | A label above every section | **Nothing.** Section titles stand alone |
 | Annotations inside a demo (OUTPUT, CODE SWITCH) | **Micro label** (Semi Mono 10–11px caps, indigo) |
 | Customer proof | Real logos from `assets/logos/customers/` + the Tata Capital quote from `FACTS.md`, or drop the section |
 | Any number | `FACTS.md`, or rewrite without a number |
+
+## 2c. Page-level decisions
+| Question | Answer |
+|---|---|
+| How many logos in the nav? | **One — Sarvam.** Partner lockups only when explicitly asked, and then in the hero badge or footer (`11-logo-usage.md`) |
+| What goes in the hero? | Badge · h1 · sub · 1–2 CTAs. **Nothing else** (`16-copywriting.md` §4) |
+| Where do logos, languages, stats and sample cards go? | **Below the first viewport**, never inside the hero |
+| How many sections? | 6–8. Every section must have a job; delete repeats |
+| Cards unequal in a row? | Bug: use `repeat(n, minmax(0,1fr))` + `align-items:stretch` + `height:100%` |
+| Bento or plain grid? | Plain equal grid by default. Bento only for genuinely uneven tiles, max 6 |
 
 ## 3. Buttons
 | Situation | Button |

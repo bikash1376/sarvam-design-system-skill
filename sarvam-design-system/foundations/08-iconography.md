@@ -18,6 +18,7 @@
 | Feature cards | 32–40px in a 48–56px tinted square (`radius 12px`, `bg {hue}-50`) | solid |
 
 ## Rules
+- **Don't force-fit the existing set.** The icons in `assets/icons/` are the ones sarvam.ai happens to ship — they are not the limit of what you may use. If the concept needs something else (schedule, documents, sub-agents, handoff, retention), pull the matching **Hugeicons** icon and render it in the same style, stroke weight and 24px grid. Never substitute an emoji, a text glyph, or an icon from another family.
 - Icon + label gap is 6–8px. Icons are vertically centred with the cap-height.
 - Never mix outline and solid icons in the same row.
 - Arrows: use a chevron or `→` after link-style CTAs ("Explore Indus Cowork →"). The arrow nudges 2px right on hover.

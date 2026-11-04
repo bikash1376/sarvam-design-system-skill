@@ -12,18 +12,21 @@
 @font-face { font-family: "Matter Mono"; src: url("../assets/fonts/MatterMono-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: "Matter Mono"; src: url("../assets/fonts/MatterMono-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
 @font-face { font-family: "Matter Semi Mono"; src: url("../assets/fonts/MatterSemiMonoRegular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Geist"; src: url("../assets/fonts/GeistVF.woff2") format("woff2-variations"); font-weight: 100 900; font-display: swap; }
 
 :root {
   /* ---------- Font families ---------- */
   --font-display: "Season Mix", "Source Serif 4", Georgia, serif;          /* headlines, hero, section titles */
   --font-sans:    "Matter", "Inter Tight", "Manrope", system-ui, sans-serif; /* UI, body, card titles */
   --font-mono:    "Matter Mono", ui-monospace, "SF Mono", Menlo, monospace;  /* code */
-  --font-label:   "Matter Semi Mono", "Matter Mono", ui-monospace, monospace;/* eyebrows, footer column heads */
+  --font-eyebrow: "Geist", "Inter", system-ui, -apple-system, sans-serif;    /* eyebrows + section labels, ALWAYS #666666 */
+  --font-label:   "Matter Semi Mono", "Matter Mono", ui-monospace, monospace;/* micro-labels in demo chrome + footer column heads */
 
   /* ---------- Neutrals: text ---------- */
   --tx:            #1f1f1f;  /* primary text */
   --tx-secondary:  #3d3d3d;  /* sub-headlines, lead paragraphs */
   --tx-tertiary:   #666666;  /* body copy on cards, captions, meta */
+  --tx-eyebrow:    #666666;  /* eyebrows + section labels — always this, never indigo */
   --tx-inverse:    #faf8f5;  /* text on dark/colour */
   --tx-brand:      #29211d;  /* warm near-black (editorial) */
   --tx-accent:     #c4733d;  /* warm copper accent text (sparingly) */

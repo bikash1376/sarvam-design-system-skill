@@ -1,5 +1,7 @@
 # 13 · Voice and Tone
 
+> Length budgets, the four-element hero, banned words and believable demo data live in **`16-copywriting.md`**. This file is the voice; that one is the craft.
+
 ## Voice in one line
 **Confident, plain-spoken and quietly proud: frontier technology described in calm, human sentences, rooted in India.**
 

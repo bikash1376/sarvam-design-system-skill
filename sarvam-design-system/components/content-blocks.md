@@ -1,7 +1,7 @@
 # Components · Content Blocks
 
 ## Eyebrow (hero tagline)
-A centred line of indigo text between two gradient hairlines, often with the **ornament divider** above it.
+A centred line of **Geist** text in **`#666666`** between two gradient hairlines, often with the **ornament divider** above it. Never monospace, never indigo, never a pill.
 ```html
 <div class="eyebrow">
   <img src="assets/motifs/ornament-divider.svg" class="eyebrow-ornament" alt="">  <!-- optional, hero only -->
@@ -13,11 +13,11 @@ A centred line of indigo text between two gradient hairlines, often with the **o
 ```css
 .eyebrow{display:flex;flex-direction:column;align-items:center;gap:10px;width:fit-content;margin-inline:auto}
 .eyebrow-line{display:block;width:100%;height:1px;background:radial-gradient(circle,#6a88e2 0%,transparent 100%)}
-.eyebrow p{padding:0 32px;font:400 14px/1.5 var(--font-sans);letter-spacing:.025em;color:var(--sr-indigo-900)}
+.eyebrow p{padding:0 32px;font:400 14px/1.5 var(--font-eyebrow);letter-spacing:.02em;color:var(--tx-eyebrow)}
 @media(min-width:768px){.eyebrow p{font-size:16px}}
 .eyebrow-ornament{width:208px;opacity:.9;margin-bottom:24px}
 ```
-**Section label** (measured): **Matter 525, 12px, uppercase, letter-spacing 2px, line-height 16px, `#666`**: "INDIA BUILDS WITH SARVAM" above the logo bar, "INDUS COWORK" above a product module. **Use at most 1–2 per page.** Never put one above every section title, never set it in Semi Mono, never larger than 12px.
+**Section label** (measured): **Geist 500, 12px, uppercase, letter-spacing 2px, line-height 16px, `#666666`**: "INDIA BUILDS WITH SARVAM" above the logo bar, "INDUS COWORK" above a product module. **Use at most 1–2 per page.** Never put one above every section title, never set it in Semi Mono, never larger than 12px, never indigo.
 
 ## Section header
 Centred: h2 (Season Mix 525, 28→36px) + optional body-lg sub (Matter, `--tx-tertiary`, max-width 640px), with a gap of 12–16px. 32px (mobile) / 48px (desktop) to the content below.
@@ -34,6 +34,24 @@ Split variant (inside product sections): left-aligned label + h2 + sub, with an 
 └───────────────────────────────┘  hover: shadow-card-hover, translateY(-2px)
 ```
 Variants: **Tinted tile** (gradient fill from 06 §5 with a white icon/glyph centred, 16px radius, aspect 4:3) and **Illustrated card** (scalloped horizon, see 07).
+
+## Card grids: equal width, equal height
+Non-bento grids use one rule: **every card is the same width and the same height.**
+
+```css
+.cards{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:24px;align-items:stretch}
+.cards>*{min-width:0;height:100%;display:flex;flex-direction:column}
+.cards .card-footer{margin-top:auto}   /* tags / links share one baseline */
+```
+
+- `minmax(0,1fr)` — not `1fr`. Bare `1fr` keeps `min-width:auto`, so a long tag or word widens one column and the row goes uneven. This is the usual cause of "all cards have different widths".
+- 1-up <768 · 2-up 768–1023 · **3-up 1024–1279** · 4-up only ≥1280 with ≥260px per card.
+- Same internal order in every card: media → title → body → tags/footer. Pin the footer with `margin-top:auto`.
+- Keep heights close with budgets (title ≤ 4 words, body ≤ 20 words, ≤ 2 tag rows) and clamp text; never stretch the copy to fill.
+- Never `align-items:start`. Never a card inside a card.
+
+## Bento (only when the content is genuinely uneven)
+Max 6 tiles: one 2×2 hero tile, 1–2 medium (2×1 / 1×2), rest 1×1. Same gap, radius and padding on every tile; icon or visual at the top, title + one line at the bottom; no nested cards. Reference: [sarvam.ai/token-factory](https://www.sarvam.ai/token-factory). Bento is **not** four equal feature cards.
 
 ## Pillar list (star bullets)
 A row is `[star 20px] [Title Matter 525 20px]` with the description below it, indented to align with the title (Matter 425 16px `--tx-tertiary`, lh 1.65). The gap between items is 24–32px. Alternate star hues per item, or use one hue for all.
