@@ -28,7 +28,7 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
 4. **Read the format file**:
    - Web page or UI: `formats/web-pages.md`, `foundations/04-layout-grid-responsive.md`, `components/*.md`. For *which* hero layout fits the audience and brand tier: `formats/hero-layouts.md`
    - **Hero layouts are also mirrored standalone** as the `sarvam-hero-layouts` skill; that copy defers to `sarvam-design-system/formats/hero-layouts.md`
-   - Social banner or post: `formats/social-banners.md` (archetypes, six canvases, **proportional `--u` type scale** so one banner fits every platform). For art-direction options and extra sizes, the bundled `references/ui-ux-pro-max.md`
+   - Social banner or post: **first `formats/banner-decisions.md`** (ad or post, hue story, surface, one motif, copy move), then `formats/social-banners.md` (archetypes, six canvases, **proportional `--u` type scale** so one banner fits every platform). For art-direction options and extra sizes, the bundled `references/ui-ux-pro-max.md`
    - SVG, illustration or motif: `foundations/07-motifs-and-glyphs.md`, `foundations/06-gradients-and-light.md`
    - Embed image (OG / link preview, blog header, glass glyph tile): `formats/embed-images.md` (tool: `tools/embed/embed.py`, examples in `assets/embeds/`)
    - **Animation of anything that isn't an existing component** (a product illustration, hero motion, "animate how X works"): `components/reference/animations.md` (Token Factory card grammar + 8 patterns), with the bundled animation/illustration skills in `references/animation-and-illustration.md`
@@ -73,6 +73,7 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
 | `tools/color-depth/` | `color_depth.py` + `sarvam-glyphs.json` (curated Sarvam glyph set) |
 | `components/*.md` | Buttons, eyebrow, nav (+ `reference/mega-menu.md` for the Products/Developers hover panel), cards, feature list, stats, code block, badges (12px radius, not pills), tags, integration card, testimonial, CTA panel, footer; `interactive.md`: cursor-glow button, audio player pill, dot-matrix visualiser, language select, segmented control, copy button |
 | `formats/embed-images.md` | Glass glyph tiles + wide pastel embeds (OG, blog, docs cards); generator `tools/embed/embed.py` |
+| `formats/banner-decisions.md` | **Decide before you design a banner:** ad or post, hue story by subject, surface tree, motif and gradient logic, copy moves; distilled from ~35 official posts |
 | `formats/social-banners.md` | Meta 1080², 1080×1350, LinkedIn 1200×627: archetypes, safe zones, type sizes |
 | `formats/web-pages.md` | Landing page anatomy, section order, per-breakpoint behaviour |
 | `formats/hero-layouts.md` | **Which hero for which page.** 10 named layouts (Aura Statement, Demo Stage, Prompt Bar, Docs Left, Editorial Split, Gateway Frame, Manifesto, Benchmark, Visual Top, Side Visual), audience → layout, 6 brand tiers, responsive stacks, gradient level, pitfalls |

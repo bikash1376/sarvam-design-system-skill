@@ -620,3 +620,27 @@ export function MegaMenuPreview() {
     </div>
   );
 }
+
+/* ───────── Banner decisions ───────── */
+export function BannerDecisionsPreview() {
+  const hues: [string, string][] = [["Voice / product core", "linear-gradient(135deg,#3d4bb8,#f38858)"], ["Telephony launch", "linear-gradient(160deg,#c43d2b,#f9d5e1)"], ["Make it easy (duotone)", "linear-gradient(160deg,#263d0e,#c8e4b0)"], ["Cost / scale", "radial-gradient(60% 60% at 50% 70%,#f9bb9e55,transparent),linear-gradient(180deg,#14142b,#3d4bb8)"], ["Webinar / story", "radial-gradient(60% 60% at 50% 50%,#fff,#e3f1d8)"], ["Events / numbers", "linear-gradient(135deg,#a7c0f1,#f38858 55%,#e6651b)"]];
+  return (
+    <div className="space-y-6">
+      <div className="grid gap-4 sm:grid-cols-2">
+        {[["Ad", "Exactly one slate CTA · rebuilt UI proof · cursor on the control being used", true], ["Post", "No CTA · one hero object · wordmark → statement → visual", false]].map(([t, d, ad]) => (
+          <div key={t as string} className="rounded-2xl border border-[var(--st)] bg-white p-5">
+            <p className="s-eyebrow">Is there a CTA? {ad ? "Yes" : "No"}</p>
+            <p className="s-display mt-2 text-[28px]">{t as string}</p>
+            <p className="mt-1 text-[13px] text-[var(--tx-tertiary)]">{d as string}</p>
+            {ad ? <SButton size="sm" className="mt-4">Get started</SButton> : <div className="mt-4 h-9" />}
+          </div>
+        ))}
+      </div>
+      <div><Cap>Hue story by subject (rotate per message, never invent)</Cap>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          {hues.map(([n, bg]) => <div key={n}><div className="h-20 rounded-xl" style={{ background: bg }} /><p className="mt-1.5 text-[12px] text-[var(--tx-tertiary)]">{n}</p></div>)}
+        </div>
+      </div>
+    </div>
+  );
+}

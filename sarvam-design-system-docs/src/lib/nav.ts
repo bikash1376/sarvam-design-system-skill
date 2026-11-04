@@ -48,6 +48,7 @@ const groups: [string, (string | [string, string])[]][] = [
   ["Animations", ["Animations"]],
   ["AI", ["Message", "Conversation", "Response", "Reasoning", "Tool call", "Activity", ["Prompt input", "components/reference/composer.md"]]],
   ["Formats", [
+    ["Banner decisions", "formats/banner-decisions.md"],
     ["Social banners", "formats/social-banners.md"],
     ["Embed images", "formats/embed-images.md"],
     ["Hero layouts", "formats/hero-layouts.md"],

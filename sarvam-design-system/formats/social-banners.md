@@ -1,5 +1,7 @@
 # Format · Social Banners (Meta, LinkedIn, X)
 
+> Start with **`formats/banner-decisions.md`** (ad or post, hue story, surface, motif, copy move). This file holds the layouts, canvases and type scale those decisions plug into.
+
 Derived from Sarvam's own LinkedIn posts (2025–26). Every banner = **one archetype + one hue story + one message**.
 
 > Banners and social posts are **static HTML + CSS** (`templates/banner.html`) rendered to PNG with `scripts/render.js`. No React, no Tailwind and no animation library: the output is an image.
