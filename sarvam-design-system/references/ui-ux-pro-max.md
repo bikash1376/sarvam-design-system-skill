@@ -5,7 +5,7 @@
 ## What to use it for
 | Need | Use |
 |---|---|
-| Art direction options for a banner or post (2–3 directions before picking one) | `vendor/ui-ux-pro-max/banner-design/SKILL.md`: workflow and styles |
+| Art direction options for a banner or post (2–3 directions before picking one) | `vendor/ui-ux-pro-max/banner-design/BANNER-DESIGN.md`: workflow and styles |
 | Sizes beyond our six core canvases (Facebook cover, X header, YouTube, Pinterest, display ads, print) | `vendor/ui-ux-pro-max/banner-design/references/banner-sizes-and-styles.md` |
 | UX, accessibility and layout checks, landing-section patterns, chart choice, motion guidance | `python -I vendor/ui-ux-pro-max/scripts/search.py "<query>" --domain <ux\|landing\|charts\|motion\|typography\|styles> -n 5` |
 
