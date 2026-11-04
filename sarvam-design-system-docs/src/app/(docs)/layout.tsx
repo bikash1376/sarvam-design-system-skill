@@ -3,8 +3,6 @@ import { Container } from "@/components/layout/container";
 import { Sidebar } from "@/components/docs/sidebar";
 import { ModeToggle } from "@/components/docs/mode";
 
-const toc = ["Overview", "Install", "Foundations", "Components"];
-
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
     <Container className="pt-[var(--docs-top)]">
@@ -16,14 +14,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
           <Suspense fallback={null}>{children}</Suspense>
         </main>
         <aside className="hidden xl:block">
-          <div className="sticky top-[var(--docs-top)]">
-            <p className="mb-3 text-sm font-medium">On this page</p>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              {toc.map((t) => (
-                <li key={t}>{t}</li>
-              ))}
-            </ul>
-          </div>
+          <div id="toc-slot" className="no-scrollbar sticky top-[var(--docs-top)] max-h-[calc(100vh-var(--docs-top))] overflow-y-auto pb-24" />
         </aside>
       </div>
       {/* fixed top bar: solid, then fades out so scrolled content slides under it */}

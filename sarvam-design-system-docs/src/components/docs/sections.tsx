@@ -15,7 +15,7 @@ const ALIAS: Record<string, string> = {
 function Section({ id, title, count, children }: { id: string; title: string; count?: string; children: React.ReactNode }) {
   return (
     <Reveal>
-    <section id={id} className="scroll-mt-32 border-t pt-10">
+    <section id={id} className="scroll-mt-36 border-t pt-10">
       <h2 className="text-[17px] font-medium tracking-tight">{title}</h2>
       {count && <p className="mt-0.5 text-[13px] text-muted-foreground">{count}</p>}
       <div className="mt-6">{children}</div>
