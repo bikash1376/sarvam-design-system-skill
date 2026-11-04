@@ -37,7 +37,7 @@ Logo carousels and full-bleed photography have **0 radius**.
     --sf-tertiary #f0f0f0  wells, code header, inner panels
   aura / gradient glows sit behind, never on top of, text
 ```
-Dark moments: `--black #141414` or `--grad-night` panels hold white Season Mix text, a white hairline grid or concentric arcs, and a centred white star glyph.
+Dark moments: `--black #141414` or `--grad-night` panels hold white Season Mix text, a white hairline grid or concentric arcs, and a centred white Sarvam star (`assets/motifs/star-bullet-*.svg`, solid white).
 
 ## Borders and dividers
 - 1px `#e6e6e6` (`--st`) on cards. 1px `#f0f0f0` for hairlines inside cards and table rows.

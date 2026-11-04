@@ -70,7 +70,7 @@ export function GradientsPreview() {
       </div>
       <div className="grid gap-4 sm:grid-cols-3">
         <div className="h-40 rounded-2xl" style={{ background: "var(--grad-spectrum)" }} />
-        <div className="relative h-40 overflow-hidden rounded-2xl" style={{ background: "var(--grad-night)" }}><span className="absolute inset-x-0 bottom-6 text-center text-[24px] text-white">✦</span></div>
+        <div className="relative h-40 overflow-hidden rounded-2xl" style={{ background: "var(--grad-night)" }}><span className="absolute inset-x-0 bottom-6 mx-auto block size-7 bg-white [mask:url(/skill/motifs/star-bullet-indigo.svg)_center/contain_no-repeat]" aria-hidden /></div>
         <div className="h-40 rounded-2xl" style={{ background: "var(--grad-stats-band)" }} />
       </div>
       <div className="grid grid-cols-4 gap-3">{["blue", "orange", "green", "pink"].map((h) => <div key={h} className="space-y-2">{["", "-medium", "-light"].map((l) => <div key={l} className="h-12 rounded-xl" style={{ background: `var(--grad-${h}${l})` }} />)}<Mono>--grad-{h}</Mono></div>)}</div>

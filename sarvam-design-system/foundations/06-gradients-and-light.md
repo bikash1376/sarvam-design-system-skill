@@ -54,7 +54,7 @@ For feature/infra tiles that hold a white icon or glyph:
 ```css
 background: radial-gradient(60% 90% at 50% 100%, #3d32ab 0%, transparent 70%), linear-gradient(180deg,#14142b,#1e2033);
 ```
-Add a centred white 4-point star glyph and the Sarvam mandala outline (white, ~8–15%) rising from the bottom centre, instead of generic concentric arcs (see `17-mandala-background.md`).
+Add a centred white Sarvam star (the `assets/motifs/star-bullet-*.svg` shape, filled solid white, no glow) and the Sarvam mandala outline (white, ~8–15%) rising from the bottom centre, instead of generic concentric arcs (see `17-mandala-background.md`).
 
 ## Grain
 Banner gradients get **subtle film grain** (3–6% opacity monochrome noise). It removes banding and gives the printed, tactile feel visible in Sarvam's LinkedIn posts. Use the SVG `feTurbulence` snippet in `templates/_partials.md`.
