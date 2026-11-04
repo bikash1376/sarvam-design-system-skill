@@ -1,35 +1,45 @@
-# Sarvam AI design system
+# Sarvam design system skill
 
-**Private repository.** It contains licensed fonts (Season Mix, Matter). Don't make it public or redistribute the fonts.
+Sarvam AI's brand as an **agent skill**. Load it into Claude Code, Cursor, Codex or another coding agent and it produces on-brand Sarvam websites, UI, social banners, embed images and illustrations. A docs site shows every foundation and component visually.
+
+> **Fonts are licensed.** The repo includes Season Mix and Matter. Keep the repository private and don't redistribute the font files.
 
 | Folder | What it is |
 |---|---|
-| [`sarvam-design-system/`](sarvam-design-system/) | **The skill**: `SKILL.md`, `DECISIONS.md`, tokens, foundations, component reference pages, assets (including fonts), tools and templates. The single source of truth. |
-| [`sarvam-docs/`](sarvam-docs/) | Next.js docs site (Human / Agent views, Customize, Install). It reads the skill at build time and never edits it. |
-| [`explorations/`](explorations/) | Assets generated with the skill (e.g. the Diwali flame) and their build scripts. |
+| [`sarvam-design-system/`](sarvam-design-system/) | **The skill** and single source of truth: `SKILL.md`, `DECISIONS.md`, `FACTS.md`, tokens, foundations, 68 component specs, formats (web pages, hero layouts, social banners, embed images), templates, tools and assets. |
+| [`sarvam-design-system-docs/`](sarvam-design-system-docs/) | The docs site (Next.js + shadcn/ui + Tailwind + Motion). It reads the skill at build time and never edits it. **Human** view: live Sarvam previews and rules. **Agent** view: the raw spec an agent reads. |
 
-Live docs: https://sarvam-design-system-1103.netlify.app
-
-## Install the skill (Claude Code)
-macOS / Linux:
+## Install the skill
+One command, for Claude Code, Cursor, Codex and other agents (uses the [`skills`](https://www.npmjs.com/package/skills) CLI):
 ```bash
-git clone https://github.com/bikash1376/sarvam-aii.git
-mkdir -p ~/.claude/skills && cp -r sarvam-aii/sarvam-design-system ~/.claude/skills/
+npx skills add bikash1376/sarvam-design-system-skill
 ```
-Windows (PowerShell):
-```powershell
-git clone https://github.com/bikash1376/sarvam-aii.git
-Copy-Item -Recurse -Force sarvam-aii\sarvam-design-system "$env:USERPROFILE\.claude\skills\"
-```
-Restart Claude Code. The skill is discovered as `sarvam-design-system`. To update: `git pull`, then copy again.
+It detects your agents and installs `sarvam-design-system` into each one (for Claude Code: `~/.claude/skills/sarvam-design-system`). Run it again to update.
 
-Other agents (Cursor, Codex, ChatGPT): point them at `sarvam-design-system/SKILL.md` and let them follow its file map.
-
-## Develop the docs site
+Manual install for Claude Code:
 ```bash
-cd sarvam-docs
+git clone https://github.com/bikash1376/sarvam-design-system-skill.git
+cp -r sarvam-design-system-skill/sarvam-design-system ~/.claude/skills/
+```
+On Windows (PowerShell): `Copy-Item -Recurse -Force sarvam-design-system-skill\sarvam-design-system "$env:USERPROFILE\.claude\skills\"`
+
+Restart the agent. The skill triggers on anything branded Sarvam ("Sarvam", "Bulbul", "Saaras", "Sarvam 105B", "AI for all from India" and so on).
+
+## What the skill does
+- **Websites:** before building, it asks a few multiple-choice questions (stack, pages, audience, sections) and skips any the prompt already answers. Websites are always React + Tailwind (Vite by default, or Next.js or Astro) with **Motion** for all animation, built on shadcn/ui through a scoped `.sarvam` theme.
+- **Banners and posts:** static HTML rendered to PNG. Six platform canvases with a proportional type scale, so one banner keeps its proportions on every platform. Art direction and extra platform sizes come from the bundled ui-ux-pro-max (MIT).
+- **Embed images:** glass glyph tiles and wide pastel embeds via `tools/embed/embed.py`.
+- **Brand:** tokens from sarvam.ai production, gateway glyphs, the Sarvam mandala, soft glows, logo and co-branding rules, copywriting rules, and an anti-slop checklist.
+
+## Run the docs site
+```bash
+cd sarvam-design-system-docs
 npm install
-npm run dev      # syncs assets from ../sarvam-design-system, then starts Next.js
-npm run build    # static export to out/ (deployed to Netlify)
+npm run dev        # syncs fonts, icons and tokens from ../sarvam-design-system, then starts Next.js
+npm run build      # production build
 ```
-After editing component reference pages, regenerate them with `python sarvam-design-system/scripts/build_component_reference.py`.
+
+## Working on the skill
+- Component specs live in `sarvam-design-system/components/reference/*.md`. New ones are generated from `scripts/component_specs.py` with `python sarvam-design-system/scripts/build_component_reference.py`. Hand-edited pages are kept unless you pass `--force`.
+- Render a banner: `cd sarvam-design-system && npm i && node scripts/render.js templates/banner.html out/banner.png 1080 1080`
+- Generate an embed: `python sarvam-design-system/tools/embed/embed.py wide --palette lilac --icon globe --png --out out/og.svg`

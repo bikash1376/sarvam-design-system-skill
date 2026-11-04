@@ -7,8 +7,6 @@ __pycache__/
 
 # deploy staging copies (rebuilt from sources)
 dist-ds/
-deploy-docs/
-.netlify/
 
 # docs site: skill assets copied at dev/build time (scripts/sync-skill.mjs)
 sarvam-design-system-docs/public/skill/
