@@ -4,7 +4,7 @@ Pick the stack in the intake step (`references/project-intake.md`). If nobody ch
 
 Every stack follows the same three rules:
 1. **Tokens first.** Copy `tokens/tokens.css` and `assets/fonts/` into the project, import `tokens.css` once globally, and map it into Tailwind's `@theme` (see below). Components use token classes or `var(--…)`, never raw hex.
-2. **Motion for animation.** Use the `motion` package (`import { motion } from "motion/react"`). Follow `foundations/10-motion.md`: reveal only at `md+`, and always respect `prefers-reduced-motion`.
+2. **Motion for all animation: required in every stack.** Install `motion` in React + Vite, Next.js and Astro alike, and wrap the app in `<MotionConfig reducedMotion="user">`. Use the recipes in `foundations/10-motion.md` (reveals, stagger, press, `layoutId` pills, `AnimatePresence`). Don't use CSS keyframes, GSAP or another animation library for UI motion. CSS transitions are fine only for simple colour and shadow hovers.
 3. **Tailwind v4.** Configure it in CSS (`@import "tailwindcss"` + `@theme`). There is no `tailwind.config.js` unless the project already has one.
 
 ---
@@ -82,3 +82,15 @@ Then use `font-display text-tx bg-sf border-st` and similar classes. Gradients (
 ## Before you call it done
 - Run the dev server and screenshot at 375, 768 and 1440: `node scripts/render.js http://localhost:5173 out/page-375.png 375 full` (Next: port 3000, Astro: 4321).
 - Check `checklists/qa.md`. Lighthouse accessibility ≥ 90, no layout shift from fonts.
+
+## shadcn/ui on top (optional, recommended for app UI)
+Sarvam sits on top of shadcn instead of replacing it:
+1. `npx shadcn@latest init` (Base UI style, matching `pick-ui-library.md`).
+2. Copy `tokens/tokens.css` to `src/styles/tokens.css`. Replace `:root` with `.sarvam`, and point font urls at your fonts folder.
+3. Copy `templates/shadcn-sarvam.css` to `src/styles/` and import it after `shadcn/tailwind.css` in `globals.css`.
+4. Wrap Sarvam UI in `<div className="sarvam">`. Stock shadcn components inside it take Sarvam colours, fonts and radius. Nothing outside the wrapper changes, so there are no font or layout shifts.
+5. Portals (dialog, popover, select, tooltip, toast) render outside the wrapper, so add `sarvam` to their content `className`.
+6. Buttons need the Sarvam pill variants and the dark-button cursor glow (`components/reference/button.md`). Use a small `cva` wrapper instead of shadcn's square button.
+
+Components that sarvam.ai doesn't ship (inputs, overlays, data, AI) are specified in `components/reference/*.md` with origin "derived". Build them on shadcn primitives following those specs and the brand rules.
+

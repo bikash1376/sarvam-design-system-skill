@@ -40,6 +40,7 @@
 - [ ] Layout reflows (stack, reorder, collapse) and doesn't just shrink
 - [ ] Type steps: h1 44→64(→72), h2 28→36
 - [ ] Reveals off on mobile and under reduced motion
+- [ ] Websites: React + Tailwind (Vite, Next.js or Astro) with all animation in Motion (`motion` package, `MotionConfig reducedMotion="user"`). No CSS keyframes or second animation library for UI motion. Banners stay static HTML.
 - [ ] Hero fits one viewport at 1440 without a scroll to reach the CTAs
 - [ ] Logo wall / language row / sample cards start below the first viewport on desktop
 - [ ] At 100% width, every card in a row is the same width and height (measure them)

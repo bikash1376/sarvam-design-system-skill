@@ -10,11 +10,8 @@ dist-ds/
 deploy-docs/
 .netlify/
 
-# docs site: copied from the skill at build time (scripts/sync.mjs)
-sarvam-docs/public/assets/
-sarvam-docs/public/tokens/
-sarvam-docs/public/tools/
-sarvam-docs/public/sarvam-design-system.zip
+# docs site: skill assets copied at dev/build time (scripts/sync-skill.mjs)
+sarvam-design-system-docs/public/skill/
 
 # local
 .DS_Store

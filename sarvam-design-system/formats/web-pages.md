@@ -135,12 +135,12 @@ Bento is **not** four equal feature cards. Use it when the tiles carry different
 | Section gap | 96 | 128 | 128 |
 
 ## Build rules
-- **Stack:** ask first (`references/project-intake.md`), then set up with `references/stack-setup.md`. The default is React + Vite + Tailwind + Lenis + Motion, with Next.js or Astro as alternatives. Never vanilla single-file HTML.
+- **Stack:** ask first (`references/project-intake.md`), then set up with `references/stack-setup.md`. The default is React + Vite + Tailwind + Lenis + Motion, with Next.js + Tailwind + Motion or Astro + Tailwind + Motion as alternatives. Never vanilla single-file HTML. **All animation uses Motion** (`foundations/10-motion.md`).
 - Mobile-first CSS. `min-width` media queries at 640/768/1024/1280/1536.
 - Import `tokens/tokens.css`. Use variables, never raw hex in components.
 - Semantic HTML (`header/nav/main/section/footer`), one `h1`, alt text on images, and `aria-hidden` on decorative glyphs.
 - Images: `loading="lazy"` below the fold, explicit width/height, `object-fit:cover`.
-- Reveal animations only at `md+`, and only with `prefers-reduced-motion: no-preference`.
+- Reveal animations with Motion (`whileInView`, once) only at `md+`, inside `MotionConfig reducedMotion="user"`.
 - Lighthouse: aim for ≥90 accessibility and no layout shift from fonts (`font-display:swap` + size-adjusted fallbacks).
 - Deliver screenshots at **375, 768 and 1440** widths. Check 1024 and 1280 to confirm the in-between states look intentional.
 

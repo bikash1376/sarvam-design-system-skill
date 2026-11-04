@@ -2,6 +2,8 @@
 
 Derived from Sarvam's own LinkedIn posts (2025–26). Every banner = **one archetype + one hue story + one message**.
 
+> Banners and social posts are **static HTML + CSS** (`templates/banner.html`) rendered to PNG with `scripts/render.js`. No React, no Tailwind and no animation library: the output is an image.
+
 ## Canvas specs
 | Platform | Size (px) | Ratio | Safe zone (inner margin) | Notes |
 |---|---|---|---|---|

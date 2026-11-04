@@ -997,10 +997,16 @@ Button · Footer
 
 
 def main():
+    import sys; sys.path.insert(0, str(pathlib.Path(__file__).parent))
+    from component_specs import SPECS
+    DOCS.extend(SPECS)
     OUT.mkdir(parents=True, exist_ok=True)
     for doc in DOCS:
         slug = doc.split("slug: ", 1)[1].split("\n", 1)[0]
-        (OUT / f"{slug}.md").write_text(doc, encoding="utf8")
+        target = OUT / f"{slug}.md"
+        if target.exists() and "--force" not in sys.argv and doc not in SPECS:
+            continue  # hand-edited legacy page: keep it (pass --force to regenerate)
+        target.write_text(doc, encoding="utf8")
     print(f"wrote {len(DOCS)} reference pages to {OUT}")
 
 
