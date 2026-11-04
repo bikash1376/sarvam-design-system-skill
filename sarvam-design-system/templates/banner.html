@@ -2,7 +2,7 @@
 <!--
   SARVAM BANNER TEMPLATE
   ----------------------
-  Size class on <body>:      size-sq (1080×1080) | size-pt (1080×1350) | size-li (1200×627)
+  Size class on <body>:      size-sq 1080² | size-lsq 1200² | size-pt 1080×1350 | size-st 1080×1920 | size-li 1200×627 | size-x 1600×900  (all sizes scale from --u)
   Archetype class on <body>: arch-a (Editorial Light) | arch-c (Gateway Frame) | arch-d (Spectrum Field) | arch-e (Glow Gateway) | arch-b (Two-tone)
   Hue (arch-c only):         data-hue="leaf|saffron|indigo"
   Render: node ../scripts/render.js templates/banner.html out.png 1080 1080
@@ -17,11 +17,23 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{background:#fff}
   body{position:relative;overflow:hidden;font-family:var(--font-sans);color:var(--tx);-webkit-font-smoothing:antialiased}
-  body.size-sq{width:1080px;height:1080px;--pad:80px;--h:104px;--sub:32px;--wm:38px}
-  body.size-pt{width:1080px;height:1350px;--pad:80px;--h:112px;--sub:34px;--wm:40px}
-  body.size-li{width:1200px;height:627px;--pad:64px;--h:76px;--sub:25px;--wm:30px}
+  /* ── Proportional scale: every size derives from --u (1% of the canvas's SHORT side).
+        Type, padding and the wordmark are multiples of --u, tuned per aspect ratio, so one
+        banner keeps identical proportions on every platform (no extra/missing space). ── */
+  body{--pad:calc(var(--u)*var(--k-pad));--h:calc(var(--u)*var(--k-h));--sub:calc(var(--u)*var(--k-sub));--wm:calc(var(--u)*var(--k-wm));--pad-y:calc(var(--pad)*var(--k-y,1));--pad-b:var(--pad-y)}
+  /* square 1:1 */
+  body.size-sq {width:1080px;height:1080px;--u:10.8px;--k-pad:7.4;--k-h:9.6;--k-sub:3;--k-wm:3.5}
+  body.size-lsq{width:1200px;height:1200px;--u:12px;  --k-pad:7.4;--k-h:9.6;--k-sub:3;--k-wm:3.5}
+  /* portrait 4:5 (Meta/IG feed) */
+  body.size-pt {width:1080px;height:1350px;--u:10.8px;--k-pad:7.4;--k-h:10.4;--k-sub:3.15;--k-wm:3.7;--k-y:1.25}
+  /* story 9:16 (IG/FB/WhatsApp status): keep 250px top / 340px bottom clear of platform UI */
+  body.size-st {width:1080px;height:1920px;--u:10.8px;--k-pad:7.4;--k-h:11.2;--k-sub:3.4;--k-wm:3.9;--k-y:3.1;--pad-b:340px}
+  /* landscape 1.91:1 (LinkedIn / Facebook link) */
+  body.size-li {width:1200px;height:627px;--u:6.27px;--k-pad:10.2;--k-h:12.1;--k-sub:4;--k-wm:4.8;--k-y:.88}
+  /* landscape 16:9 (X / Twitter) */
+  body.size-x  {width:1600px;height:900px;--u:9px;   --k-pad:8;  --k-h:10;  --k-sub:3.2;--k-wm:3.8}
 
-  .wm{position:absolute;top:var(--pad);left:var(--pad);height:var(--wm);z-index:5}
+  .wm{position:absolute;top:var(--pad-y);left:var(--pad);height:var(--wm);z-index:5}
   .wm img{height:100%;display:block}
   .headline{font-family:var(--font-display);font-weight:400;font-size:var(--h);line-height:1.04;letter-spacing:-0.025em;text-wrap:balance}
   .sub{font-size:var(--sub);line-height:1.4;color:var(--tx-secondary);max-width:16em}
@@ -33,11 +45,14 @@
 
   /* ---------- A · Editorial Light ---------- */
   .arch-a{background:#fff}
-  .arch-a .top-pill{position:absolute;top:var(--pad);right:var(--pad)}
-  .arch-a .copy{position:absolute;left:var(--pad);bottom:var(--pad);display:flex;flex-direction:column;gap:calc(var(--pad)*.9);z-index:3}
+  .arch-a .top-pill{position:absolute;top:var(--pad-y);right:var(--pad)}
+  .arch-a .copy{position:absolute;left:var(--pad);bottom:var(--pad-b);display:flex;flex-direction:column;gap:calc(var(--pad)*.9);z-index:3}
   .arch-a .cluster{position:absolute;right:calc(var(--pad)*.4);top:50%;transform:translateY(-58%);width:58%;aspect-ratio:1}
   .size-li.arch-a .cluster{width:46%;right:var(--pad);transform:translateY(-50%)}
   .size-li.arch-a .copy{top:50%;bottom:auto;transform:translateY(-38%)}
+  .size-x.arch-a .cluster{width:44%;right:var(--pad);transform:translateY(-50%)}
+  .size-x.arch-a .copy{top:50%;bottom:auto;transform:translateY(-38%)}
+  .size-st.arch-a .cluster{width:78%;top:44%}
   .cluster img{position:absolute;display:block}
   .cluster .g1{width:66%;left:22%;top:16%}
   .cluster .g2{width:40%;left:4%;top:2%;z-index:-1}
@@ -64,14 +79,14 @@
     background:radial-gradient(30% 45% at 18% 30%,#f9bb9e 0%,transparent 70%),radial-gradient(28% 55% at 78% 60%,#a7c0f1 0%,transparent 70%),
                radial-gradient(35% 60% at 50% 15%,#e6651b 0%,transparent 70%),radial-gradient(30% 45% at 35% 85%,#d5650f 0%,transparent 70%),
                radial-gradient(25% 50% at 92% 20%,#d2dff9 0%,transparent 70%),#ee7944}
-  .arch-d .copy{position:absolute;left:var(--pad);right:var(--pad);bottom:var(--pad);color:#fff;display:flex;flex-direction:column;gap:calc(var(--pad)*.6);z-index:3}
+  .arch-d .copy{position:absolute;left:var(--pad);right:var(--pad);bottom:var(--pad-b);color:#fff;display:flex;flex-direction:column;gap:calc(var(--pad)*.6);z-index:3}
   .arch-d .headline{color:#fff;font-size:calc(var(--h)*1.08)}
   .arch-d .meta{color:rgba(255,255,255,.88)}
 
   /* ---------- E · Glow Gateway ---------- */
   .arch-e{background:linear-gradient(180deg,#f6f3e8 0%,#ece6f2 40%,#9a92e4 78%,#5b4fd6 100%)}
   .arch-e .glow{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:92%;opacity:.97}
-  .size-li.arch-e .glow{width:62%;top:58%}
+  .size-li.arch-e .glow,.size-x.arch-e .glow{width:62%;top:58%}
   .arch-e .copy{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--pad)*.5);text-align:center;padding:0 calc(var(--pad)*2.2);z-index:3;padding-top:6%}
   .arch-e .lockup{display:flex;align-items:center;gap:calc(var(--wm)*.5);height:var(--wm)}
   .arch-e .lockup img{height:80%}

@@ -5,26 +5,40 @@ Derived from Sarvam's own LinkedIn posts (2025–26). Every banner = **one arche
 > Banners and social posts are **static HTML + CSS** (`templates/banner.html`) rendered to PNG with `scripts/render.js`. No React, no Tailwind and no animation library: the output is an image.
 
 ## Canvas specs
-| Platform | Size (px) | Ratio | Safe zone (inner margin) | Notes |
+| Size class | Platform | Size (px) | Ratio | Safe zone |
 |---|---|---|---|---|
-| Meta feed square | **1080 × 1080** | 1:1 | 80px all sides | IG grid crops nothing |
-| Meta feed portrait | **1080 × 1350** | 4:5 | 80px sides, **100px top/bottom** | IG grid preview crops to the centre 1080×1080, so keep the headline in the middle 1080 |
-| LinkedIn single image | **1200 × 627** | 1.91:1 | 64px sides, 56px top/bottom | Shown small in the feed; the headline must read at 50% scale |
-| LinkedIn square | 1200 × 1200 | 1:1 | 80px | Alternative |
-| X / Twitter | 1600 × 900 | 16:9 | 72px | n/a |
+| `size-sq` | Meta / Instagram feed square | **1080 × 1080** | 1:1 | 80px all sides |
+| `size-pt` | Meta / Instagram feed portrait | **1080 × 1350** | 4:5 | 80px sides, 100px top/bottom; keep the headline in the centre 1080×1080 (grid preview crop) |
+| `size-st` | Instagram / Facebook story, WhatsApp status | 1080 × 1920 | 9:16 | 80px sides, **250px top, 340px bottom** (platform UI) |
+| `size-li` | LinkedIn single image, Facebook link share | **1200 × 627** | 1.91:1 | 64px sides, 56px top/bottom. Reads at 50% in the feed |
+| `size-lsq` | LinkedIn square | 1200 × 1200 | 1:1 | 88px |
+| `size-x` | X / Twitter in-feed | 1600 × 900 | 16:9 | 72px |
 
-Export **PNG, sRGB, 1×** at exact size. Keep text crisp: no blur on text layers.
+Export **PNG, sRGB, 1×** at the exact size. Keep text crisp: no blur on text layers.
 
-## Type scale for banners
-| Element | 1080×1080 | 1080×1350 | 1200×627 |
-|---|---|---|---|
-| Wordmark height | 36–40px | 40px | 28–32px |
-| Eyebrow / lockup label (Semi Mono caps) | 22px, tracking .12em | 22px | 18px |
-| **Headline (Season Mix 425)** | **88–112px**, lh 1.02–1.08, tracking −0.025em | **96–120px** | **64–80px** |
-| Headline (Matter 600, saturated archetype only) | 84–100px, lh 1.05 | 96px | 64–72px |
-| Sub-copy (Matter 425) | 30–34px, lh 1.4 | 32–36px | 24–26px |
-| Meta (date/venue, Matter 425) | 24–26px | 26px | 18–20px |
-| CTA pill (Matter 525) | 24px text, 64px tall | 24px | 18px text, 48px tall |
+## Proportional type and spacing (one banner, every platform)
+Never hand-pick pixel sizes per platform. `templates/banner.html` sets **`--u` = 1% of the canvas's short side**. Every size is a multiple of `--u`, with a multiplier per aspect ratio. A banner adapted from square to LinkedIn to story then keeps the same balance of headline, margins and white space. Nothing looks cramped on one platform and empty on another.
+
+| Token | Square / LI square | Portrait 4:5 | Story 9:16 | LinkedIn 1.91:1 | X 16:9 |
+|---|---|---|---|---|---|
+| `--u` | 10.8px / 12px | 10.8px | 10.8px | 6.27px | 9px |
+| Padding `--pad` | 7.4u (80px) | 7.4u (80px) | 7.4u (80px) | 10.2u (64px) | 8u (72px) |
+| Vertical padding `--pad-y` | 1× pad | 1.25× pad (100px) | 3.1× pad (250px) | 0.88× pad (56px) | 1× pad |
+| **Headline (Season Mix 425)** `--h` | **9.6u (104px)** | **10.4u (112px)** | **11.2u (121px)** | **12.1u (76px)** | **10u (90px)** |
+| Sub-copy `--sub` | 3u (32px) | 3.15u (34px) | 3.4u (37px) | 4u (25px) | 3.2u (29px) |
+| Wordmark height `--wm` | 3.5u (38px) | 3.7u (40px) | 3.9u (42px) | 4.8u (30px) | 3.8u (34px) |
+| Eyebrow / label | 0.68 × sub | 0.68 × sub | 0.68 × sub | 0.68 × sub | 0.68 × sub |
+| Meta (date, venue) | 0.78 × sub | 0.78 × sub | 0.78 × sub | 0.78 × sub | 0.78 × sub |
+| CTA pill | height 1.4 × wm, text 0.55 × wm | same | same | same | same |
+
+Rules:
+- Landscape formats get a **larger** headline multiplier (12.1u on LinkedIn) because the short side is small and the feed shows them at ~50%. Story gets more vertical padding, not bigger margins at the sides.
+- Glyph clusters, mandalas and frames are sized in **% of the canvas**, never px, so they scale with it.
+- To adapt a banner, change only the `size-*` class on `<body>`. If the copy wraps to an extra line in one size, shorten the copy. Don't shrink the type.
+- Render every size you ship and compare them side by side (`node scripts/render.js banner.html out-sq.png 1080 1080`, then `-li` at 1200×627 and so on).
+
+## Composition with ui-ux-pro-max
+For art direction options, extra platform sizes (Facebook cover, YouTube, Pinterest, display ads) and UX checks, use the bundled `vendor/ui-ux-pro-max/` (see `references/ui-ux-pro-max.md`). Sarvam tokens, type and archetypes always override its palettes and fonts.
 
 Max **12 words** of headline + sub combined on LinkedIn, and 16 on Meta. One CTA at most.
 
