@@ -440,3 +440,28 @@ export function WebPagesPreview() {
     </ol>
   );
 }
+
+/* ───────── Embed images ───────── */
+export function EmbedImagesPreview() {
+  const tiles = ["rose", "indigo", "saffron", "leaf"];
+  const wides = ["wide-lilac-globe", "wide-spectrum-wave", "wide-dusk-mic", "wide-indigo-chat"];
+  return (
+    <div className="space-y-6">
+      <div><Cap>Glass glyph tiles</Cap>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {tiles.map((t, i) => (
+            <motion.img key={t} src={`${A}/embeds/tile-${t}.png`} alt="" className="aspect-square w-full" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.06 }} whileHover={{ y: -3 }} />
+          ))}
+        </div>
+      </div>
+      <div><Cap>Wide embeds · OG, blog, docs cards</Cap>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {wides.map((w, i) => (
+            <motion.img key={w} src={`${A}/embeds/${w}.png`} alt="" className="w-full rounded-2xl" initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.06 }} />
+          ))}
+        </div>
+      </div>
+      <p className="text-[12px] text-[var(--tx-tertiary)]">Generated with <span className="s-mono">tools/embed/embed.py</span>: palette + glyph or icon + size.</p>
+    </div>
+  );
+}

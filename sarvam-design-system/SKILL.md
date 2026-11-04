@@ -28,6 +28,7 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
    - **Hero layouts are also mirrored standalone** as the `sarvam-hero-layouts` skill; that copy defers to `sarvam-design-system/formats/hero-layouts.md`
    - Social banner or post: `formats/social-banners.md` (archetypes, six canvases, **proportional `--u` type scale** so one banner fits every platform). For art-direction options and extra sizes, the bundled `references/ui-ux-pro-max.md`
    - SVG, illustration or motif: `foundations/07-motifs-and-glyphs.md`, `foundations/06-gradients-and-light.md`
+   - Embed image (OG / link preview, blog header, glass glyph tile): `formats/embed-images.md` (tool: `tools/embed/embed.py`, examples in `assets/embeds/`)
    - Background line texture (instead of ripples/concentric circles): `foundations/17-mandala-background.md` (assets: `assets/mandala/`)
    - Card or section background glow: `foundations/14-soft-glow-surfaces.md` (tool: `tools/soft-glow/`)
    - Colouring a glyph, emblem or motif with depth: `foundations/15-glyph-color-depth.md` (tool: `tools/color-depth/`)
@@ -67,6 +68,7 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
 | `tools/soft-glow/` | `glow.py` (CLI) + `generator.html` (visual editor) for soft-glow surfaces |
 | `tools/color-depth/` | `color_depth.py` + `sarvam-glyphs.json` (curated Sarvam glyph set) |
 | `components/*.md` | Buttons, eyebrow, nav, cards, feature list, stats, code block, badges (12px radius, not pills), tags, integration card, testimonial, CTA panel, footer; `interactive.md`: cursor-glow button, audio player pill, dot-matrix visualiser, language select, segmented control, copy button |
+| `formats/embed-images.md` | Glass glyph tiles + wide pastel embeds (OG, blog, docs cards); generator `tools/embed/embed.py` |
 | `formats/social-banners.md` | Meta 1080², 1080×1350, LinkedIn 1200×627: archetypes, safe zones, type sizes |
 | `formats/web-pages.md` | Landing page anatomy, section order, per-breakpoint behaviour |
 | `formats/hero-layouts.md` | **Which hero for which page.** 10 named layouts (Aura Statement, Demo Stage, Prompt Bar, Docs Left, Editorial Split, Gateway Frame, Manifesto, Benchmark, Visual Top, Side Visual), audience → layout, 6 brand tiers, responsive stacks, gradient level, pitfalls |

@@ -19,7 +19,7 @@ const PREVIEWS: Record<string, () => React.ReactNode> = {
   "section-header": B.SectionHeaderPreview, "pillar-list": B.PillarListPreview, testimonial: B.TestimonialPreview,
   "logo-marquee": B.LogoMarqueePreview, "integration-card": B.IntegrationCardPreview, panel: B.GlowPanelPreview,
   "cta-banner": COMPONENT_PREVIEWS.panel,
-  "social-banners": B.SocialBannersPreview, "hero-layouts": B.HeroLayoutsPreview, "web-pages": B.WebPagesPreview,
+  "social-banners": B.SocialBannersPreview, "embed-images": B.EmbedImagesPreview, "hero-layouts": B.HeroLayoutsPreview, "web-pages": B.WebPagesPreview,
 };
 
 /** Live preview for a docs page, rendered inside the `.sarvam` theme scope. */

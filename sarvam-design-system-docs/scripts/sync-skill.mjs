@@ -7,7 +7,7 @@ const SKILL = path.resolve("..", "sarvam-design-system");
 const PUB = path.resolve("public", "skill");
 
 fs.rmSync(PUB, { recursive: true, force: true });
-for (const dir of ["fonts", "icons", "icons-solid", "icons-depth", "glyphs", "glyphs-depth", "logos", "mandala", "motifs", "glows"]) {
+for (const dir of ["fonts", "icons", "icons-solid", "icons-depth", "glyphs", "glyphs-depth", "logos", "mandala", "motifs", "glows", "embeds"]) {
   const from = path.join(SKILL, "assets", dir);
   if (fs.existsSync(from)) fs.cpSync(from, path.join(PUB, dir), { recursive: true });
 }
