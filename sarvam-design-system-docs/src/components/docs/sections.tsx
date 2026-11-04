@@ -1,11 +1,9 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { ALL, hrefOf } from "@/lib/nav";
 import type { DocContent, Rule } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { Reveal } from "./motion";
-import { FoldedCode } from "./folded-code";
 
 const ALIAS: Record<string, string> = {
   tag: "chip", segmented: "segmented-control", "language-select": "select", "feature-card": "card",
@@ -16,7 +14,7 @@ function Section({ id, title, count, children }: { id: string; title: string; co
   return (
     <Reveal>
     <section id={id} className="scroll-mt-36 border-t pt-10">
-      <h2 className="text-[15px] font-medium tracking-tight">{title}</h2>
+      <h2 className="text-[16px] font-medium tracking-tight">{title}</h2>
       {count && <p className="mt-0.5 text-[12px] text-muted-foreground">{count}</p>}
       <div className="mt-6">{children}</div>
     </section>
@@ -45,22 +43,11 @@ function relatedLink(name: string) {
 
 const isColor = (v: string) => /^#[0-9a-f]{3,8}$/i.test(v) || /^rgba?\(/.test(v) || /gradient\(/.test(v);
 
+/** Human view: the same short set of sections on every page. The full spec lives in the Agent view. */
 export function Sections({ doc }: { doc: DocContent }) {
   const s = doc.sections;
   return (
     <div className="space-y-12">
-      {s.anatomy && (
-        <Section id="content" title="Content and states">
-          <div className="docs-prose"><ReactMarkdown remarkPlugins={[remarkGfm]} components={{ pre: FoldedCode }}>{s.anatomy}</ReactMarkdown></div>
-        </Section>
-      )}
-
-      {s.rest && doc.kind !== "component" && (
-        <Section id="guidance" title="Guidance">
-          <div className="docs-prose"><ReactMarkdown remarkPlugins={[remarkGfm]} components={{ pre: FoldedCode }}>{s.rest}</ReactMarkdown></div>
-        </Section>
-      )}
-
       {(s.use.length > 0 || s.notFor.length > 0) && (
         <Section id="usage" title="Usage" count="When to use it">
           <ul className="divide-y">
@@ -89,24 +76,7 @@ export function Sections({ doc }: { doc: DocContent }) {
         </Section>
       )}
 
-      {s.edge.length > 0 && (
-        <Section id="edge-cases" title="Edge cases" count={`${s.edge.length} edge cases`}>
-          <dl className="divide-y">{s.edge.map(([k, v], i) => <div key={i} className="grid gap-1 py-3 text-[14px] sm:grid-cols-[220px_1fr] sm:gap-6"><dt className="font-medium">{inline(k)}</dt><dd className="text-muted-foreground">{inline(v)}</dd></div>)}</dl>
-        </Section>
-      )}
-
-      {s.api.length > 0 && (
-        <Section id="api" title="API" count={`${s.api.length} props`}>
-          <dl className="divide-y">{s.api.map((p, i) => (
-            <div key={i} className="grid gap-1 py-3 sm:grid-cols-[220px_1fr] sm:gap-6">
-              <dt className="font-mono text-[13px]">{p.prop}</dt>
-              <dd className="font-mono text-[13px] text-muted-foreground">{p.type}{p.def && p.def !== "n/a" && <span className="ml-2 text-foreground/70">default {p.def}</span>}</dd>
-            </div>
-          ))}</dl>
-        </Section>
-      )}
-
-      {s.tokens.length > 0 && (
+      {doc.kind !== "component" && s.tokens.length > 0 && (
         <Section id="tokens" title="Tokens" count={`${s.tokens.length} tokens`}>
           <dl className="divide-y">{s.tokens.map(([n, v]) => (
             <div key={n} className="grid gap-1 py-2.5 sm:grid-cols-[220px_1fr] sm:gap-6">

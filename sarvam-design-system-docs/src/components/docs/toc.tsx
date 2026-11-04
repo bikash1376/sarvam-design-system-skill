@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 export type TocItem = { id: string; label: string };
 const REPO = "https://github.com/bikash1376/sarvam-design-system-skill";
-const INSTALL = "npx skills add bikash1376/sarvam-design-system-skill";
+const INSTALL = "INSTALL_INTERNAL_SKILLS=1 DISABLE_TELEMETRY=1 npx skills add bikash1376/sarvam-design-system-skill";
 
 function CopyRow({ label, text, icon = Copy01Icon }: { label: string; text: string; icon?: typeof Copy01Icon }) {
   const [done, setDone] = useState(false);
@@ -71,14 +71,12 @@ export function Toc({ items, title, source }: { items: TocItem[]; title: string;
       )}
       <div className="border-t pt-6">
         <p className="text-sm font-medium">Install</p>
-        <p className="mt-1 mb-3 text-sm text-muted-foreground">The whole skill, for Claude Code, Cursor, Codex and other agents</p>
-        <code className="mb-2 block rounded-lg bg-muted px-3 py-2 font-mono text-[12px] leading-5 break-all">{INSTALL}</code>
-        <CopyRow label="Copy command" text={INSTALL} />
+        <div className="mt-3"><CopyRow label="Copy command" text={INSTALL} /></div>
       </div>
       <div className="border-t pt-6">
         <p className="text-sm font-medium">GitHub</p>
         <a href={REPO} target="_blank" rel="noreferrer" className="mt-3 inline-flex h-9 items-center gap-2 rounded-lg bg-muted px-3 text-[14px] hover:bg-muted/70">
-          <HugeiconsIcon icon={GithubIcon} size={15} />sarvam-design-system-skill
+          <HugeiconsIcon icon={GithubIcon} size={15} />View on GitHub
         </a>
       </div>
     </div>,

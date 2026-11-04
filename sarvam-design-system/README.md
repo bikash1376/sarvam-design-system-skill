@@ -2,7 +2,7 @@
 
 Sarvam AI's brand as a skill that an agent (Claude Code, Cursor, Codex and others) loads to produce on-brand websites, UI, banners, embed images and illustrations.
 
-Install: `npx skills add bikash1376/sarvam-design-system-skill`, or copy this folder to `~/.claude/skills/sarvam-design-system/`.
+Install: `INSTALL_INTERNAL_SKILLS=1 DISABLE_TELEMETRY=1 npx skills add bikash1376/sarvam-design-system-skill`, or copy this folder to `~/.claude/skills/sarvam-design-system/`.
 
 ## Map
 - **Entry point:** [`SKILL.md`](SKILL.md) holds the workflow (step 0 is the website intake questions), the golden rules, a quick reference and the file map.

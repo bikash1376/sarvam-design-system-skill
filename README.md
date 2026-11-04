@@ -12,9 +12,11 @@ Sarvam AI's brand as an **agent skill**. Load it into Claude Code, Cursor, Codex
 ## Install the skill
 One command, for Claude Code, Cursor, Codex and other agents (uses the [`skills`](https://www.npmjs.com/package/skills) CLI):
 ```bash
-npx skills add bikash1376/sarvam-design-system-skill
+INSTALL_INTERNAL_SKILLS=1 DISABLE_TELEMETRY=1 npx skills add bikash1376/sarvam-design-system-skill
 ```
 It detects your agents and installs `sarvam-design-system` into each one (for Claude Code: `~/.claude/skills/sarvam-design-system`). Run it again to update.
+
+**Private by design.** `SKILL.md` sets `metadata.internal: true`, so the skills CLI hides it from discovery, and the install command needs `INSTALL_INTERNAL_SKILLS=1`. `DISABLE_TELEMETRY=1` stops the CLI from reporting the install, which is how skills.sh builds its public listings. Keep the GitHub repository private as well, both for the listings and for the licensed fonts. On Windows PowerShell, set the variables first: `$env:INSTALL_INTERNAL_SKILLS=1; $env:DISABLE_TELEMETRY=1; npx skills add bikash1376/sarvam-design-system-skill`.
 
 Manual install for Claude Code:
 ```bash

@@ -81,8 +81,16 @@ export function getDoc(item: NavItem): DocContent {
   const kind: DocContent["kind"] = item.group === "Sarvam" ? "system-index" : DOC_GROUPS.has(item.group) ? "foundation" : "component";
   const { out, order } = splitH2(body);
   const firstPara = out._intro.trim().split("\n\n").find((p) => p && !/^[#|>`\-*\d<]/.test(p.trim()));
+  // pages that share one foundation file get their own one-liner
+  const OWN: Record<string, string> = {
+    space: "A 4px base, generous section rhythm, and space instead of boxes.",
+    grid: "Twelve columns at 10/12 of the viewport, capped at 1400px; 88% on mobile.",
+    radius: "Pills for actions, 16px for cards, 12px for inputs, 24px for panels.",
+    "borders-and-lines": "One quiet grey hairline for every edge; slate only for selection.",
+    elevation: "Soft ambient shadows and inset edges, never hard drop shadows.",
+  };
   const description =
-    summary ?? firstPara?.replace(/\*\*|`/g, "").replace(/\s+/g, " ").slice(0, 180) ??
+    OWN[item.slug] ?? summary ?? firstPara?.replace(/\*\*|`/g, "").replace(/\s+/g, " ").slice(0, 180) ??
     `${item.title} for Sarvam interfaces.`;
 
   const anatomyKeys = ["Styles", "Sizes", "States", "Variants"];
