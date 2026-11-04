@@ -8,7 +8,7 @@ Source: **Sarvam's official mandala line art** (`assets/mandala/sarvam-mandala.s
 | File | Use |
 |---|---|
 | `sarvam-mandala.svg` | The official file as delivered: 0.72px `#F5F5F5` strokes at 15% opacity. Drop it straight onto a dark or saturated surface. |
-| `sarvam-mandala-outline.svg` | The same line art with solid black strokes (1.4px). Use it as a **CSS mask** to tint the lines in any colour and opacity. |
+| `sarvam-mandala-outline.svg` | The same line art at the official **0.72px** stroke, solid black. Use it as a **CSS mask** to tint the lines in any colour and opacity. |
 | `sarvam-mandala-outline-{white,black}.png` | 2048px transparent PNGs of the line art, for tools that can't use SVG or masks. |
 
 ## When to use it (sparingly)
@@ -20,8 +20,9 @@ Source: **Sarvam's official mandala line art** (`assets/mandala/sarvam-mandala.s
 ## How to place it (good representation)
 1. **Big and cropped.** Scale it to **110–160% of the canvas width**, centred horizontally. Anchor it so it rises from the bottom edge (roughly the top 40–60% of the mandala visible, e.g. the "Happy New Year 2026" post), or let it fill the middle band behind floating chips (the "Voice Agent" post). Never shrink it into a small centred badge.
 2. **Tone on tone.** Tint it with the surface's own light colour, never a contrasting one:
-      - White at **30–60% opacity** through the mask over saffron, periwinkle or indigo gradients (or the official file as is: white at 15%).
-   - Ink `#1e2033` at **6–10%** on near-white surfaces.
+      - **Thin and faint, always.** Lines stay at the official ~0.7px weight, never thicker. Use the official file as delivered (white at 15%), or white at **15–25%** through the mask on gradients and dark panels.
+   - Ink `#1e2033` at **5–8%** on near-white surfaces.
+   - It should read as a texture you notice on a second look, never as a drawing (see the New Year, Equal webinar and Voice Agent posts).
 3. **Keep text clear.** The headline sits in the calm zone above or beside it. Body copy must stay at contrast ≥ 4.5:1, so check it over the brightest band of the mandala.
 4. Optional: a 1–2px blur or a top-to-bottom mask fade (`mask-image: linear-gradient(transparent, #000 30%)`) so it emerges from the gradient instead of sitting on it.
 
@@ -33,7 +34,7 @@ Source: **Sarvam's official mandala line art** (`assets/mandala/sarvam-mandala.s
 .mandala-bg{
   position:absolute; left:50%; bottom:-45%; width:140%; aspect-ratio:1;
   transform:translateX(-50%); pointer-events:none;
-  background:#fff; opacity:.45;                      /* tone-on-tone tint */
+  background:#fff; opacity:.2;                       /* faint: lines stay ~0.7px */
   -webkit-mask:url(assets/mandala/sarvam-mandala-outline.svg) center/contain no-repeat;
           mask:url(assets/mandala/sarvam-mandala-outline.svg) center/contain no-repeat;
 }

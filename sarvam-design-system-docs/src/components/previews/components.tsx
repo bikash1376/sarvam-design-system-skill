@@ -428,7 +428,7 @@ function PanelDemo() {
   return (
     <div className="relative overflow-hidden rounded-3xl px-6 pt-16 pb-14 text-center" style={{ background: "var(--grad-cta-panel)" }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/skill/mandala/sarvam-mandala-outline-white.png" alt="" aria-hidden className="pointer-events-none absolute left-1/2 top-[42%] w-[130%] max-w-none -translate-x-1/2 opacity-[.35]" />
+      <img src="/skill/mandala/sarvam-mandala.svg" alt="" aria-hidden className="pointer-events-none absolute left-1/2 top-[42%] w-[130%] max-w-none -translate-x-1/2 opacity-80" />
       <h3 className="s-display relative mx-auto max-w-xl text-[36px] leading-[1.2] text-white">Start transcribing in minutes<br />Powered by Saaras V3</h3>
       <CtaStar />
       <SButton variant="on-dark" className="relative">Get API key</SButton>
