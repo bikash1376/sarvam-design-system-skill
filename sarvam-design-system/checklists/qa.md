@@ -15,6 +15,7 @@
 - [ ] Co-brand lockup (if requested): Sarvam first unless Sarvam is the guest; ≤ 2 marks; partner keeps its own colours
 - [ ] Wordmark is an original file, black or white only, with clear space respected, never beside the logomark
 - [ ] Eyebrows and section labels are **Geist**, **`#666666`**, never monospace, never indigo
+- [ ] Eyebrows: hero 0–1, mid-page ≤ 2 in total, never on adjacent sections, none on FAQ, testimonials, pricing, CTA, blog cards or legal. Each one names an owner, product, programme or tier (delete it: is anything lost?)
 - [ ] Section labels (if any) are Geist 500 12px, at most 1–2 per page, not above every h2
 - [ ] Product pages: centred hero, plain background, no split layout
 - [ ] Headline is Season Mix 425 (h1) / 525 (h2), sentence case, tracking −0.02em, no orphan word

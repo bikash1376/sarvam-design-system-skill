@@ -100,7 +100,7 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
 Gradients     : surface glow -> 14 (soft-glow) · hero light -> 06 §1 aura · banner field -> 06 §2 spectrum · inside shapes -> 15 (colour depth)
 Display font  : Season Mix 425 (h1) / 525 (h2), tracking -0.02em, line-height 1.05–1.2
 UI/body font  : Matter 425 (body) / 525 (titles, buttons)
-Eyebrow       : Geist 400–500, 12–16px, #666666 ALWAYS. Never monospace, never indigo
+Eyebrow       : Geist 500 12px caps (via CSS), 2px tracking, #666666. Only to say WHICH thing: hero 0–1 (product/programme/tier; none on API pages), mid-page ≤ 2 (owner of a module). Default: none. See components/reference/eyebrow.md
 Section label : Geist 500, 12px, UPPERCASE, tracking 2px, #666666. Rare: logo bar + product modules, never above every h2
 Micro label   : Matter Semi Mono 10–11px caps, indigo — demo chrome only (OUTPUT, CODE SWITCH) + footer column heads
 Hero          : 4 elements max — badge · h1 (2–7 words) · sub (≤20 words) · 1–2 CTAs. Nothing else in the first viewport

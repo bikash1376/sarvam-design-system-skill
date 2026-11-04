@@ -9,7 +9,7 @@ A Sarvam page is quiet **everywhere**. Restraint is not a hero-only rule — eve
 4. **Max two pieces of chrome per section** — a label, a link, a tag row. Not a label *and* a badge *and* a footnote *and* a link.
 5. **No floating decorations.** No sample cards orbiting a headline, no sticker labels, no arrows pointing at things, no "scroll to explore", no corner badges.
 6. **No chip soup.** Max 2 tag rows per card, 1 badge per block, 6 chips in a cluster. More than that is a list or a table.
-7. **One eyebrow per page.** One section label per 2–3 sections, at most.
+7. **Eyebrows disambiguate, they don't decorate.** Hero: 0 or 1 (product, programme or tier name; none on API/model pages). Mid-page: ≤ 2 in total, only above a section owned by one named product on a cross-product page. Default is no eyebrow. Full rules: `components/reference/eyebrow.md`.
 8. **Numbers live in a stats row**, not scattered as pills through the copy.
 9. **Remove any element whose absence changes nothing.**
 10. **Whitespace is the default filler.** If a gap feels large, it is probably right.
@@ -61,6 +61,8 @@ There is **no section label above the h2s** on this page. Section titles stand a
 | Page | Layout | Background | Eyebrow (Geist, `#666666`) |
 |---|---|---|---|
 | Home / brand | Centred | Hero aura (06 §1) | Ornament + hairline eyebrow ("India's Sovereign AI Platform") |
+| Product page | per hero layout | per hero layout | Product name ("Indus Cowork") |
+| API / model page | per hero layout | per hero layout | **None**: the h1 is the name |
 | Product / API | Centred | Plain `--sf` | Ornament only |
 | Campaign / event | Centred or archetype-led | Spectrum field | Optional |
 Never use a left-aligned split hero with a demo card beside the headline. It crowds the hero and isn't a Sarvam pattern.
