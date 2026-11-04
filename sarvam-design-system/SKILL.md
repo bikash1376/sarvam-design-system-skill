@@ -69,7 +69,7 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
 | `references/pick-ui-library.md` | Curated frontend library picks (base-ui, Sonner, motion, Virtuoso…). Also installed as the `pick-ui-library` skill |
 | `tools/soft-glow/` | `glow.py` (CLI) + `generator.html` (visual editor) for soft-glow surfaces |
 | `tools/color-depth/` | `color_depth.py` + `sarvam-glyphs.json` (curated Sarvam glyph set) |
-| `components/*.md` | Buttons, eyebrow, nav, cards, feature list, stats, code block, badges (12px radius, not pills), tags, integration card, testimonial, CTA panel, footer; `interactive.md`: cursor-glow button, audio player pill, dot-matrix visualiser, language select, segmented control, copy button |
+| `components/*.md` | Buttons, eyebrow, nav (+ `reference/mega-menu.md` for the Products/Developers hover panel), cards, feature list, stats, code block, badges (12px radius, not pills), tags, integration card, testimonial, CTA panel, footer; `interactive.md`: cursor-glow button, audio player pill, dot-matrix visualiser, language select, segmented control, copy button |
 | `formats/embed-images.md` | Glass glyph tiles + wide pastel embeds (OG, blog, docs cards); generator `tools/embed/embed.py` |
 | `formats/social-banners.md` | Meta 1080², 1080×1350, LinkedIn 1200×627: archetypes, safe zones, type sizes |
 | `formats/web-pages.md` | Landing page anatomy, section order, per-breakpoint behaviour |

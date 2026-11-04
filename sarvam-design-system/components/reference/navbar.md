@@ -29,7 +29,7 @@ Transparent over the hero; on scroll it becomes `rgba(252,252,252,.8)` + `backdr
 - **Must** align the wordmark with the content container edge.
 - **Must** show **exactly one logo**: the Sarvam wordmark. No partner mark, sub-brand, "in collaboration with" or model logo — even when the page is about a partner. A co-branded lockup appears only when explicitly requested, and in the hero badge or footer, not the nav.
 - **Must** use only the wordmark, never the logomark next to it.
-- **Should** open mega-menus as white 16px cards with `--shadow-elev-md`.
+- **Should** open the Products and Developers menus as a full-width **Mega menu** (`components/reference/mega-menu.md`): grouped icon rows plus one featured card, with the page dimmed behind.
 
 ## Accessibility
 - Use `<nav aria-label="Main">`. The hamburger has `aria-expanded`. The mobile sheet traps focus and Esc closes it.

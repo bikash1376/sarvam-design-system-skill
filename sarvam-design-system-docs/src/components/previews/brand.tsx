@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useAnimationFrame, useMotionValue, useSpring } from "motion/react";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Copy01Icon, Download04Icon, RefreshIcon, Cancel01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
+import { Copy01Icon, Download04Icon, RefreshIcon, Cancel01Icon, ArrowRight01Icon, WorkflowCircle01Icon, SourceCodeIcon, NoteEditIcon, TextFontIcon, ServerStack01Icon, AiBrain01Icon, SmartPhone01Icon, Mic01Icon, VoiceIcon, DocumentValidationIcon, TranslateIcon, Book02Icon, Money03Icon, Plug01Icon, DiscordIcon, ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import { SButton } from "@/components/sarvam/button";
 import { cn } from "@/lib/utils";
 
@@ -462,6 +462,161 @@ export function EmbedImagesPreview() {
         </div>
       </div>
       <p className="text-[12px] text-[var(--tx-tertiary)]">Generated with <span className="s-mono">tools/embed/embed.py</span>: palette + glyph or icon + size.</p>
+    </div>
+  );
+}
+
+/* ───────── Mega menu (skill: mega-menu.md) ───────── */
+type MegaItem = { title: string; desc?: string; icon?: typeof Copy01Icon; glyph?: string; hue: string };
+type MegaGroup = { label: string; cols?: 1 | 2; items: MegaItem[]; footer?: string };
+type Mega = { id: string; label: string; groups: MegaGroup[]; feature: { title: string; caption: string; bg: string } };
+const MEGA: Mega[] = [
+  {
+    id: "products", label: "Products",
+    groups: [{ label: "Products", cols: 2, items: [
+      { title: "Voice Agents", desc: "Conversational AI", glyph: "अ", hue: "var(--sr-indigo-800)" },
+      { title: "Token Factory", desc: "Open model inference in India", icon: ServerStack01Icon, hue: "var(--sr-green-700)" },
+      { title: "Work Agents", desc: "AI for Work", icon: WorkflowCircle01Icon, hue: "var(--sr-green-700)" },
+      { title: "Model Training", desc: "Custom AI models", icon: AiBrain01Icon, hue: "var(--sr-indigo-700)" },
+      { title: "Coding Agents", desc: "Ship high quality code", icon: SourceCodeIcon, hue: "var(--sr-orange-800)" },
+      { title: "Sarvam Edge", desc: "On device AI", icon: SmartPhone01Icon, hue: "var(--tx)" },
+      { title: "Content Studio", desc: "Content Transformation", icon: NoteEditIcon, hue: "var(--heritage-forest)" },
+      { title: "Kivi", desc: "You talk, Kivi types", icon: Mic01Icon, hue: "var(--sr-green-600)" },
+      { title: "Document AI", desc: "Digitise and extract docs", icon: TextFontIcon, hue: "var(--sr-orange-800)" },
+    ] }],
+    feature: { title: "Dashboard", caption: "Sarvam Dashboard", bg: "var(--grad-sunrise)" },
+  },
+  {
+    id: "developers", label: "Developers",
+    groups: [
+      { label: "APIs", items: [
+        { title: "Text to Speech", desc: "Bulbul V3", icon: VoiceIcon, hue: "var(--sr-orange-800)" },
+        { title: "Speech to Text", desc: "Saaras V3", icon: Mic01Icon, hue: "var(--sr-indigo-700)" },
+        { title: "Document Digitisation", desc: "Sarvam Vision", icon: DocumentValidationIcon, hue: "var(--sr-red-600)" },
+        { title: "Translation", desc: "Mayura", icon: TranslateIcon, hue: "var(--sr-pink-700)" },
+      ], footer: "View all models" },
+      { label: "Resources", items: [
+        { title: "Documentation", icon: Book02Icon, hue: "var(--sr-green-800)" },
+        { title: "API Pricing", icon: Money03Icon, hue: "var(--sr-red-600)" },
+        { title: "Integrations", icon: Plug01Icon, hue: "var(--sr-green-700)" },
+        { title: "Join Discord", icon: DiscordIcon, hue: "var(--tx-secondary)" },
+      ] },
+    ],
+    feature: { title: "Startup Program", caption: "Sarvam Startup Program", bg: "radial-gradient(80% 90% at 50% 70%, #6f74dd 0%, transparent 70%), linear-gradient(180deg, #b7c3f6 0%, #8a92e8 55%, #6b6fd6 100%)" },
+  },
+];
+
+function MegaRow({ it, i }: { it: MegaItem; i: number }) {
+  return (
+    <motion.a href="#" onClick={(e) => e.preventDefault()} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25, delay: 0.04 + i * 0.03 }}
+      className="group -mx-2 flex items-center gap-4 rounded-xl px-2 py-1 transition-colors hover:bg-[var(--sf-secondary)]">
+      <span className="grid size-12 shrink-0 place-items-center rounded-[10px] border border-[var(--st)] bg-white transition-transform duration-200 group-hover:-translate-y-px" style={{ color: it.hue }}>
+        {it.glyph ? <span className="text-[22px] leading-none">{it.glyph}</span> : it.icon && <HugeiconsIcon icon={it.icon} size={22} strokeWidth={1.6} />}
+      </span>
+      <span className="min-w-0">
+        <span className="block text-[18px] leading-6 text-[var(--tx)]">{it.title}</span>
+        {it.desc && <span className="block truncate text-[15px] text-[var(--tx-tertiary)]">{it.desc}</span>}
+      </span>
+    </motion.a>
+  );
+}
+
+function MegaPanel({ m }: { m: Mega }) {
+  return (
+    <div className="mx-auto grid w-[83.333%] grid-cols-12 gap-10 pt-12 pb-14">
+      <div className={cn("col-span-8 grid gap-10", m.groups.length > 1 ? "grid-cols-2" : "grid-cols-1")}>
+        {m.groups.map((g) => (
+          <div key={g.label}>
+            <p className="mb-6 font-[family-name:var(--font-eyebrow)] text-[12px] tracking-[1px] uppercase text-[var(--tx-secondary)] [font-weight:500]">{g.label}</p>
+            <div className={cn("grid gap-x-10 gap-y-4", g.cols === 2 ? "grid-cols-2" : "grid-cols-1")}>
+              {g.items.map((it, i) => <MegaRow key={it.title} it={it} i={i} />)}
+            </div>
+            {g.footer && <a href="#" onClick={(e) => e.preventDefault()} className="mt-8 inline-block pl-2 text-[16px] text-[var(--sr-indigo-800)] hover:underline">{g.footer}</a>}
+          </div>
+        ))}
+      </div>
+      <a href="#" onClick={(e) => e.preventDefault()} className="group col-span-4 self-start rounded-2xl border border-[var(--st-secondary)] bg-white p-2">
+        <span className="grid aspect-video place-items-center overflow-hidden rounded-xl text-center" style={{ background: m.feature.bg }}>
+          <motion.span className="px-6 text-[32px] leading-tight text-white [font-weight:var(--fw-medium)]" whileHover={{ scale: 1.03 }}>{m.feature.title}</motion.span>
+        </span>
+        <span className="flex items-center justify-between px-2 pt-3 pb-1 text-[16px] text-[var(--tx)]">
+          {m.feature.caption}
+          <span className="text-[var(--tx-tertiary)] transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"><HugeiconsIcon icon={ArrowUpRight01Icon} size={16} /></span>
+        </span>
+      </a>
+    </div>
+  );
+}
+
+export function MegaMenuPreview() {
+  const [open, setOpen] = useState<string | null>(null);
+  const closeT = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const openT = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const outer = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+  useEffect(() => {
+    const el = outer.current; if (!el) return;
+    const ro = new ResizeObserver(([e]) => setScale(Math.min(1, e.contentRect.width / 1280)));
+    ro.observe(el); return () => ro.disconnect();
+  }, []);
+  const hoverOpen = (id: string) => {
+    if (closeT.current) clearTimeout(closeT.current);
+    if (openT.current) clearTimeout(openT.current);
+    openT.current = setTimeout(() => setOpen(id), open ? 0 : 80); // intent delay only for the first open
+  };
+  const hoverClose = () => {
+    if (openT.current) clearTimeout(openT.current);
+    closeT.current = setTimeout(() => setOpen(null), 150);
+  };
+  const keep = () => { if (closeT.current) clearTimeout(closeT.current); };
+  const menu = MEGA.find((m) => m.id === open);
+  return (
+    <div ref={outer} className="space-y-3">
+      <p className="text-[12px] text-[var(--tx-tertiary)]">Hover <b>Products</b> or <b>Developers</b> (or Tab to them and press Enter). Desktop frame, 1280px wide, scaled to fit.</p>
+      <div className="overflow-hidden rounded-2xl border border-[var(--st)]" style={{ width: 1280, zoom: scale }}
+        onKeyDown={(e) => { if (e.key === "Escape") setOpen(null); }}>
+        <div className="relative h-[660px] bg-[var(--sf)]">
+          <header className="relative z-20 border-b border-[var(--st)] bg-white" onMouseLeave={hoverClose} onMouseEnter={keep}>
+            <nav aria-label="Main" className="mx-auto flex h-[68px] w-[83.333%] items-center justify-between">
+              <img src={`${A}/logos/sarvam-wordmark-black.svg`} alt="sarvam" className="h-[22px] w-auto" />
+              <div className="flex items-center gap-2 text-[16px]">
+                {[...MEGA.map((m) => m.label), "Resources", "Company"].map((l) => {
+                  const m = MEGA.find((x) => x.label === l);
+                  return (
+                    <button key={l} aria-expanded={m ? open === m.id : undefined} aria-controls={m ? `mega-${m.id}` : undefined}
+                      onMouseEnter={() => (m ? hoverOpen(m.id) : hoverClose())}
+                      onClick={() => m && setOpen(open === m.id ? null : m.id)}
+                      className={cn("rounded-full px-3 py-1.5 transition-colors", m && open === m.id ? "text-[var(--tx)]" : "text-[var(--tx-secondary)] hover:text-[var(--tx)]")}>{l}</button>
+                  );
+                })}
+              </div>
+              <div className="flex gap-2"><SButton size="md">Log In</SButton><SButton size="md" variant="secondary">Contact Us</SButton></div>
+            </nav>
+            <AnimatePresence>
+              {menu && (
+                <motion.div id={`mega-${menu.id}`} role="region" aria-label={`${menu.label} menu`} key="panel"
+                  initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.25, ease: [0.2, 0, 0, 1] }} className="absolute inset-x-0 top-full overflow-hidden border-b border-[var(--st)] bg-white">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.div key={menu.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} transition={{ duration: 0.2 }}>
+                      <MegaPanel m={menu} />
+                    </motion.div>
+                  </AnimatePresence>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </header>
+          {/* page behind */}
+          <div className="mx-auto w-[83.333%] pt-16 text-center">
+            <p className="s-eyebrow">India&apos;s Sovereign AI Platform</p>
+            <p className="s-display mt-4 text-[56px] leading-[1.05]">AI for all from India</p>
+            <div className="mx-auto mt-10 grid max-w-3xl grid-cols-3 gap-4">{[0, 1, 2].map((i) => <div key={i} className="h-36 rounded-2xl bg-white shadow-[var(--shadow-card)]" />)}</div>
+          </div>
+          <AnimatePresence>
+            {menu && <motion.div aria-hidden className="absolute inset-0 top-[68px] z-10 bg-[rgba(20,20,20,.18)] backdrop-blur-[4px]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }} onClick={() => setOpen(null)} />}
+          </AnimatePresence>
+        </div>
+      </div>
     </div>
   );
 }

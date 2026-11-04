@@ -39,7 +39,7 @@ const groups: [string, (string | [string, string])[]][] = [
   ]],
   ["Feedback", ["Alert", "Toast", "Empty state", "Skeleton", "Progress"]],
   ["Overlays", ["Dialog", "Sheet", "Popover", "Tooltip", "Dropdown menu", "Command"]],
-  ["Navigation", ["Navbar", "Tabs", "Breadcrumb", "Pagination", "Footer"]],
+  ["Navigation", ["Navbar", "Mega menu", "Tabs", "Breadcrumb", "Pagination", "Footer"]],
   ["Marketing", ["Eyebrow", "Section header", "Pillar list", "Testimonial", "Logo marquee", "Integration card", ["CTA banner", "components/reference/cta-panel.md"]]],
   ["Layout", ["Collapsible"]],
   ["Data", ["Table", "Filter bar", "Timeline", "Data grid"]],

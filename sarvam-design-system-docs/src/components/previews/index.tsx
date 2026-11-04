@@ -15,7 +15,7 @@ const PREVIEWS: Record<string, () => React.ReactNode> = {
   "brand-essence": B.BrandEssencePreview, "logo-usage": B.LogoUsagePreview, "motifs-and-glyphs": B.MotifsPreview,
   "gradients-and-light": B.GradientsPreview, "soft-glow-surfaces": B.SoftGlowPreview, "glyph-colour-depth": B.GlyphDepthPreview,
   "mandala-background": B.MandalaPreview, imagery: B.ImageryPreview, "voice-and-tone": B.VoicePreview, copywriting: B.CopywritingPreview,
-  "icon-button": B.IconButtonPreview, navbar: B.NavbarPreview, footer: B.FooterPreview, eyebrow: B.EyebrowPreview,
+  "icon-button": B.IconButtonPreview, navbar: B.NavbarPreview, "mega-menu": B.MegaMenuPreview, footer: B.FooterPreview, eyebrow: B.EyebrowPreview,
   "section-header": B.SectionHeaderPreview, "pillar-list": B.PillarListPreview, testimonial: B.TestimonialPreview,
   "logo-marquee": B.LogoMarqueePreview, "integration-card": B.IntegrationCardPreview, panel: B.GlowPanelPreview,
   "cta-banner": COMPONENT_PREVIEWS.panel,
