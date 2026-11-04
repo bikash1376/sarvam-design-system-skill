@@ -5,8 +5,6 @@ out/
 __pycache__/
 *.pyc
 
-# deploy staging copies (rebuilt from sources)
-dist-ds/
 
 # docs site: skill assets copied at dev/build time (scripts/sync-skill.mjs)
 sarvam-design-system-docs/public/skill/
