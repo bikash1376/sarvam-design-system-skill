@@ -13,7 +13,7 @@ import { useRef } from "react";
 import { TextMorph } from "torph/react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { SButton, sbtn } from "@/components/sarvam/button";
+import { SButton, sbtn, SIconPill, SolidIcon } from "@/components/sarvam/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Slider } from "@/components/ui/slider";
@@ -81,6 +81,7 @@ function ButtonDemo() {
       <div><Cap>Variants</Cap><Row><SButton>Get API key</SButton><SButton variant="secondary">Docs</SButton><SButton variant="outline">Explore models <I icon={ArrowRight01Icon} /></SButton></Row></div>
       <div><Cap>Hero pair</Cap><Row><SButton variant="hero-dark" size="lg">Start building</SButton><SButton variant="hero-light" size="lg">Talk to us</SButton></Row></div>
       <div className="rounded-2xl p-6" style={{ background: "var(--grad-cta-panel)" }}><Cap><span className="text-white/70">On dark</span></Cap><SButton variant="on-dark">Get 100 credits free</SButton></div>
+      <div><Cap>Icon pill · tinted disc + solid icon</Cap><Row><SIconPill tone="green" icon={SolidIcon.sparkles}>Generate</SIconPill><SIconPill tone="indigo" icon={SolidIcon.dub}>Dub</SIconPill><SIconPill tone="orange" icon={SolidIcon.review}>Review</SIconPill></Row></div>
       <div><Cap>Sizes and states</Cap><Row><SButton size="sm">Small</SButton><SButton>Medium</SButton><SButton size="lg">Large</SButton><SButton disabled>Disabled</SButton></Row></div>
     </div>
   );
@@ -621,12 +622,16 @@ function PaginationDemo() {
       <span className="text-[13px] text-[var(--tx-tertiary)]">{(p - 1) * 20 + 1}–{p * 20} of 248</span>
       <nav aria-label="Pagination" className="flex items-center gap-1">
         <SButton size="sm" variant="outline" disabled={p === 1} onClick={() => setP(p - 1)}>Previous</SButton>
-        {pages.map((n, i) => typeof n === "number"
-          ? <button key={i} onClick={() => setP(n)} aria-current={p === n ? "page" : undefined} className={cn("relative size-9 rounded-full text-[14px] transition-colors", p === n ? "text-white" : "hover:bg-[var(--sf-secondary)]")}>
-              {p === n && <motion.span layoutId="page-pill" className="absolute inset-0 rounded-full bg-[var(--slate)]" transition={{ type: "spring", bounce: 0.15, duration: 0.4 }} />}
-              <span className="relative">{n}</span>
-            </button>
-          : <span key={i} className="px-1 text-[var(--tx-tertiary)]">…</span>)}
+        {/* mobile: "3 of 13" (skill edge case); sm+: page numbers */}
+        <span className="px-2 text-[13px] tabular-nums text-[var(--tx-tertiary)] sm:hidden"><TextMorph>{`${p} of 13`}</TextMorph></span>
+        <span className="hidden items-center gap-1 sm:flex">
+          {pages.map((n, i) => typeof n === "number"
+            ? <button key={i} onClick={() => setP(n)} aria-current={p === n ? "page" : undefined} className={cn("relative size-9 rounded-full text-[14px] transition-colors", p === n ? "text-white" : "hover:bg-[var(--sf-secondary)]")}>
+                {p === n && <motion.span layoutId="page-pill" className="absolute inset-0 rounded-full bg-[var(--slate)]" transition={{ type: "spring", bounce: 0.15, duration: 0.4 }} />}
+                <span className="relative">{n}</span>
+              </button>
+            : <span key={i} className="px-1 text-[var(--tx-tertiary)]">…</span>)}
+        </span>
         <SButton size="sm" variant="outline" disabled={p === 13} onClick={() => setP(p + 1)}>Next</SButton>
       </nav>
     </div>

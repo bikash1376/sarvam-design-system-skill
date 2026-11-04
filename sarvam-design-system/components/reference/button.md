@@ -19,6 +19,7 @@ Starts an action: signing up, submitting, playing audio, opening a flow.
 | `secondary` | `--sf-secondary #f5f5f5` → hover `#fff` | `--tx` | A second action beside a primary |
 | `outline` | `#fff` + 1px `--st` → hover `--sf` | `--tx`, 14px | "Explore X →", "View all" |
 | `on-dark` | `#fff` | `--tx` | Inside a dark CTA panel |
+| `icon-pill` | `#fff` + 1px `--st` + `0 4px 20px rgba(0,0,0,.05)`; a leading **tinted disc** (36px, `--sr-<hue>-100`) holding a **solid** 20px icon in `--sr-<hue>-800` | `--tx`, Matter 425 16px (18px at lg) | Product actions shown as a set: Generate · Dub · Review. One hue per action (green, indigo, orange, pink) |
 
 ## Sizes
 | Size | Height | Padding | Font |
@@ -33,6 +34,11 @@ Starts an action: signing up, submitting, playing audio, opening a flow.
 - **Focus-visible:** `box-shadow: 0 0 0 3px rgba(165,187,252,.6)` (indigo ring) on every variant.
 - **Active:** `transform: scale(.96)`, 150ms.
 - **Disabled:** `opacity: .4; pointer-events: none`.
+
+### Icon pill
+- Height 48px (56px lg), padding 6px left / 24px right, gap 12px. The disc sits 6px from the left edge so it reads as a circle inside the pill.
+- Hover lifts 1px and deepens the shadow; press scales to 0.97 (Motion). No cursor glow: it's a light button.
+- Use them as a row of peer actions (a product's verbs). Never mix tones that don't map to a product or category, and don't use one as the page's primary CTA.
 
 ## Usage
 ### Use
@@ -77,7 +83,9 @@ Starts an action: signing up, submitting, playing audio, opening a flow.
 ## API
 | Prop | Type | Default |
 |---|---|---|
-| `variant` | `primary \| hero-dark \| hero-light \| secondary \| outline \| on-dark` | `primary` |
+| `variant` | `primary \| hero-dark \| hero-light \| secondary \| outline \| on-dark \| icon-pill` | `primary` |
+| `tone` (icon-pill) | `green \| indigo \| orange \| pink` | `indigo` |
+| `icon` (icon-pill) | `ReactNode` (solid icon) | required for icon-pill |
 | `size` | `sm \| md \| lg` | `md` |
 | `icon` | leading icon (solid, 14–16px) | n/a |
 | `href` | renders an `<a>` | n/a |

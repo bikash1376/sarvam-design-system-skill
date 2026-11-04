@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useAnimationFrame, useMotionValue, useSpring } from "motion/react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Copy01Icon, Download04Icon, RefreshIcon, Cancel01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons";
 import { SButton } from "@/components/sarvam/button";
@@ -304,15 +304,54 @@ export function TestimonialPreview() {
   );
 }
 const CUSTOMERS = ["axis-bank", "lic", "infosys", "sbi-life", "tata-capital", "idfc", "urban-company", "nabard", "cred", "mahindra-finance", "skill-india", "india-mart"];
+/** Scrolling marquee: grey logos drift left (~40px/s); hovering eases the scroll to a stop,
+ *  and the hovered logo darkens and scales up slightly. Leaving resumes the drift. */
+function ScrollingMarquee() {
+  const x = useMotionValue(0);
+  const track = useRef<HTMLDivElement>(null);
+  const [hovered, setHovered] = useState(false);
+  const speed = useSpring(1, { stiffness: 120, damping: 20 });
+  useEffect(() => { speed.set(hovered ? 0 : 1); }, [hovered, speed]);
+  useAnimationFrame((_, delta) => {
+    const half = (track.current?.scrollWidth ?? 0) / 2;
+    if (!half) return;
+    let next = x.get() - (40 * delta / 1000) * speed.get();
+    if (next <= -half) next += half;
+    x.set(next);
+  });
+  return (
+    <div className="relative overflow-hidden py-3 [mask-image:linear-gradient(to_right,transparent,#000_12%,#000_88%,transparent)]"
+      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
+      <motion.div ref={track} className="flex w-max items-center gap-14" style={{ x }}>
+        {[...CUSTOMERS, ...CUSTOMERS].map((c, i) => (
+          <motion.img key={i} src={`${A}/logos/customers/${c}.svg`} alt={i < CUSTOMERS.length ? c.replace(/-/g, " ") : ""} aria-hidden={i >= CUSTOMERS.length}
+            className="h-7 w-auto grayscale" initial={{ opacity: 0.5, filter: "grayscale(1) brightness(1)" }}
+            whileHover={{ opacity: 1, scale: 1.06, filter: "grayscale(1) brightness(0.35)" }}
+            transition={{ duration: 0.25, ease: [0.2, 0, 0, 1] }} />
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+/** Static logo row: no movement; hovering a logo reveals its original colour. */
+function StaticLogos() {
+  return (
+    <div className="grid grid-cols-3 items-center justify-items-center gap-x-8 gap-y-8 sm:grid-cols-4 lg:grid-cols-6">
+      {CUSTOMERS.map((c) => (
+        <motion.img key={c} src={`${A}/logos/customers/${c}.svg`} alt={c.replace(/-/g, " ")} className="h-7 w-auto max-w-full"
+          initial={{ opacity: 0.55, filter: "grayscale(1)" }}
+          whileHover={{ opacity: 1, filter: "grayscale(0)", scale: 1.04 }}
+          transition={{ duration: 0.3, ease: [0.2, 0, 0, 1] }} />
+      ))}
+    </div>
+  );
+}
 export function LogoMarqueePreview() {
   return (
-    <div>
-      <p className="s-eyebrow mb-6 text-center">India builds with Sarvam</p>
-      <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_15%,#000_85%,transparent)]">
-        <motion.div className="flex w-max gap-14" animate={{ x: ["0%", "-50%"] }} transition={{ duration: 30, ease: "linear", repeat: Infinity }}>
-          {[...CUSTOMERS, ...CUSTOMERS].map((c, i) => <img key={i} src={`${A}/logos/customers/${c}.svg`} alt={c.replace(/-/g, " ")} className="h-7 w-auto opacity-70 grayscale transition-[filter,opacity] hover:opacity-100 hover:grayscale-0" />)}
-        </motion.div>
-      </div>
+    <div className="space-y-12">
+      <div><p className="s-eyebrow mb-6 text-center">India builds with Sarvam</p><ScrollingMarquee />
+        <p className="mt-3 text-center text-[12px] text-[var(--tx-tertiary)]">Scrolling · hover pauses the row; the logo darkens and grows slightly</p></div>
+      <div><StaticLogos /><p className="mt-6 text-center text-[12px] text-[var(--tx-tertiary)]">Static · hover shows the logo&apos;s original colour</p></div>
     </div>
   );
 }
