@@ -105,12 +105,12 @@ export function MandalaPreview() {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <div className="relative aspect-square overflow-hidden rounded-2xl" style={{ background: "linear-gradient(180deg,#c9d4fb 0%,#e9eefc 55%,#f3b45c 74%,#c8641d 100%)" }}>
-        <div className="absolute bottom-[-46%] left-1/2 aspect-square w-[140%] -translate-x-1/2 bg-white opacity-[.12] [mask:url(/skill/mandala/sarvam-mandala-mark.svg)_center/contain_no-repeat]" />
+        <div className="absolute bottom-[-46%] left-1/2 aspect-square w-[140%] -translate-x-1/2 bg-white opacity-35 [mask:url(/skill/mandala/sarvam-mandala-outline.svg)_center/contain_no-repeat]" />
         <p className="s-display absolute inset-x-0 top-[14%] text-center text-[40px] leading-[1.1] text-[#1e2033]">Happy<br />New Year<br />2026</p>
         <img src={`${A}/logos/sarvam-wordmark-black.svg`} alt="sarvam" className="absolute bottom-6 left-1/2 h-4 -translate-x-1/2 opacity-80" />
       </div>
       <div className="relative aspect-square overflow-hidden rounded-2xl" style={{ background: "linear-gradient(180deg,#fff 0%,#c3cbf7 38%,#6f7ee6 100%)" }}>
-        <div className="absolute top-[22%] left-1/2 aspect-square w-[150%] -translate-x-1/2 bg-white opacity-50 [mask:url(/skill/mandala/sarvam-mandala-outline.svg)_center/contain_no-repeat]" />
+        <div className="absolute top-[22%] left-1/2 aspect-square w-[150%] -translate-x-1/2 bg-white opacity-35 [mask:url(/skill/mandala/sarvam-mandala-outline.svg)_center/contain_no-repeat]" />
         <img src={`${A}/logos/sarvam-wordmark-black.svg`} alt="sarvam" className="absolute top-6 left-1/2 h-4 -translate-x-1/2" />
         <p className="absolute inset-x-0 top-[13%] text-center text-[22px] leading-[1.2] text-[var(--tx)]">A Voice Agent with all<br />the little human things</p>
         {[["Interruptions", "38%", "20%"], ["Natural", "50%", "58%"], ["Pauses", "68%", "14%"]].map(([t, top, left]) => <span key={t} className="absolute rounded-full bg-white/90 px-3 py-1 text-[12px] shadow-[var(--shadow-elev-sm)]" style={{ top, left }}>{t}</span>)}
@@ -391,8 +391,8 @@ export function SocialBannersPreview() {
       <div className="inline-flex rounded-full bg-[var(--sf-secondary)] p-1">{(["square", "portrait", "linkedin"] as const).map((f) => <button key={f} onClick={() => setFmt(f)} className={cn("rounded-full px-4 py-1.5 text-[13px]", fmt === f ? "bg-white shadow-[var(--shadow-seg-active)]" : "text-[var(--tx-tertiary)]")}>{f === "square" ? "Meta 1080²" : f === "portrait" ? "Meta 1080×1350" : "LinkedIn 1200×627"}</button>)}</div>
       <div className="grid gap-4 sm:grid-cols-3">
         {[
-          { bg: "var(--grad-night)", ink: "#fff", t: "Sarvam 105B is here", m: "outline", o: 0.25 },
-          { bg: "linear-gradient(180deg,#c9d4fb 0%,#e9eefc 55%,#f3b45c 74%,#c8641d 100%)", ink: "#1e2033", t: "Happy Diwali", m: "mark", o: 0.12 },
+          { bg: "var(--grad-night)", ink: "#fff", t: "Sarvam 105B is here", m: "outline", o: 0.3 },
+          { bg: "linear-gradient(180deg,#c9d4fb 0%,#e9eefc 55%,#f3b45c 74%,#c8641d 100%)", ink: "#1e2033", t: "Happy Diwali", m: "outline", o: 0.5 },
           { bg: "var(--aura-hero), var(--sf)", ink: "#1f1f1f", t: "Speech to text in 22 languages", m: "", o: 0 },
         ].map((b, i) => (
           <div key={i} className="relative overflow-hidden rounded-xl" style={{ background: b.bg, aspectRatio: ratio }}>

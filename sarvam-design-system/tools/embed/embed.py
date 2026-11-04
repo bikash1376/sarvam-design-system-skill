@@ -17,7 +17,7 @@ import argparse, pathlib, re, subprocess, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 GLYPHS = ROOT / "assets" / "glyphs"
-MANDALA = ROOT / "assets" / "mandala" / "sarvam-mandala-mark.svg"
+MANDALA = ROOT / "assets" / "mandala" / "sarvam-mandala-outline.svg"  # official line art
 
 # Palettes: (top/start, bottom/end, haze, glass tint). Hues come from the sr-* ramps and heritage tokens.
 PALETTES = {
@@ -125,7 +125,7 @@ def wide(w, h, pal, icon):
 </defs>
 <rect width="{w}" height="{h}" fill="url(#bg)"/>
 <rect width="{w}" height="{h}" fill="url(#haze)"/>
-<g mask="url(#edges)"><g transform="translate({mx:.2f} {my:.2f}) scale({ms:.4f})" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="{2.2 / ms:.2f}"><path d="{md}"/></g></g>
+<g mask="url(#edges)"><g transform="translate({mx:.2f} {my:.2f}) scale({ms:.4f})" fill="none" stroke="#fff" stroke-opacity=".32" stroke-width="{1.6 / ms:.2f}"><path d="{md}"/></g></g>
 <rect width="{w}" height="{h}" filter="url(#grain)"/>
 <g transform="translate({ix:.2f} {iy:.2f}) scale({isc:.4f})">{glass_group(icon_svg, 2.6, 4.6, tint)}</g>
 </svg>
