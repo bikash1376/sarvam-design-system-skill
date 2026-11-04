@@ -19,6 +19,7 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
 
 ## 1. How to use this skill (workflow)
 
+0. **Website? Ask first.** For any website, landing page or web UI, run the intake in `references/project-intake.md` before writing code. Ask multiple-choice questions (the `AskUserQuestion` tool in Claude Code) about the **stack** (default React + Vite + Tailwind + Lenis + Motion; or Next.js + Tailwind + Motion; or Astro + Tailwind + Motion), **pages**, **audience** (which picks the hero) and **sections**. Skip any question the prompt already answers, and use the defaults if the user says "just build". Then scaffold with `references/stack-setup.md`. Web pages are never vanilla single-file HTML. Banners and SVGs skip this step.
 1. **Identify the format.** Is it a web page, a social banner or an illustration/SVG?
 2. **Write the copy first.** Read `foundations/16-copywriting.md` before you lay out a single section. Hero = badge, h1, sub, 1–2 CTAs. Nothing else. Word budgets and banned words are hard rules.
 3. **Read the core files below** (always): `tokens/tokens.css`, `foundations/01-brand-essence.md`, `foundations/12-anti-slop.md`, **`DECISIONS.md`** and **`FACTS.md`** (the only allowed source for numbers, customers, quotes and product facts). Prompts won't say which badge, icon style, button, card or gradient to use; `DECISIONS.md` decides from context.
@@ -30,9 +31,9 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
    - Background line texture (instead of ripples/concentric circles): `foundations/17-mandala-background.md` (assets: `assets/mandala/`)
    - Card or section background glow: `foundations/14-soft-glow-surfaces.md` (tool: `tools/soft-glow/`)
    - Colouring a glyph, emblem or motif with depth: `foundations/15-glyph-color-depth.md` (tool: `tools/color-depth/`)
-5. **Start from a template** in `templates/` rather than a blank file.
+5. **Start from a scaffold, not a blank file.** Web pages use the chosen stack (`references/stack-setup.md`). Banners use `templates/banner.html`.
 6. **Use only the components the page needs.** A component list is a menu, not a checklist. If a section repeats the one above it, delete it. Default landing page: 6–8 sections, not 15.
-7. **Render and check.** `node scripts/render.js <file.html> <out.png> <w> <h>` renders a PNG. Then run through `checklists/qa.md` before calling anything done.
+7. **Render and check.** `node scripts/render.js <file.html | http://localhost:PORT> <out.png> <w> <h|full>` renders a PNG (banner file or running dev server). Then run through `checklists/qa.md` before calling anything done.
 
 ## 2. File map
 
@@ -59,6 +60,8 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
 | `foundations/17-mandala-background.md` | **Sarvam mandala illustration as background.** Replaces generic ripples / concentric circles. Big, cropped, tone-on-tone, 1–2 placements max; banners yes |
 | `foundations/15-glyph-color-depth.md` | Core + rim colour depth for gateway glyphs (4 rim moods, echo), Sarvam `sr-*` palettes |
 | `foundations/16-copywriting.md` | **Write copy before layout.** Word budgets, the 4-element hero, "what happens when", banned words, believable demo data, no placeholders/urgency/emoji, worked before→after examples |
+| `references/project-intake.md` | **Ask before building a website.** Multiple-choice intake: stack, pages, audience → hero, sections, plus optional round 2 (co-brand, languages, delivery, content) |
+| `references/stack-setup.md` | Scaffold commands for React+Vite+Tailwind+Lenis+Motion (default), Next.js+Tailwind+Motion, Astro+Tailwind+Motion; tokens → Tailwind v4 `@theme` |
 | `references/pick-ui-library.md` | Curated frontend library picks (base-ui, Sonner, motion, Virtuoso…). Also installed as the `pick-ui-library` skill |
 | `tools/soft-glow/` | `glow.py` (CLI) + `generator.html` (visual editor) for soft-glow surfaces |
 | `tools/color-depth/` | `color_depth.py` + `sarvam-glyphs.json` (curated Sarvam glyph set) |

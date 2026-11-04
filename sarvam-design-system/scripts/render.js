@@ -6,7 +6,7 @@
  *
  * Examples
  *   node scripts/render.js templates/banner.html out/meta-1.png 1080 1080
- *   node scripts/render.js page/index.html out/page-375.png 375 full
+ *   node scripts/render.js http://localhost:5173 out/page-375.png 375 full   (dev server URL)
  *
  * Needs: npm i puppeteer-core   (uses the locally installed Chrome or Edge)
  * Before capturing, it scrolls the page so scroll-reveal sections render.
@@ -33,7 +33,8 @@ const CANDIDATES = [
   const browser = await puppeteer.launch({ executablePath: exe, headless: true, args: ['--allow-file-access-from-files', '--hide-scrollbars'] });
   const page = await browser.newPage();
   await page.setViewport({ width: +w, height: full ? 900 : +h, deviceScaleFactor: scale, isMobile: +w < 500, hasTouch: +w < 500 });
-  await page.goto('file:///' + path.resolve(input).split(path.sep).join('/'), { waitUntil: 'networkidle0' });
+  const target = /^https?:\/\//.test(input) ? input : 'file:///' + path.resolve(input).split(path.sep).join('/');
+  await page.goto(target, { waitUntil: 'networkidle0' });
   await page.evaluate(() => document.fonts.ready);
   if (full) {
     const H = await page.evaluate(() => document.documentElement.scrollHeight);
