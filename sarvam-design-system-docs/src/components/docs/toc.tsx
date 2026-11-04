@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 export type TocItem = { id: string; label: string };
 const REPO = "https://github.com/bikash1376/sarvam-design-system-skill";
-const INSTALL = "INSTALL_INTERNAL_SKILLS=1 DISABLE_TELEMETRY=1 npx skills add bikash1376/sarvam-design-system-skill";
+const INSTALL = "npx skills add bikash1376/sarvam-design-system-skill --skill sarvam-design-system";
 
 function CopyRow({ label, text, icon = Copy01Icon }: { label: string; text: string; icon?: typeof Copy01Icon }) {
   const [done, setDone] = useState(false);

@@ -2,7 +2,7 @@
 
 Sarvam AI's brand as an **agent skill**. Load it into Claude Code, Cursor, Codex or another coding agent and it produces on-brand Sarvam websites, UI, social banners, embed images and illustrations. A docs site shows every foundation and component visually.
 
-> **Fonts are licensed.** The repo includes Season Mix and Matter. Keep the repository private and don't redistribute the font files.
+> Private repository: it includes licensed fonts (Season Mix, Matter).
 
 | Folder | What it is |
 |---|---|
@@ -10,13 +10,12 @@ Sarvam AI's brand as an **agent skill**. Load it into Claude Code, Cursor, Codex
 | [`sarvam-design-system-docs/`](sarvam-design-system-docs/) | The docs site (Next.js + shadcn/ui + Tailwind + Motion). It reads the skill at build time and never edits it. **Human** view: live Sarvam previews and rules. **Agent** view: the raw spec an agent reads. |
 
 ## Install the skill
-One command, for Claude Code, Cursor, Codex and other agents (uses the [`skills`](https://www.npmjs.com/package/skills) CLI):
+For Claude Code, Cursor, Codex and other agents:
 ```bash
-INSTALL_INTERNAL_SKILLS=1 DISABLE_TELEMETRY=1 npx skills add bikash1376/sarvam-design-system-skill
+npx skills add bikash1376/sarvam-design-system-skill --skill sarvam-design-system
 ```
-It detects your agents and installs `sarvam-design-system` into each one (for Claude Code: `~/.claude/skills/sarvam-design-system`). Run it again to update.
+Run it again to update.
 
-**Private by design.** `SKILL.md` sets `metadata.internal: true`, so the skills CLI hides it from discovery, and the install command needs `INSTALL_INTERNAL_SKILLS=1`. `DISABLE_TELEMETRY=1` stops the CLI from reporting the install, which is how skills.sh builds its public listings. Keep the GitHub repository private as well, both for the listings and for the licensed fonts. On Windows PowerShell, set the variables first: `$env:INSTALL_INTERNAL_SKILLS=1; $env:DISABLE_TELEMETRY=1; npx skills add bikash1376/sarvam-design-system-skill`.
 
 Manual install for Claude Code:
 ```bash
