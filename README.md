@@ -1,46 +1,60 @@
-# Sarvam design system skill
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="sarvam-design-system/assets/logos/sarvam-wordmark-white.svg">
+    <img src="sarvam-design-system/assets/logos/sarvam-wordmark-black.svg" alt="sarvam" width="260">
+  </picture>
+</p>
 
-Sarvam AI's brand as an **agent skill**. Load it into Claude Code, Cursor, Codex or another coding agent and it produces on-brand Sarvam websites, UI, social banners, embed images and illustrations. A docs site shows every foundation and component visually.
+<h3 align="center">Sarvam design system skill</h3>
 
-> Private repository: it includes licensed fonts (Season Mix, Matter).
+Sarvam AI's brand, written as an agent skill. Load it into Claude Code, Cursor, Codex or another coding agent, and it produces on-brand Sarvam websites, UI, social banners, embed images and animations. It uses Sarvam's real production tokens, type, components and visual language, and follows the rules for when and how to use each. A companion docs site shows every foundation and component live.
 
-| Folder | What it is |
-|---|---|
-| [`sarvam-design-system/`](sarvam-design-system/) | **The skill** and single source of truth: `SKILL.md`, `DECISIONS.md`, `FACTS.md`, tokens, foundations, 68 component specs, formats (web pages, hero layouts, social banners, embed images), templates, tools and assets. |
-| [`sarvam-design-system-docs/`](sarvam-design-system-docs/) | The docs site (Next.js + shadcn/ui + Tailwind + Motion). It reads the skill at build time and never edits it. **Human** view: live Sarvam previews and rules. **Agent** view: the raw spec an agent reads. |
+<p align="center">
+  <img src=".github/readme/docs-color.png" alt="Docs: Color foundation" width="32%">
+  <img src=".github/readme/docs-mega-menu.png" alt="Docs: Mega menu component" width="32%">
+  <img src=".github/readme/docs-animations.png" alt="Docs: Animations" width="32%">
+</p>
 
-## Install the skill
-For Claude Code, Cursor, Codex and other agents:
+## Install
+
 ```bash
 npx skills add bikash1376/sarvam-design-system-skill --skill sarvam-design-system
 ```
-Run it again to update.
 
+This installs the skill into every coding agent it finds on your machine (Claude Code, Cursor, Codex and others). Run it again to update. Once it's installed, just ask for anything branded Sarvam, for example "a landing page for Saaras V4", "a LinkedIn post announcing Bulbul" or "an OG image for the docs", and the skill takes over.
 
-Manual install for Claude Code:
-```bash
-git clone https://github.com/bikash1376/sarvam-design-system-skill.git
-cp -r sarvam-design-system-skill/sarvam-design-system ~/.claude/skills/
-```
-On Windows (PowerShell): `Copy-Item -Recurse -Force sarvam-design-system-skill\sarvam-design-system "$env:USERPROFILE\.claude\skills\"`
+## How the skill works
 
-Restart the agent. The skill triggers on anything branded Sarvam ("Sarvam", "Bulbul", "Saaras", "Sarvam 105B", "AI for all from India" and so on).
+- **One source of truth.** `tokens/tokens.css` holds colour, type, spacing, radius, shadows, gradients and motion tokens measured from sarvam.ai. Then come 17 foundations (colour, typography, layout and responsive behaviour, motion, logo, copywriting and more), 68 component specs, and formats for web pages, hero layouts, banners and embed images.
+- **It asks before it builds.** For a website, the agent first asks a few multiple-choice questions (stack, pages, audience, sections), skipping any your prompt already answers. Then it writes the copy, picks the hero layout for the audience, builds, renders at 375 / 768 / 1440, and finishes with a QA and taste pass.
+- **Websites are built on a shared baseline:**
+  - **React + Tailwind CSS v4** (Vite by default, or Next.js or Astro)
+  - **shadcn/ui on Base UI** for primitives, themed by a scoped `.sarvam` layer, so stock components become Sarvam components without shifting anything else
+  - **Motion** for all animation, **torph** for morphing text, and **Lenis** for smooth scrolling
+- **Banners and posts are static HTML rendered to PNG.** Six platform canvases share one proportional type scale, so a banner keeps its proportions on Meta, LinkedIn, Instagram stories and X. A decision layer (ad or post, hue story, motif, copy move) comes from ~35 official Sarvam posts.
+- **Facts are guarded.** Numbers, customers and quotes come only from `FACTS.md`. If a claim isn't there, the copy is rewritten so it doesn't need one.
 
-## What the skill does
-- **Websites:** before building, it asks a few multiple-choice questions (stack, pages, audience, sections) and skips any the prompt already answers. Websites are always React + Tailwind (Vite by default, or Next.js or Astro) with **Motion** for all animation, built on shadcn/ui through a scoped `.sarvam` theme.
-- **Banners and posts:** static HTML rendered to PNG. Six platform canvases with a proportional type scale, so one banner keeps its proportions on every platform. Art direction and extra platform sizes come from the bundled ui-ux-pro-max (MIT).
-- **Embed images:** glass glyph tiles and wide pastel embeds via `tools/embed/embed.py`.
-- **Brand:** tokens from sarvam.ai production, gateway glyphs, the Sarvam mandala, soft glows, logo and co-branding rules, copywriting rules, and an anti-slop checklist.
+### Where it draws from
+- **Sarvam itself:** sarvam.ai production CSS and markup, sarvam.ai/brand and brand guidelines, the official mandala and gateway glyphs, and official LinkedIn and WhatsApp posts.
+- **Bundled skills,** each adapted so Sarvam's tokens, fonts and motion always win:
+  - [ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) (MIT): banner art direction, platform sizes, UX search.
+  - [Emil Kowalski's skills](https://github.com/emilkowalski/skills) (MIT): animate, choreograph, animation-performance, animation-vocabulary, design engineering, and pick-ui-library.
+  - [Anthropic skills](https://github.com/anthropics/skills) (Apache 2.0): algorithmic-art and canvas-design, for generative ornament and illustration.
+  - [taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT): the final taste and anti-slop pass.
 
-## Run the docs site
-```bash
-cd sarvam-design-system-docs
-npm install
-npm run dev        # syncs fonts, icons and tokens from ../sarvam-design-system, then starts Next.js
-npm run build      # production build
-```
+## FAQ
 
-## Working on the skill
-- Component specs live in `sarvam-design-system/components/reference/*.md`. New ones are generated from `scripts/component_specs.py` with `python sarvam-design-system/scripts/build_component_reference.py`. Hand-edited pages are kept unless you pass `--force`.
-- Render a banner: `cd sarvam-design-system && npm i && node scripts/render.js templates/banner.html out/banner.png 1080 1080`
-- Generate an embed: `python sarvam-design-system/tools/embed/embed.py wide --palette lilac --icon globe --png --out out/og.svg`
+**Will it change Sarvam's brand?**
+No. It encodes the existing brand. Small extensions (the inputs, overlays and AI components sarvam.ai doesn't ship) follow the same tokens and rules.
+
+**Which tools does it work with?**
+Any agent that reads skills or markdown: Claude Code, Cursor, Codex and others. Without an agent, point any model at `sarvam-design-system/SKILL.md`.
+
+**Do I need the docs site to use the skill?**
+No. The skill is self-contained. The docs site (`sarvam-design-system-docs/`, Next.js) is for people: open it with `npm install && npm run dev`, then switch between **Human** (live previews and rules) and **Agent** (the raw spec the agent reads).
+
+**Can I use the fonts?**
+Season Mix and Matter are licensed to Sarvam and included for internal use only. Don't redistribute them.
+
+**Where do I change a rule?**
+In `sarvam-design-system/` (start with `SKILL.md`, which maps every file). The docs site reads from it, so it updates on the next run.
