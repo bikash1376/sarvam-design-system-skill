@@ -63,7 +63,7 @@ White top zone with the wordmark small top-left, the event name top-right, and a
 Best for conferences, webinars and livestreams.
 
 ## Mandala background (Sarvam illustration)
-For banners and posts, the Sarvam mandala (`assets/mandala/`) is the preferred background texture, used instead of ripples or concentric circles. Place it **once per banner**: 110–160% of the canvas width, cropped, rising from the bottom (festive or greeting posts like "Happy New Year 2026") or floating mid-canvas behind chips (product posts like "A Voice Agent with all the little human things"). Make it tone-on-tone: filled `mark` in white at 6–12%, or `outline` in white at 35–60%. Keep the headline in the calm zone above it. Full rules and CSS: `foundations/17-mandala-background.md`.
+For banners and posts, the Sarvam mandala (`assets/mandala/`) is the preferred background texture, used instead of ripples or concentric circles. It is **optional, not for every banner**. Use it only where a background would otherwise get circles or ripples and it clearly looks better, at most once per banner and in roughly 1 of every 3 banners in a series. When used: 110–160% of the canvas width, cropped, rising from the bottom (festive or greeting posts like "Happy New Year 2026") or floating mid-canvas behind chips (product posts like "A Voice Agent with all the little human things"). Make it tone-on-tone: filled `mark` in white at 6–12%, or `outline` in white at 35–60%. Keep the headline in the calm zone above it. Full rules and CSS: `foundations/17-mandala-background.md`.
 
 ## Choosing quickly
 | Message type | Archetype | Hue story |

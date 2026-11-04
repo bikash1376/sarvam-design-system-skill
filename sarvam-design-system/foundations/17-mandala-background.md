@@ -12,6 +12,7 @@ Source: `assets/reference/sarvam-mandala-source.jpeg`, traced to vector with 9-f
 | `sarvam-mandala-{mark,outline}-{white,black}.png` | 2048² transparent PNGs, for tools that can't use SVG or masks. |
 
 ## When to use it (sparingly)
+- **Optional, not a default.** Reach for it only where you would otherwise draw circles, ripples or arcs, and only if it improves the piece. Most banners and sections don't need it.
 - **Yes:** social banners and posts (festive, announcement, product), dark CTA panels, one hero background, a section divider band.
 - **At most 1–2 placements per page.** Use it once per banner. Never as wallpaper, never tiled, and never on every card.
 - **No:** behind body copy or dense UI, on top of photography, or next to gateway glyphs that are already the hero. Don't use it as a logo replacement. The wordmark stays the logo.
