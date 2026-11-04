@@ -150,7 +150,7 @@ li.rule.should strong:first-child{background:var(--sr-green-50);color:var(--sr-g
 .eyebrow{display:flex;flex-direction:column;align-items:center;gap:10px;width:fit-content}
 .eyebrow i{display:block;width:100%;height:1px;background:var(--hairline-indigo)}
 .eyebrow p{margin:0;padding:0 32px;font-size:15px;letter-spacing:.025em;color:var(--sr-indigo-900)}
-.cta-panel{width:100%;border-radius:32px;background:var(--grad-night);color:#fff;text-align:center;padding:72px 28px;position:relative;overflow:hidden}
+.cta-panel{width:100%;border-radius:24px;background:var(--grad-cta-panel);color:#fff;text-align:center;padding:72px 28px;position:relative;overflow:hidden}
 .cta-panel h3{font:400 clamp(26px,3vw,38px)/1.2 var(--font-display);letter-spacing:-.02em;margin:0 0 24px;position:relative;z-index:1}
 .cta-panel::after{content:"";position:absolute;left:50%;bottom:-420px;width:900px;height:900px;transform:translateX(-50%);border-radius:50%;background:repeating-radial-gradient(circle,transparent 0 58px,rgba(255,255,255,.07) 58px 59px)}
 .swatch-ramp{display:grid;grid-template-columns:repeat(11,1fr);border-radius:12px;overflow:hidden;border:1px solid var(--st-secondary);width:100%}

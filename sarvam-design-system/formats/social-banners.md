@@ -18,11 +18,11 @@ Export **PNG, sRGB, 1×** at exact size. Keep text crisp: no blur on text layers
 |---|---|---|---|
 | Wordmark height | 36–40px | 40px | 28–32px |
 | Eyebrow / lockup label (Semi Mono caps) | 22px, tracking .12em | 22px | 18px |
-| **Headline (Season Mix 400)** | **88–112px**, lh 1.02–1.08, tracking −0.025em | **96–120px** | **64–80px** |
+| **Headline (Season Mix 425)** | **88–112px**, lh 1.02–1.08, tracking −0.025em | **96–120px** | **64–80px** |
 | Headline (Matter 600, saturated archetype only) | 84–100px, lh 1.05 | 96px | 64–72px |
-| Sub-copy (Matter 400) | 30–34px, lh 1.4 | 32–36px | 24–26px |
-| Meta (date/venue, Matter 400) | 24–26px | 26px | 18–20px |
-| CTA pill (Matter 500) | 24px text, 64px tall | 24px | 18px text, 48px tall |
+| Sub-copy (Matter 425) | 30–34px, lh 1.4 | 32–36px | 24–26px |
+| Meta (date/venue, Matter 425) | 24–26px | 26px | 18–20px |
+| CTA pill (Matter 525) | 24px text, 64px tall | 24px | 18px text, 48px tall |
 
 Max **12 words** of headline + sub combined on LinkedIn, and 16 on Meta. One CTA at most.
 
@@ -51,11 +51,11 @@ Full-bleed **concentric gateway** (`assets/motifs/gateway-concentric-*.svg`, str
 Best for technical features, research and blog posts. Strong thumb-stop.
 
 ### D · Spectrum Field *(India's AI Now Arriving)*
-Full-bleed blurred **blue→orange spectrum** (06 §2, motion-field variant) with grain. White wordmark top-left. Large white **Season Mix 400** headline left-aligned, 2 lines. Meta line bottom-left (venue · date · time) in white at 85%.
+Full-bleed blurred **blue→orange spectrum** (06 §2, motion-field variant) with grain. White wordmark top-left. Large white **Season Mix 425** headline left-aligned, 2 lines. Meta line bottom-left (venue · date · time) in white at 85%.
 Best for event teasers, drops and "coming soon".
 
 ### E · Glow Gateway *(Supernova case study)*
-A grainy cream → lavender → violet vertical field with a **blurred cream gateway glow** in the centre (06 §3). Inside the glow: the lockup `sarvam · PARTNER`, then a dark Season Mix 400 headline, centred, 3 lines max.
+A grainy cream → lavender → violet vertical field with a **blurred cream gateway glow** in the centre (06 §3). Inside the glow: the lockup `sarvam · PARTNER`, then a dark Season Mix 425 headline, centred, 3 lines max.
 Best for customer stories and partner announcements.
 
 ### F · Event Key Visual *(Sarvam Epoch, Voice Agents Live)*

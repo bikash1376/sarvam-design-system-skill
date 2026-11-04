@@ -53,7 +53,7 @@ Design mobile-first. `md` is where most layouts switch from stacked to multi-col
 | Component | Mobile (<768) | Tablet (768–1023) | Desktop (≥1024) |
 |---|---|---|---|
 | **Nav** | Wordmark + "Log In" pill + hamburger; full-screen sheet menu | Same as mobile | Wordmark left · 4 text links centred · Log In (dark) + Contact Us (light) pills right; height 68px |
-| **Hero** | Centred, h1 44px on 2–3 lines, `<br>` in lead removed, CTAs side-by-side if they fit, else stacked full-width | h1 64px, CTAs inline | Same, with more aura height |
+| **Hero** | Centred, h1 44px (home) / **32px (product)**, `<br>` in lead removed, CTAs **stacked, centred, auto-width** (never full-width) | h1 64 / 52px, CTAs inline | Same |
 | **Logo marquee** | 36px logos, 40px gap, edge-fade mask 8% | Same | 45px logos, 60px gap |
 | **Product tabs** (e.g. playground) | Tabs collapse into a dropdown/select pill | Scrollable pill row | Full tab bar |
 | **Feature cards** | 1-up stack; small tiles 2-up | 2-up | 3-up |

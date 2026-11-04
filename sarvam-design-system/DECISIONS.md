@@ -28,6 +28,16 @@ Tie-breakers: **never mix styles in one row or grid**; below 32px never use dept
 
 Hue choice for badges and tags follows **meaning**: indigo = security/info/default · green = certified/success/live · orange = data/privacy law · pink = people/access · yellow = audit/logs · red = residency/location.
 
+## 2b. Labels and social proof
+| You need… | Use |
+|---|---|
+| A tag line above the **home** hero h1 | Ornament + hairline **eyebrow** (indigo, 16px) |
+| A label above the logo bar | **Section label** "INDIA BUILDS WITH SARVAM" (Matter 525 12px caps, #666) |
+| A label above every section | **Nothing.** Section titles stand alone |
+| Annotations inside a demo (OUTPUT, CODE SWITCH) | **Micro label** (Semi Mono 10–11px caps, indigo) |
+| Customer proof | Real logos from `assets/logos/customers/` + the Tata Capital quote from `FACTS.md`, or drop the section |
+| Any number | `FACTS.md`, or rewrite without a number |
+
 ## 3. Buttons
 | Situation | Button |
 |---|---|
@@ -49,7 +59,8 @@ At most **one primary per view**. Every dark button gets the cursor glow.
 | Partner, integration, template or connector | **Integration card** (tinted logo well + tags) |
 | Mission / "why us" with a visual | **Illustrated card** (scalloped horizon + monogram) + pillar list |
 | Customer quote | **Testimonial card** |
-| Numbers | **Stats row**, not cards |
+| Numbers on a product page | **Stats band** (full-bleed indigo, white numbers) |
+| Numbers elsewhere | **Stats row**, not cards |
 
 ## 5. Gradients and backgrounds
 | Where | Use |
@@ -58,7 +69,8 @@ At most **one primary per view**. Every dark button gets the cursor glow.
 | Card or tile background | **Soft glow** (14) |
 | Full-bleed banner | **Spectrum field / gateway frame / glow gateway** per archetype (`formats/social-banners.md`) |
 | Colour inside a glyph or emblem | **Colour depth** (15) |
-| Pre-footer CTA | **Night panel** (06 §6), once per page |
+| Pre-footer CTA | **CTA panel** (`--grad-cta-panel`, radius 24px, slate button), once per page |
+| Product / API page hero | **Plain `--sf`**, centred, no aura |
 | Everything else | **Plain `#fcfcfc`**, no gradient |
 At most 2 aura moments and 1 dark section per page.
 

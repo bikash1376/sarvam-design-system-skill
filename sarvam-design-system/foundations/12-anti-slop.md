@@ -3,13 +3,24 @@
 AI tools drift toward generic "AI startup" aesthetics. Check every output against this list. If any item is true, fix it before shipping.
 
 ## Typography slop
-- [ ] Headline set in Inter/Poppins/Montserrat bold, **not Season Mix 400–500**
+- [ ] Headline set in Inter/Poppins/Montserrat bold, **not Season Mix 425–525**
 - [ ] Headline in Title Case or ALL CAPS
 - [ ] Bold weight (700+) Season Mix
 - [ ] Gradient-filled text
 - [ ] Body text in `#000` or a mid-grey below 4.5:1 contrast
 - [ ] More than 2 font families (excluding mono/labels)
 - [ ] Letter-spaced body copy, or wide tracking on headlines
+
+## Content slop (most common failure)
+- [ ] Any bracketed placeholder on the page: `[VERIFY…]`, `[metric]`, `[Customer logo N]`, `[Name]`, `[Role, Company]`, "TBD"
+- [ ] Boxes or text standing in for customer logos. Use `assets/logos/customers/`
+- [ ] Invented testimonials, names or roles (only the Tata Capital quote in FACTS.md is approved)
+- [ ] Numbers not in FACTS.md
+
+## Label slop
+- [ ] A section label ("CAPABILITIES", "PLAYGROUND", "USE CASES") above **every** h2. sarvam.ai product pages have none
+- [ ] Section labels in Matter Semi Mono or bigger than 12px. They are Matter 525, 12px, 2px tracking
+- [ ] Hero eyebrow pill + split layout + side card + stat line + footnote all in one hero (clutter)
 
 ## Colour slop
 - [ ] Purple-pink "AI gradient", neon cyan, or glowing blue circuit aesthetic
@@ -27,6 +38,7 @@ AI tools drift toward generic "AI startup" aesthetics. Check every output agains
 - [ ] Mobile layout = desktop scaled down (tiny text, 3 columns at 375px)
 
 ## Motif slop
+- [ ] Footer giant wordmark filled with a gradient. It's filled with photography / Indian painting
 - [ ] Clip-art Indian symbols (Taj Mahal, peacock, diya, elephant, rangoli, Ashoka chakra)
 - [ ] Mandalas as dense henna patterns
 - [ ] Robot heads, brains, holograms, glowing neural nets

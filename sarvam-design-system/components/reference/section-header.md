@@ -11,12 +11,13 @@ related: [eyebrow]
 A centred section title with an optional subtitle.
 
 ## Styles
-h2 in Season Mix 500, 28 → 36px, lh 1.2, tracking −0.02em. Optional subtitle in Matter 400 16 → 18px `--tx-tertiary`, max-width 640px, 12–16px below. Content follows 32px (mobile) / 48px (desktop) below. Split variant: left-aligned label + h2 + sub, with an outline CTA at the right.
+h2 in Season Mix 525, 28 → 36px, lh 1.2, tracking −0.02em. Optional subtitle in Matter 425 16 → 18px `--tx-tertiary`, max-width 640px, 12–16px below. Content follows 32px (mobile) / 48px (desktop) below. Split variant: left-aligned label + h2 + sub, with an outline CTA at the right.
 
 ## Rules
 - **Must** be centred, except in split layouts.
 - **Must** be sentence case, 2–7 words.
-- **Never** stack an eyebrow, title and subtitle on every section.
+- **Never** put a section label above the title. The title stands alone (sarvam.ai product pages have no labels above h2s).
+- **Should** split long titles over 2 balanced lines ("Flexible output / Same audio, multiple formats").
 
 ## Accessibility
 - One `h1` per page. Section titles are `h2`, in order.

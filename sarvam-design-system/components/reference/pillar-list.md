@@ -11,7 +11,7 @@ related: [feature-card]
 Lists brand pillars or benefits, each with a gradient star bullet.
 
 ## Styles
-Each row is a 20–24px star bullet (`assets/motifs/star-bullet-*.svg`), gap 12px, a title in Matter 500 20px, and a description in Matter 400 16px `--tx-tertiary`, lh 1.65, aligned under the title. Rows are 24–32px apart.
+Each row is a 20–24px star bullet (`assets/motifs/star-bullet-*.svg`), gap 12px, a title in Matter 525 20px, and a description in Matter 425 16px `--tx-tertiary`, lh 1.65, aligned under the title. Rows are 24–32px apart.
 
 ## Rules
 - **Must** use star bullets, not icons or checkmarks.

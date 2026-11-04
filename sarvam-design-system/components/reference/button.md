@@ -14,8 +14,8 @@ Starts an action: signing up, submitting, playing audio, opening a flow.
 | Variant | Fill | Text | Use |
 |---|---|---|---|
 | `primary` (default) | `--slate #2a2c33` + inset edge | white, Matter 525 | The one main action in a view |
-| `hero-dark` | `--grad-btn-dark` (#3a3f5c → #1e2033) | white, **Season Mix 500** | Hero CTA pair only |
-| `hero-light` | `--grad-btn-light` + 1px inset ring | `#1e2033`, Season Mix 500 | Second CTA in the hero pair |
+| `hero-dark` | `--grad-btn-dark` (#3a3f5c → #1e2033) | white, **Season Mix 525** | Hero CTA pair only |
+| `hero-light` | `--grad-btn-light` + 1px inset ring | `#1e2033`, Season Mix 525 | Second CTA in the hero pair |
 | `secondary` | `--sf-secondary #f5f5f5` → hover `#fff` | `--tx` | A second action beside a primary |
 | `outline` | `#fff` + 1px `--st` → hover `--sf` | `--tx`, 14px | "Explore X →", "View all" |
 | `on-dark` | `#fff` | `--tx` | Inside a dark CTA panel |
@@ -48,12 +48,13 @@ Starts an action: signing up, submitting, playing audio, opening a flow.
 - **Must** use at most one `primary` (or `hero-dark`) per view. Every other action is secondary or outline.
 - **Must** be a full pill (`border-radius: 9999px`) with a min-height of 40px.
 - **Must** give every dark button the cursor glow; light buttons never get it.
-- **Must** set labels in Matter 500 (Season Mix only in hero variants).
-- **Must** stack full-width below 768px when the button sits inside a card or form.
+- **Must** set labels in Matter 525 (Season Mix only in hero variants).
+- **Must** stack full-width below 768px only when the button sits inside a card or form.
 - **Never** use hard drop shadows, 4px corners or gradient text.
 - **Never** colour a button in a brand hue (indigo, saffron). Buttons are slate or neutral.
 - **Should** label with a verb and its object, 2–3 words: "Get your API key", "Start building".
-- **Should** keep hero CTA pairs inline on mobile when both labels are 12 characters or fewer.
+- **Must** keep hero CTAs auto-width on mobile: stacked and centred, never stretched full-width (sarvam.ai). Full-width is only for buttons inside cards and forms.
+- **Must** use sarvam.ai's CTA wording where it applies: "Get Started for Free", "Contact Us", "Get API key", "Get 100 credits free".
 
 ## Accessibility
 - Use `<button>` for actions and `<a>` for navigation. Never a `<div>` with a click handler.

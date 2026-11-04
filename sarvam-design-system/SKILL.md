@@ -20,7 +20,7 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
 ## 1. How to use this skill (workflow)
 
 1. **Identify the format.** Is it a web page, a social banner or an illustration/SVG?
-2. **Read the core files below** (always): `tokens/tokens.css`, `foundations/01-brand-essence.md`, `foundations/12-anti-slop.md`, and **`DECISIONS.md`**. Prompts won't say which badge, icon style, button, card or gradient to use; `DECISIONS.md` decides from context.
+2. **Read the core files below** (always): `tokens/tokens.css`, `foundations/01-brand-essence.md`, `foundations/12-anti-slop.md`, **`DECISIONS.md`** and **`FACTS.md`** (the only allowed source for numbers, customers, quotes and product facts). Prompts won't say which badge, icon style, button, card or gradient to use; `DECISIONS.md` decides from context.
 3. **Read the format file**:
    - Web page or UI: `formats/web-pages.md`, `foundations/04-layout-grid-responsive.md`, `components/*.md`
    - Social banner: `formats/social-banners.md` (archetypes + exact pixel specs)
@@ -34,6 +34,7 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
 
 | File | What it holds |
 |---|---|
+| `FACTS.md` | **Published facts only**: product numbers, language list, real customer logos, the one approved testimonial. Never use placeholders |
 | `DECISIONS.md` | **Which variant to use**: icon style, badge vs tag, button, card, gradient, hue by subject. Read every time |
 | `tokens/tokens.css` | **Source of truth.** All colours, gradients, type, spacing, radius, shadow, motion tokens and @font-face rules |
 | `tokens/tokens.json` | The same tokens for Figma, Tailwind or other tools |
@@ -64,7 +65,7 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
 ## 3. The ten golden rules (memorise these)
 
 1. **Two typefaces, two jobs.** **Season Mix** (soft display serif-sans hybrid) for headlines and big statements. **Matter** (geometric grotesk) for UI, body, card titles and buttons. Use **Matter Semi Mono** in UPPERCASE for small labels. No other fonts.
-2. **Headlines are calm.** Season Mix at **regular to medium weight (400–500)**, never bold, with tight tracking (−0.02em) and tight leading (1.05–1.2). Use sentence case. Big and quiet beats small and loud.
+2. **Headlines are calm.** Season Mix at sarvam.ai's **425 (regular) / 525 (medium)** weights, never bold, with tight tracking (−0.02em) and tight leading (1.05–1.2). Use sentence case. Big and quiet beats small and loud.
 3. **Light canvas by default.** The page background is `#fcfcfc` (`--sf`), cards are `#fff`, text is `#1f1f1f`. Dark surfaces (`--slate`, `--black`, night gradient) are for one CTA panel or a feature moment, not whole pages.
 4. **Colour comes as light, not blocks.** The brand's signature is a continuous **blue→orange spectrum** (indigo/periwinkle meets saffron). Use it as soft glows, auras and gradient fills inside gateway shapes. Never use flat saturated rectangles of brand colour behind UI.
 5. **The Gateway is the core motif.** The cusped multifoil arch (torana) appears as gradient glyphs, as frames that hold headlines, and as silhouettes. Use the official SVGs in `assets/glyphs/` or follow the drawing rules in `07-motifs-and-glyphs.md`.
@@ -78,11 +79,13 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
 
 ```
 Gradients     : surface glow -> 14 (soft-glow) · hero light -> 06 §1 aura · banner field -> 06 §2 spectrum · inside shapes -> 15 (colour depth)
-Display font  : Season Mix 400–500, tracking -0.02em, line-height 1.05–1.2
-UI/body font  : Matter 400 (body) / 500 (titles, buttons)
-Label font    : Matter Semi Mono 400, 12px, UPPERCASE, tracking 2px (or Matter 500 caps)
+Display font  : Season Mix 425 (h1) / 525 (h2), tracking -0.02em, line-height 1.05–1.2
+UI/body font  : Matter 425 (body) / 525 (titles, buttons)
+Section label : Matter 525, 12px, UPPERCASE, tracking 2px, #666. Rare: logo bar + product modules, never above every h2
+Micro label   : Matter Semi Mono 10–11px caps, indigo (demo annotations: OUTPUT, CODE SWITCH) + footer column heads
+No placeholders: every number, logo and quote comes from FACTS.md, or the copy is rewritten without it
 Text          : #1f1f1f / #3d3d3d / #666666      Background: #fcfcfc   Card: #ffffff
-Primary btn   : #2a2c33 pill, white Matter 500, inset highlight, cursor-follow white glow on hover (all dark buttons)
+Primary btn   : #2a2c33 pill, white Matter 525, inset highlight, cursor-follow white glow on hover (all dark buttons)
 Secondary btn : #f5f5f5 pill (or white + 1px #e6e6e6), #1f1f1f text
 Brand indigo  : #556adc (600) · #212191 (900) · #a7c0f1 (300) · #e8effc (100)
 Brand saffron : #e6651b · #f38858 · #d5650f (glow core)
@@ -95,5 +98,6 @@ Radius        : pill buttons · 12px inputs · 16px cards · 24–32px panels
 ## 5. When information is missing
 
 - **Product names**: use exact names (Sarvam Voice Agents, Indus, Indus Cowork, Bulbul V4, Saaras V4, Sarvam 105B, Sarvam Translate, Document AI, Work Agents, Content Studio, Sarvam Edge, Token Factory). Never abbreviate them.
-- **Numbers and claims**: only use figures published on sarvam.ai (e.g. "11 Indic languages" for TTS voices, "<500ms real-time latency", "350M+ conversations", "10B+ tokens served", "99.9% uptime SLA"). Don't invent stats; use a placeholder like `[metric]` and flag it.
+- **Numbers, customers and quotes**: use only `FACTS.md`. If a fact isn't there, **rewrite the copy without it**. **Never ship placeholders** (`[VERIFY]`, `[metric]`, `[Customer logo]`, `[Name]`); a bracket on the page is a failed build.
+- **Logos**: real customer logos are in `assets/logos/customers/`. Never draw boxes labelled "Customer logo".
 - **Imagery**: if there is no real photo, use a gateway glyph composition or a gradient aura. Never use stock-AI people.

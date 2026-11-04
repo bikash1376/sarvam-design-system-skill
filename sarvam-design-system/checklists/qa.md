@@ -1,8 +1,15 @@
 # QA Checklist (run before shipping anything)
 
+## Content (check first)
+- [ ] `grep -E '\[(VERIFY|metric|Customer|Name|Role)' ` on the output returns **nothing**
+- [ ] Every number, customer and quote is in `FACTS.md`
+- [ ] The logo bar uses the real SVGs from `assets/logos/customers/`
+
 ## Brand
 - [ ] Wordmark is an original file, black or white only, with clear space respected, never beside the logomark
-- [ ] Headline is Season Mix 400–500, sentence case, tracking −0.02em, no orphan word
+- [ ] Section labels (if any) are Matter 525 12px, at most 1–2 per page, not above every h2
+- [ ] Product pages: centred hero, plain background, no split layout
+- [ ] Headline is Season Mix 425 (h1) / 525 (h2), sentence case, tracking −0.02em, no orphan word
 - [ ] UI and body text are Matter; labels are Semi Mono caps; no other fonts
 - [ ] Colour = neutrals + one blue/orange light story (+ max 1 supporting hue via glyphs)
 - [ ] Exactly one gateway-derived element or one 2–3 glyph cluster

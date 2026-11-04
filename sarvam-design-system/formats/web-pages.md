@@ -16,15 +16,39 @@
 | 11 | **Deployment options** | `--sf` | 3 cards with gateway glyph thumbnails |
 | 12 | **Testimonial** | `--sf` | testimonial card |
 | 13 | **Updates** | `--sf` | 3 blog cards (date · tag · title) + "View All Updates" |
-| 14 | **CTA panel** | night gradient | dark CTA panel |
+| 14 | **CTA panel** | `--grad-cta-panel` | dark CTA panel (slate button) |
 | 15 | **Footer** | `--sf` | footer + giant image wordmark |
 
 A product landing page usually uses: 1, 2, 3, (4), 5, 8 or 9, (6), 12, 14, 15, plus product-specific blocks (use-case tabs, live demo, metrics "<500ms / 350M+", "Build. Test. Go live." 3-step).
 
+## Product / API page anatomy (measured on sarvam.ai/apis/speech-to-text)
+Use this for any product, model or API landing page. The home page pattern above is for brand pages.
+1. **Hero, centred, no aura**: ornament divider → h1 (Season Mix 425, 32/52px, 2 lines) → sub (Matter 18px `#666`, max 640px) → CTA pair ("Get Started for Free" primary + "Contact Us" secondary). **No eyebrow pill, no split layout, no side card in the hero.**
+2. **Demo bezel** right below the hero: an outer frame (radius 32px, pale periwinkle `#eef1fd` fill, 1px `#e8ecfb`, padding 12px) holding a white inner card (radius 24px) with the live demo ("Speak to see live captions" + mic button). Under it: "Want to use this API?" + a primary pill ("Get 100 credits free").
+3. **Cross-sell strip**: a thin white bar, 1px border, radius 12px: a line of copy + an indigo arrow link ("Explore Voice Agents →").
+4. **Feature grid on a dark panel** (output modes): `--grad-cta-panel`-style navy→periwinkle, radius 24px, 3×2 cells with h3 white 22px, 14px white/60% copy, Semi Mono "OUTPUT" micro label, and native-script sample output in white.
+5. **Interactive transcript**: numbered rows (01, 02…) of Indic text with indigo-highlighted entities and Semi Mono micro labels (CODE SWITCH, PROPER NOUN, NUMBER), timestamps at the right, and an audio player pill on top.
+6. **Sample cards**: 3 white cards (radius 24px), title + copy left, an audio sample with a photo background right.
+7. **Use cases**: segmented tabs (Voice agents · Post-call analytics · Subtitling & captioning) → card.
+8. **Developer bento**: h2 + "Get API key" primary, then 2-column white cards (languages glyph art, REST/streaming/batch, diarization, key-term prompting, integrations).
+9. **Stats band**: full-bleed `--grad-stats-band`, 3 numbers in Season Mix 425 48px white, labels white 16px. Use the product's FACTS.md numbers.
+10. **Language grid**: all 22 languages, native script + English + code, from FACTS.md.
+11. **FAQ** accordion (5 questions, answers from FACTS.md).
+12. **CTA panel** → footer.
+There is **no section label above the h2s** on this page. Section titles stand alone, centred and often split over 2 lines.
+
+## Hero rules by page type
+| Page | Layout | Background | Eyebrow |
+|---|---|---|---|
+| Home / brand | Centred | Hero aura (06 §1) | Ornament + hairline eyebrow ("India's Sovereign AI Platform") |
+| Product / API | Centred | Plain `--sf` | Ornament only |
+| Campaign / event | Centred or archetype-led | Spectrum field | Optional |
+Never use a left-aligned split hero with a demo card beside the headline. It crowds the hero and isn't a Sarvam pattern.
+
 ## Section rhythm
 - Gap between sections: **96px mobile / 128px desktop**. Title to content: **32 / 48px**.
 - Alternate density: dense (demo, cards) → airy (statement, stats) → dense.
-- At most **one dark section** per page (the CTA panel). At most **two aura moments** (hero + demo).
+- Dark moments: home pages have **one** (the CTA panel). Product pages may have **three**, never adjacent: the dark feature panel, the stats band and the CTA panel. At most **two aura moments** per page; product pages use none in the hero.
 - Section titles are centred unless the section is a split layout.
 
 ## Per-breakpoint design targets

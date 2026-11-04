@@ -21,8 +21,8 @@ D("button", "Button", "Actions", "Starts an action: signing up, submitting, play
 | Variant | Fill | Text | Use |
 |---|---|---|---|
 | `primary` (default) | `--slate #2a2c33` + inset edge | white, Matter 525 | The one main action in a view |
-| `hero-dark` | `--grad-btn-dark` (#3a3f5c → #1e2033) | white, **Season Mix 500** | Hero CTA pair only |
-| `hero-light` | `--grad-btn-light` + 1px inset ring | `#1e2033`, Season Mix 500 | Second CTA in the hero pair |
+| `hero-dark` | `--grad-btn-dark` (#3a3f5c → #1e2033) | white, **Season Mix 525** | Hero CTA pair only |
+| `hero-light` | `--grad-btn-light` + 1px inset ring | `#1e2033`, Season Mix 525 | Second CTA in the hero pair |
 | `secondary` | `--sf-secondary #f5f5f5` → hover `#fff` | `--tx` | A second action beside a primary |
 | `outline` | `#fff` + 1px `--st` → hover `--sf` | `--tx`, 14px | "Explore X →", "View all" |
 | `on-dark` | `#fff` | `--tx` | Inside a dark CTA panel |
@@ -55,12 +55,13 @@ D("button", "Button", "Actions", "Starts an action: signing up, submitting, play
 - **Must** use at most one `primary` (or `hero-dark`) per view. Every other action is secondary or outline.
 - **Must** be a full pill (`border-radius: 9999px`) with a min-height of 40px.
 - **Must** give every dark button the cursor glow; light buttons never get it.
-- **Must** set labels in Matter 500 (Season Mix only in hero variants).
-- **Must** stack full-width below 768px when the button sits inside a card or form.
+- **Must** set labels in Matter 525 (Season Mix only in hero variants).
+- **Must** stack full-width below 768px only when the button sits inside a card or form.
 - **Never** use hard drop shadows, 4px corners or gradient text.
 - **Never** colour a button in a brand hue (indigo, saffron). Buttons are slate or neutral.
 - **Should** label with a verb and its object, 2–3 words: "Get your API key", "Start building".
-- **Should** keep hero CTA pairs inline on mobile when both labels are 12 characters or fewer.
+- **Must** keep hero CTAs auto-width on mobile: stacked and centred, never stretched full-width (sarvam.ai). Full-width is only for buttons inside cards and forms.
+- **Must** use sarvam.ai's CTA wording where it applies: "Get Started for Free", "Contact Us", "Get API key", "Get 100 credits free".
 
 ## Accessibility
 - Use `<button>` for actions and `<a>` for navigation. Never a `<div>` with a click handler.
@@ -466,7 +467,7 @@ Badge · Integration card
 
 D("feature-card", "Feature card", "Display", "Presents one product or capability with a solid icon, a title and one line.", ["glow-card", "integration-card", "stat"], """
 ## Styles
-White, 1px `--st`, radius 16px, padding 24px (20px mobile). 24–28px **solid** product-hue icon, then a title in Matter 500 20px (18px mobile), then a body line in Matter 400 15px `--tx-tertiary`. Hover: `--shadow-card-hover` + `translateY(-2px)`.
+White, 1px `--st`, radius 16px, padding 24px (20px mobile). 24–28px **solid** product-hue icon, then a title in Matter 525 20px (18px mobile), then a body line in Matter 425 15px `--tx-tertiary`. Hover: `--shadow-card-hover` + `translateY(-2px)`.
 
 ## Usage
 ### Use
@@ -602,16 +603,22 @@ Feature card
 
 D("stat", "Stat", "Display", "Shows a published metric as a large number with a label.", ["feature-card"], """
 ## Styles
-Number in Season Mix 400, 40 → 48 → 56px, `--tx` or `--sr-indigo-900`, tracking −0.02em. Label in Matter 400 14px `--tx-tertiary`. In a row: 1px `--st` dividers between cells (vertical on desktop; a 2×2 grid with horizontal dividers on mobile).
+Number in Season Mix 425, 40 → 48 → 56px, `--tx` or `--sr-indigo-900`, tracking −0.02em. Label in Matter 425 14px `--tx-tertiary`. In a row: 1px `--st` dividers between cells (vertical on desktop; a 2×2 grid with horizontal dividers on mobile).
+
+## Variants
+| Variant | Spec |
+|---|---|
+| `band` (product pages) | Full-bleed, about 350px, `--grad-stats-band`; numbers Season Mix 425 48px **white**; labels Matter 16px white |
+| `row` | On `--sf`: numbers `--tx` / indigo-900, 1px dividers |
 
 ## Usage
 ### Use
-- Published proof points: <500ms latency, 350M+ conversations, 10B+ tokens, 99.9% uptime SLA.
+- Published numbers from `FACTS.md` only: STT <250ms median latency · 100M+ mins transcribed · >99.5% uptime; Voice Agents <500ms · 350M+ conversations; platform 10B+ tokens · <100ms · 99.9% SLA.
 ### Not for
-- Invented or unverified numbers. Use `[metric]` and flag it instead.
+- Any number not in `FACTS.md`. Drop the stat instead. Never show a placeholder.
 
 ## Rules
-- **Must** use only figures published on sarvam.ai.
+- **Must** take every figure from `FACTS.md`.
 - **Must** use 3–4 stats per row.
 - **Never** animate count-ups longer than 800ms.
 
@@ -640,10 +647,11 @@ Feature card
 
 D("testimonial", "Testimonial", "Display", "Shows a customer quote with a logo, avatar, name and role.", ["feature-card"], """
 ## Styles
-White card, radius 16px, 1px border, padding 32px (40px desktop). Partner logo centred at the top (≤32px tall). Quote in Matter 400 20–22px `--tx-secondary`, lh 1.5, clamped to 4 lines. Footer: a 40px round avatar, name (Matter 500 15px), role (13px `--tx-tertiary`), and a secondary "Read full story" pill at the right (it drops below on mobile).
+White card, radius 16px, 1px border, padding 32px (40px desktop). Partner logo centred at the top (≤32px tall). Quote in Matter 425 20–22px `--tx-secondary`, lh 1.5, clamped to 4 lines. Footer: a 40px round avatar, name (Matter 525 15px), role (13px `--tx-tertiary`), and a secondary "Read full story" pill at the right (it drops below on mobile).
 
 ## Rules
-- **Must** use real customers and real people (e.g. Tata Capital). Never AI-generated faces.
+- **Must** use the approved quote in `FACTS.md` (Tata Capital, Shallu Kaushik, CDO). If it doesn't fit, **drop the section**. Never invent quotes, names or roles, and never show `[Name]` placeholders.
+- **Never** use AI-generated faces.
 - **Should** keep the quote under 50 words.
 
 ## Accessibility
@@ -702,11 +710,21 @@ Copy button · Segmented control
 
 D("eyebrow", "Eyebrow", "Display", "The tagline above a hero headline, framed by fading hairlines.", ["section-header"], """
 ## Styles
-A centred column: an optional ornament divider (208px, white over the aura), a 1px hairline (`radial-gradient(circle,#6a88e2,transparent)`), the text in Matter 400 14 → 16px, `--sr-indigo-900`, tracking .025em, padding 0 32px, then a second hairline.
+A centred column: an optional ornament divider (208px, white over the aura), a 1px hairline (`radial-gradient(circle,#6a88e2,transparent)`), the text in Matter 425 14 → 16px, `--sr-indigo-900`, tracking .025em, padding 0 32px, then a second hairline.
+
+## Variants
+| Variant | Spec | Where |
+|---|---|---|
+| `hero` | ornament + hairlines + Matter 425 16px indigo-900, tracking .025em | **Home / brand hero only** |
+| `section-label` | Matter 525 **12px** UPPERCASE, tracking 2px, `#666`, no hairlines | "INDIA BUILDS WITH SARVAM" above the logo bar; a product-module label |
+| `micro` | Matter Semi Mono 10–11px UPPERCASE, indigo | Annotations inside demos: OUTPUT, CODE SWITCH, PROPER NOUN |
 
 ## Rules
-- **Must** appear once per page, in the hero only.
-- **Should** be 2–5 words ("India's Sovereign AI Platform").
+- **Must** use `hero` at most once per page, on home/brand pages only. Product pages show the ornament without eyebrow text.
+- **Must** use `section-label` at most 1–2 times per page.
+- **Never** put a label above every section title. sarvam.ai product pages have none.
+- **Never** set section labels in Semi Mono or above 12px.
+- **Should** keep hero eyebrows to 2–5 words ("India's Sovereign AI Platform").
 - **Never** turn it into a pill or a badge.
 
 ## Accessibility
@@ -735,7 +753,7 @@ Section header
 
 D("pillar-list", "Pillar list", "Display", "Lists brand pillars or benefits, each with a gradient star bullet.", ["feature-card"], """
 ## Styles
-Each row is a 20–24px star bullet (`assets/motifs/star-bullet-*.svg`), gap 12px, a title in Matter 500 20px, and a description in Matter 400 16px `--tx-tertiary`, lh 1.65, aligned under the title. Rows are 24–32px apart.
+Each row is a 20–24px star bullet (`assets/motifs/star-bullet-*.svg`), gap 12px, a title in Matter 525 20px, and a description in Matter 425 16px `--tx-tertiary`, lh 1.65, aligned under the title. Rows are 24–32px apart.
 
 ## Rules
 - **Must** use star bullets, not icons or checkmarks.
@@ -765,10 +783,11 @@ Feature card
 
 D("logo-marquee", "Logo marquee", "Display", "Social proof: a scrolling row of customer logos.", ["section-header"], """
 ## Styles
-Label "INDIA BUILDS WITH SARVAM" (Matter 500 12px caps, tracking 2px, `--tx-tertiary`). Logos are grayscale, brightness .8, opacity .5, height 30–45px, gap 60px (40px mobile), with a linear auto-scroll at about 100px/s and an 8% edge-fade mask. Hover restores colour.
+Label "INDIA BUILDS WITH SARVAM" (Matter 525 12px caps, tracking 2px, `--tx-tertiary`). Logos are grayscale, brightness .8, opacity .5, height 30–45px, gap 60px (40px mobile), with a linear auto-scroll at about 100px/s and an 8% edge-fade mask. Hover restores colour.
 
 ## Rules
-- **Must** use real customers only.
+- **Must** use the real SVGs in `assets/logos/customers/` (15 logos: Aadhaar, Axis Bank, CRED, CRED Resolve, Decentro, IDFC, IndiaMART, Infosys, LIC, Mahindra Finance, NABARD, SBI Life, Skill India, Tata Capital, Urban Company).
+- **Never** render placeholder boxes or "[Customer logo]" text.
 - **Never** stretch or recolour logos beyond the grayscale treatment.
 
 ## Accessibility
@@ -848,7 +867,7 @@ D("navbar", "Navbar", "Navigation", "The fixed top navigation, frosted on scroll
 |---|---|---|
 | Height | 64px | 68px |
 | Left | Wordmark 16px tall | Wordmark 18px tall |
-| Centre | n/a | Products · Developers · Resources · Company (Matter 400 15px, gap 32px) |
+| Centre | n/a | Products · Developers · Resources · Company (Matter 425 15px, gap 32px) |
 | Right | "Log In" secondary pill + hamburger | "Log In" primary + "Contact Us" secondary |
 Transparent over the hero; on scroll it becomes `rgba(252,252,252,.8)` + `backdrop-filter: blur(12px)` + a bottom hairline.
 
@@ -912,12 +931,13 @@ Navbar · CTA panel
 
 D("section-header", "Section header", "Layout", "A centred section title with an optional subtitle.", ["eyebrow"], """
 ## Styles
-h2 in Season Mix 500, 28 → 36px, lh 1.2, tracking −0.02em. Optional subtitle in Matter 400 16 → 18px `--tx-tertiary`, max-width 640px, 12–16px below. Content follows 32px (mobile) / 48px (desktop) below. Split variant: left-aligned label + h2 + sub, with an outline CTA at the right.
+h2 in Season Mix 525, 28 → 36px, lh 1.2, tracking −0.02em. Optional subtitle in Matter 425 16 → 18px `--tx-tertiary`, max-width 640px, 12–16px below. Content follows 32px (mobile) / 48px (desktop) below. Split variant: left-aligned label + h2 + sub, with an outline CTA at the right.
 
 ## Rules
 - **Must** be centred, except in split layouts.
 - **Must** be sentence case, 2–7 words.
-- **Never** stack an eyebrow, title and subtitle on every section.
+- **Never** put a section label above the title. The title stands alone (sarvam.ai product pages have no labels above h2s).
+- **Should** split long titles over 2 balanced lines ("Flexible output / Same audio, multiple formats").
 
 ## Accessibility
 - One `h1` per page. Section titles are `h2`, in order.
@@ -945,11 +965,11 @@ Eyebrow
 
 D("cta-panel", "CTA panel", "Layout", "The single dark moment on a page: a closing call to action before the footer.", ["button", "footer"], """
 ## Styles
-`--grad-night` background, radius 32px / 24px / 16px (desktop / tablet / mobile), padding 80px 40px (48px 24px mobile), centred. h2 in Season Mix 400 36–40px white, at most 2 lines, then a 32px white star glyph, concentric 1px arcs at 8% white from the bottom centre, and an `on-dark` button.
+Measured on sarvam.ai: `--grad-cta-panel` (`linear-gradient(180deg,#13121e 0%,#a5bbfc 116.55%)`: near-black navy at the top, periwinkle glowing from the bottom), **radius 24px** (16px mobile), padding 80px 40px (48px 24px mobile), centred. h2 Season Mix 425 36px white over 2 lines ("Start transcribing in minutes / Powered by Saaras V4"), a small glowing white dot, concentric 1px arcs at 8% white, and a **primary slate button** with cursor glow.
 
 ## Rules
 - **Must** appear at most once per page, right before the footer.
-- **Must** use the `on-dark` button.
+- **Must** use the primary slate button (as on sarvam.ai), not a white button.
 - **Never** put body paragraphs inside it.
 
 ## Accessibility
@@ -968,8 +988,8 @@ D("cta-panel", "CTA panel", "Layout", "The single dark moment on a page: a closi
 ## Tokens
 | Token | Value |
 |---|---|
-| `--grad-night` | radial-gradient(60% 90% at 50% 100%,#3d32ab,transparent 70%), linear-gradient(#14142b,#1e2033) |
-| `--radius-4xl` | 32px |
+| `--grad-cta-panel` | linear-gradient(180deg,#13121e 0%,#a5bbfc 116.55%) |
+| `--radius-3xl` | 24px |
 
 ## Related
 Button · Footer

@@ -11,7 +11,7 @@ related: [glow-card, integration-card, stat]
 Presents one product or capability with a solid icon, a title and one line.
 
 ## Styles
-White, 1px `--st`, radius 16px, padding 24px (20px mobile). 24–28px **solid** product-hue icon, then a title in Matter 500 20px (18px mobile), then a body line in Matter 400 15px `--tx-tertiary`. Hover: `--shadow-card-hover` + `translateY(-2px)`.
+White, 1px `--st`, radius 16px, padding 24px (20px mobile). 24–28px **solid** product-hue icon, then a title in Matter 525 20px (18px mobile), then a body line in Matter 425 15px `--tx-tertiary`. Hover: `--shadow-card-hover` + `translateY(-2px)`.
 
 ## Usage
 ### Use

@@ -1,15 +1,15 @@
 # Components · Actions
 
 ## Button
-All buttons are **pills** set in **Matter 500**, with min-height 40px (44px hero), a tactile inset shadow, `active:scale(.96)`, and a 350ms `--ease-brand` transition.
+All buttons are **pills** set in **Matter 525**, with min-height 40px (44px hero), a tactile inset shadow, `active:scale(.96)`, and a 350ms `--ease-brand` transition.
 
 | Variant | Fill | Text | Shadow | Use |
 |---|---|---|---|---|
 | **Primary** | `--slate #2a2c33` | white | `--shadow-btn-dark` + **cursor glow on hover** | Main action (Log In, Get Started, Sign up, Play Audio) |
-| **Primary (hero)** | `--grad-btn-dark` (#3a3f5c→#1e2033) | white, **Season Mix 500** | **cursor glow on hover** | The hero CTA pair only |
+| **Primary (hero)** | `--grad-btn-dark` (#3a3f5c→#1e2033) | white, **Season Mix 525** | **cursor glow on hover** | The hero CTA pair only |
 | **Secondary** | `--sf-secondary #f5f5f5` → hover `#fff` | `--tx` | `--shadow-btn-light` | Contact Us, See pricing |
-| **Secondary (hero)** | `--grad-btn-light` + `inset 0 0 0 1px rgba(30,32,51,.14)` | `#1e2033`, Season Mix 500 | n/a | Hero secondary |
-| **Outline** | `#fff` + 1px `--st`, hover `--sf` | `--tx` Matter 500 14px | none | "Explore Indus Cowork →", "View All Updates" |
+| **Secondary (hero)** | `--grad-btn-light` + `inset 0 0 0 1px rgba(30,32,51,.14)` | `#1e2033`, Season Mix 525 | n/a | Hero secondary |
+| **Outline** | `#fff` + 1px `--st`, hover `--sf` | `--tx` Matter 525 14px | none | "Explore Indus Cowork →", "View All Updates" |
 | **On dark** | `#fff` | `--tx` | `--shadow-btn-light` | Inside dark CTA panels |
 | **Ghost link** | none | `--tx-tertiary` → `--sr-indigo-800` | none | Inline links, footer |
 

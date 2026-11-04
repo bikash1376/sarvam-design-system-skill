@@ -11,11 +11,11 @@ related: [button, footer]
 The single dark moment on a page: a closing call to action before the footer.
 
 ## Styles
-`--grad-night` background, radius 32px / 24px / 16px (desktop / tablet / mobile), padding 80px 40px (48px 24px mobile), centred. h2 in Season Mix 400 36–40px white, at most 2 lines, then a 32px white star glyph, concentric 1px arcs at 8% white from the bottom centre, and an `on-dark` button.
+Measured on sarvam.ai: `--grad-cta-panel` (`linear-gradient(180deg,#13121e 0%,#a5bbfc 116.55%)`: near-black navy at the top, periwinkle glowing from the bottom), **radius 24px** (16px mobile), padding 80px 40px (48px 24px mobile), centred. h2 Season Mix 425 36px white over 2 lines ("Start transcribing in minutes / Powered by Saaras V4"), a small glowing white dot, concentric 1px arcs at 8% white, and a **primary slate button** with cursor glow.
 
 ## Rules
 - **Must** appear at most once per page, right before the footer.
-- **Must** use the `on-dark` button.
+- **Must** use the primary slate button (as on sarvam.ai), not a white button.
 - **Never** put body paragraphs inside it.
 
 ## Accessibility
@@ -34,8 +34,8 @@ The single dark moment on a page: a closing call to action before the footer.
 ## Tokens
 | Token | Value |
 |---|---|
-| `--grad-night` | radial-gradient(60% 90% at 50% 100%,#3d32ab,transparent 70%), linear-gradient(#14142b,#1e2033) |
-| `--radius-4xl` | 32px |
+| `--grad-cta-panel` | linear-gradient(180deg,#13121e 0%,#a5bbfc 116.55%) |
+| `--radius-3xl` | 24px |
 
 ## Related
 Button · Footer

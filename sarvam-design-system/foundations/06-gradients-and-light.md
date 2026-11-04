@@ -40,7 +40,7 @@ A white or cream gateway silhouette, blurred 30–60px, glowing out of a coloure
 ```
 Field: linear-gradient(180deg, #f6f3e8 0%, #e9e3f3 45%, #8c86e0 80%, #5b4fd6 100%)
 Glow:  gateway path filled #fffaf2, blur 40px, opacity .95, centred, ~70% of canvas width
-Text:  Season Mix 400, #1f1f1f, centred inside the glow
+Text:  Season Mix 425, #1f1f1f, centred inside the glow
 ```
 
 ## 4. Gateway Frame (concentric silhouettes)

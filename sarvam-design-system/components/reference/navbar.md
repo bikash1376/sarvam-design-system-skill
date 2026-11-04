@@ -15,7 +15,7 @@ The fixed top navigation, frosted on scroll.
 |---|---|---|
 | Height | 64px | 68px |
 | Left | Wordmark 16px tall | Wordmark 18px tall |
-| Centre | n/a | Products · Developers · Resources · Company (Matter 400 15px, gap 32px) |
+| Centre | n/a | Products · Developers · Resources · Company (Matter 425 15px, gap 32px) |
 | Right | "Log In" secondary pill + hamburger | "Log In" primary + "Contact Us" secondary |
 Transparent over the hero; on scroll it becomes `rgba(252,252,252,.8)` + `backdrop-filter: blur(12px)` + a bottom hairline.
 

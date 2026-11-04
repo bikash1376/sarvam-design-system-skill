@@ -11,10 +11,11 @@ related: [section-header]
 Social proof: a scrolling row of customer logos.
 
 ## Styles
-Label "INDIA BUILDS WITH SARVAM" (Matter 500 12px caps, tracking 2px, `--tx-tertiary`). Logos are grayscale, brightness .8, opacity .5, height 30–45px, gap 60px (40px mobile), with a linear auto-scroll at about 100px/s and an 8% edge-fade mask. Hover restores colour.
+Label "INDIA BUILDS WITH SARVAM" (Matter 525 12px caps, tracking 2px, `--tx-tertiary`). Logos are grayscale, brightness .8, opacity .5, height 30–45px, gap 60px (40px mobile), with a linear auto-scroll at about 100px/s and an 8% edge-fade mask. Hover restores colour.
 
 ## Rules
-- **Must** use real customers only.
+- **Must** use the real SVGs in `assets/logos/customers/` (15 logos: Aadhaar, Axis Bank, CRED, CRED Resolve, Decentro, IDFC, IndiaMART, Infosys, LIC, Mahindra Finance, NABARD, SBI Life, Skill India, Tata Capital, Urban Company).
+- **Never** render placeholder boxes or "[Customer logo]" text.
 - **Never** stretch or recolour logos beyond the grayscale treatment.
 
 ## Accessibility

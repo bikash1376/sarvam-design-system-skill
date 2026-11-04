@@ -22,4 +22,6 @@ Motion is **calm, eased-out and purposeful**. It reflects "transitions as signal
 - **Pulse:** live and voice indicators scale 1→1.25 and fade .6→0 over 2s.
 - **Aura:** a very slow (20–30s) drift of gradient positions, optional.
 
+**Reveal safety:** content must be fully visible within 600ms of entering the viewport, and visible by default if JS fails (add the hidden state only after JS runs, via a class on `<html>`). Use an IntersectionObserver threshold ≤ 0.1, trigger once, and never animate opacity on whole sections below 768px. A section that screenshots at partial opacity is a bug.
+
 Always wrap motion in `@media (prefers-reduced-motion: no-preference)`. Turn reveals off on mobile.

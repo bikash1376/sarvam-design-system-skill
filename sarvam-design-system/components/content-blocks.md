@@ -17,10 +17,10 @@ A centred line of indigo text between two gradient hairlines, often with the **o
 @media(min-width:768px){.eyebrow p{font-size:16px}}
 .eyebrow-ornament{width:208px;opacity:.9;margin-bottom:24px}
 ```
-**Section label** (smaller, for logo bars and product sections): `Matter 500 12px uppercase, letter-spacing 2px, --tx-tertiary` ("INDIA BUILDS WITH SARVAM", "INDUS COWORK").
+**Section label** (measured): **Matter 525, 12px, uppercase, letter-spacing 2px, line-height 16px, `#666`**: "INDIA BUILDS WITH SARVAM" above the logo bar, "INDUS COWORK" above a product module. **Use at most 1–2 per page.** Never put one above every section title, never set it in Semi Mono, never larger than 12px.
 
 ## Section header
-Centred: h2 (Season Mix 500, 28→36px) + optional body-lg sub (Matter, `--tx-tertiary`, max-width 640px), with a gap of 12–16px. 32px (mobile) / 48px (desktop) to the content below.
+Centred: h2 (Season Mix 525, 28→36px) + optional body-lg sub (Matter, `--tx-tertiary`, max-width 640px), with a gap of 12–16px. 32px (mobile) / 48px (desktop) to the content below.
 Split variant (inside product sections): left-aligned label + h2 + sub, with an outline CTA aligned right at desktop. The CTA drops below the text on mobile.
 
 ## Feature card
@@ -28,19 +28,25 @@ Split variant (inside product sections): left-aligned label + h2 + sub, with an 
 ┌───────────────────────────────┐  bg #fff · border 1px #e6e6e6 · radius 16px
 │ [icon 24px tinted]            │  padding 24px (mobile 20px)
 │                               │
-│ Text to Speech                │  Matter 500 18–20px --tx
-│ Natural voices across 11      │  Matter 400 14–15px --tx-tertiary, lh 1.5
+│ Text to Speech                │  Matter 525 18–20px --tx
+│ Natural voices across 11      │  Matter 425 14–15px --tx-tertiary, lh 1.5
 │ Indic languages               │
 └───────────────────────────────┘  hover: shadow-card-hover, translateY(-2px)
 ```
 Variants: **Tinted tile** (gradient fill from 06 §5 with a white icon/glyph centred, 16px radius, aspect 4:3) and **Illustrated card** (scalloped horizon, see 07).
 
 ## Pillar list (star bullets)
-A row is `[star 20px] [Title Matter 500 20px]` with the description below it, indented to align with the title (Matter 400 16px `--tx-tertiary`, lh 1.65). The gap between items is 24–32px. Alternate star hues per item, or use one hue for all.
+A row is `[star 20px] [Title Matter 525 20px]` with the description below it, indented to align with the title (Matter 425 16px `--tx-tertiary`, lh 1.65). The gap between items is 24–32px. Alternate star hues per item, or use one hue for all.
+
+## Stats band (product pages, measured)
+Full-bleed (edge to edge, no radius), about 350px tall, background `--grad-stats-band` (periwinkle → indigo → deep navy centre → indigo → periwinkle). 3 numbers centred in columns: **Season Mix 425, 48px, white**; label Matter 425 16px white. Numbers come from `FACTS.md` (STT: <250ms median latency · 100M+ mins transcribed · >99.5% uptime).
+
+## Demo bezel (product hero demo frame)
+Outer: radius 32px, background `#eef1fd` → `#f6f8fe`, 1px `#e8ecfb`, padding 12px (8px mobile). Inner: white, radius 24px, 1px `--st-secondary`, holds the live demo. Below the bezel, centred: "Want to use this API?" (14px `#666`) + a primary pill CTA.
 
 ## Stats / metrics
-Desktop: 3–4 cells in a row, separated by 1px `--st` vertical dividers, each with a number (Season Mix 400, 48–56px, `--tx` or `--sr-indigo-900`) and a label (Matter 400 14px `--tx-tertiary`).
-Compact table variant: label left (`--tx-tertiary` 14px) and value right (Matter 500 18px), with hairline rows ("tokens served · 10B+").
+Desktop: 3–4 cells in a row, separated by 1px `--st` vertical dividers, each with a number (Season Mix 425, 48–56px, `--tx` or `--sr-indigo-900`) and a label (Matter 425 14px `--tx-tertiary`).
+Compact table variant: label left (`--tx-tertiary` 14px) and value right (Matter 525 18px), with hairline rows ("tokens served · 10B+").
 Mobile: a 2×2 grid with horizontal dividers.
 
 ## Badge (compliance / status), measured on sarvam.ai
@@ -88,7 +94,7 @@ tags  : row pinned to the bottom, gap 6px (category tag + capability tags)
 Grid: 3-up at >=1024 (gap 24), 2-up at 768, 1-up on mobile. Card widths are equal, and the tags line up because the card is a flex column.
 
 ## Testimonial
-White card, 16px radius, 1px border, padding 32px (desktop 40px). Partner logo centred at top (≤32px tall). Quote in **Matter 400 20–22px `--tx-secondary`, lh 1.5**, clamped to 3–4 lines. Footer row: 40px round avatar + name (Matter 500 15px) + role (13px `--tx-tertiary`), with a secondary "Read full story" pill on the right (it drops below on mobile).
+White card, 16px radius, 1px border, padding 32px (desktop 40px). Partner logo centred at top (≤32px tall). Quote in **Matter 425 20–22px `--tx-secondary`, lh 1.5**, clamped to 3–4 lines. Footer row: 40px round avatar + name (Matter 525 15px) + role (13px `--tx-tertiary`), with a secondary "Read full story" pill on the right (it drops below on mobile).
 Inline compact variant: `"Quote…"` in Season Mix 22px between logo rows.
 
 ## Logo marquee
