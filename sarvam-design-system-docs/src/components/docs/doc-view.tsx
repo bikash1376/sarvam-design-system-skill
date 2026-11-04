@@ -36,7 +36,7 @@ function HumanView({ doc, human }: { doc: DocContent; human: React.ReactNode }) 
   return (
     <article>
       <h1 className="text-[26px] font-medium leading-tight tracking-tight">{doc.title}</h1>
-      <p className="mt-3 text-[18px] leading-snug text-muted-foreground">{doc.description}</p>
+      <p className="mt-2 max-w-[60ch] text-[15px] leading-relaxed text-muted-foreground">{doc.description}</p>
       <hr className="my-10" />
       {human}
     </article>
