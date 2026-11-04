@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 export type TocItem = { id: string; label: string };
 const REPO = "https://github.com/bikash1376/sarvam-design-system-skill";
-const INSTALL = `npx skills add ${REPO} --skill sarvam-design-system`;
+const INSTALL = "npx skills add bikash1376/sarvam-design-system-skill";
 
 function CopyRow({ label, text, icon = Copy01Icon }: { label: string; text: string; icon?: typeof Copy01Icon }) {
   const [done, setDone] = useState(false);
@@ -46,7 +46,6 @@ export function Toc({ items, title, source }: { items: TocItem[]; title: string;
     return () => io.disconnect();
   }, [items]);
 
-  const prompt = `Use the Sarvam design system skill (sarvam-design-system). Follow ${source ? `sarvam-design-system/${source}` : "SKILL.md"} to build the ${title}. Use only Sarvam tokens, React + Tailwind + Motion, and check checklists/qa.md before finishing.`;
 
   if (!slot) return null;
   return createPortal(
@@ -72,11 +71,9 @@ export function Toc({ items, title, source }: { items: TocItem[]; title: string;
       )}
       <div className="border-t pt-6">
         <p className="text-sm font-medium">Install</p>
-        <p className="mt-1 mb-3 text-sm text-muted-foreground">For your coding agent</p>
-        <div className="flex flex-col items-start gap-2">
-          <CopyRow label="Copy prompt" text={prompt} />
-          <CopyRow label="Copy install command" text={INSTALL} />
-        </div>
+        <p className="mt-1 mb-3 text-sm text-muted-foreground">The whole skill, for Claude Code, Cursor, Codex and other agents</p>
+        <code className="mb-2 block rounded-lg bg-muted px-3 py-2 font-mono text-[12px] leading-5 break-all">{INSTALL}</code>
+        <CopyRow label="Copy command" text={INSTALL} />
       </div>
       <div className="border-t pt-6">
         <p className="text-sm font-medium">GitHub</p>
