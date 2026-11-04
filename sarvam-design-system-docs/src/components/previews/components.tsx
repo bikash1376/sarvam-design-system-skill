@@ -409,17 +409,18 @@ function CardDemo() {
     </div>
   );
 }
-/** White four-point star: turns 180° slowly, eases to a stop, rests, repeats (static under reduced motion). */
+/** White Sarvam star (star-bullet motif): turns 180° slowly, eases to a stop, rests, repeats (static under reduced motion). */
 function CtaStar() {
   return (
     <div className="relative mx-auto my-6 grid size-16 place-items-center" aria-hidden>
       <span className="absolute inset-0 rounded-full bg-white/25 blur-xl" />
       <motion.svg
-        viewBox="0 0 64 64" className="relative size-14 drop-shadow-[0_0_12px_rgba(255,255,255,.55)]"
+        viewBox="0 0 24 24" className="relative size-12 drop-shadow-[0_0_12px_rgba(255,255,255,.55)]"
         animate={{ rotate: [0, 180] }}
         transition={{ duration: 2.4, ease: [0.25, 1, 0.5, 1], repeat: Infinity, repeatDelay: 3 }}
       >
-        <path fill="#fff" d="M32 2c2.2 12.5 7.6 22.6 17.6 26.4 3.6 1.4 8 2.4 12.4 3.6-4.4 1.2-8.8 2.2-12.4 3.6C39.6 39.4 34.2 49.5 32 62c-2.2-12.5-7.6-22.6-17.6-26.4C10.8 34.2 6.4 33.2 2 32c4.4-1.2 8.8-2.2 12.4-3.6C24.4 24.6 29.8 14.5 32 2Z" />
+        {/* assets/motifs/star-bullet-*.svg shape, filled solid white */}
+        <path fill="#fff" fillRule="evenodd" clipRule="evenodd" d="M12.0035 0C13.927 1.92336 14.7378 4.55104 14.4269 7.06239C15.3696 6.39209 16.5224 5.99794 17.7672 5.99791H17.9981C17.998 7.2792 17.5948 8.4699 16.9085 9.4474C19.3436 9.12122 21.8977 9.89379 23.7691 11.7651L24 11.996C22.0413 13.9546 19.3522 14.7596 16.7993 14.4011C17.5521 15.4058 17.9984 16.6535 17.9983 18.0015C16.6523 18.0015 15.4063 17.5566 14.4024 16.8059C14.7587 19.3568 13.9535 22.0429 11.9964 23.9999C10.0408 22.0444 9.23528 19.3609 9.58954 16.8117C8.58701 17.5588 7.34402 18.0014 6.00159 18.0014V17.7706C6.00162 16.5237 6.39701 15.3691 7.06934 14.4255C4.55586 14.7387 1.92515 13.9283 0 12.0032L0.230859 11.7723C2.10358 9.89968 4.65997 9.12739 7.09662 9.45536C6.407 8.47643 6.00174 7.28284 6.00176 5.99816C7.3476 5.99814 8.5935 6.44286 9.59732 7.19339C9.24126 4.64272 10.0466 1.95683 12.0035 0ZM11.9994 11.9889C11.9969 11.9927 11.9934 11.9958 11.9891 11.9977C11.9893 11.999 11.9895 12.0004 11.9895 12.0018C11.9938 12.0037 11.9974 12.0069 11.9998 12.0109H12.0004C12.0029 12.007 12.0065 12.0038 12.0108 12.0019C12.0105 12.0005 12.0105 11.9991 12.0104 11.9977C12.0061 11.9958 12.0025 11.9927 12 11.9889H11.9994Z" />
       </motion.svg>
     </div>
   );
