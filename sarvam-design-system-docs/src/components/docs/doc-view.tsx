@@ -36,7 +36,7 @@ function HumanView({ doc, human }: { doc: DocContent; human: React.ReactNode }) 
   return (
     <article>
       <div className="flex flex-wrap items-center gap-3">
-        <h1 className="text-3xl font-medium tracking-tight">{doc.title}</h1>
+        <h1 className="text-2xl font-medium tracking-tight">{doc.title}</h1>
         <span
           title={doc.origin === "measured" ? "Specified from sarvam.ai production" : "Not on sarvam.ai: built on shadcn following Sarvam's brand rules"}
           className="rounded-md border px-2 py-0.5 text-[12px] text-muted-foreground"
@@ -44,8 +44,8 @@ function HumanView({ doc, human }: { doc: DocContent; human: React.ReactNode }) 
           {doc.origin === "measured" ? "From sarvam.ai" : "Built on shadcn"}
         </span>
       </div>
-      <p className="mt-3 text-lg text-muted-foreground">{doc.description}</p>
-      <hr className="my-10" />
+      <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{doc.description}</p>
+      <hr className="my-8" />
       {human}
     </article>
   );

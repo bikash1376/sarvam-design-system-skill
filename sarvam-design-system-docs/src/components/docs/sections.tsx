@@ -16,8 +16,8 @@ function Section({ id, title, count, children }: { id: string; title: string; co
   return (
     <Reveal>
     <section id={id} className="scroll-mt-36 border-t pt-10">
-      <h2 className="text-[17px] font-medium tracking-tight">{title}</h2>
-      {count && <p className="mt-0.5 text-[13px] text-muted-foreground">{count}</p>}
+      <h2 className="text-[15px] font-medium tracking-tight">{title}</h2>
+      {count && <p className="mt-0.5 text-[12px] text-muted-foreground">{count}</p>}
       <div className="mt-6">{children}</div>
     </section>
     </Reveal>
