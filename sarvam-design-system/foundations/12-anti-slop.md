@@ -96,3 +96,5 @@ The most common failure is not ugliness — it is **too much**. Every item below
 5. Cover the copy: is the first viewport quiet — badge, headline, one line, one or two buttons?
 6. Count the boxes: is there a card around a section, or a card inside a card? Remove it.
 7. Count the elements in the busiest section: can you delete one without losing meaning?
+
+**Final polish:** after this checklist, run the taste pass in `references/taste.md` (plain copy, one idea per screen, equal edges, real UI in barely-there cards, the quiet hover layer).

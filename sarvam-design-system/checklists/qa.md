@@ -56,3 +56,4 @@
 - [ ] Banners: no mono micro-labels or kicker lines (no "DIWALI 2026", "SARVAM · NEW MODEL", URL footers); only Season Mix + Matter on the `--u` scale
 - [ ] Banners: the ad CTA pill is ≈ 6u tall (64px at 1080); partner logos are official artwork, optically matched to the Sarvam wordmark
 - [ ] Banners: the gateway window holds the whole text block; ornament is the official mandala (thin, faint); no Indic line + emoji afterthoughts
+- [ ] Taste pass (`references/taste.md`): h1 names the thing and buyer, one FACTS.md number on the first screen, buttons verb + object, one idea per screen, equal edges, linked cards lift 2px, card loops 2.5–4s and restart on hover, nothing tilted or staggered

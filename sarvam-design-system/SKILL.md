@@ -38,6 +38,7 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
 5. **Start from a scaffold, not a blank file.** Web pages use the chosen stack (`references/stack-setup.md`). Banners use `templates/banner.html`.
 6. **Use only the components the page needs.** A component list is a menu, not a checklist. If a section repeats the one above it, delete it. Default landing page: 6–8 sections, not 15.
 7. **Render and check.** `node scripts/render.js <file.html | http://localhost:PORT> <out.png> <w> <h|full>` renders a PNG (banner file or running dev server). Then run through `checklists/qa.md` before calling anything done.
+8. **Taste pass.** For websites and animated UI, finish with `references/taste.md` (copy a stranger understands in 5 seconds, one idea per screen, equal edges, barely-there cards with real UI, the quiet hover layer, 2.5–4s card loops). Also run it whenever someone says it looks generic or "AI-made". It polishes within the brand; it never overrides it.
 
 ## 2. File map
 
@@ -67,6 +68,7 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
 | `references/project-intake.md` | **Ask before building a website.** Multiple-choice intake: stack, pages, audience → hero, sections, plus optional round 2 (co-brand, languages, delivery, content) |
 | `references/stack-setup.md` | Scaffold commands for React+Vite+Tailwind+Lenis+Motion (default), Next.js+Tailwind+Motion, Astro+Tailwind+Motion; tokens → Tailwind v4 `@theme` |
 | `references/animation-and-illustration.md` | Bundled Emil Kowalski animation skills (MIT) and Anthropic algorithmic-art / canvas-design (Apache 2.0) in `vendor/`; Sarvam brand and Motion always override |
+| `references/taste.md` | **Taste pass** translated from taste-skill (MIT, core refs in `vendor/taste-skill/`): anti-slop copy, layout, cards, hover layer and loops in Sarvam terms, with every conflict resolved for Sarvam |
 | `references/ui-ux-pro-max.md` | Bundled ui-ux-pro-max (MIT) in `vendor/`: banner art direction, extra platform sizes, UX search. Sarvam brand always overrides it |
 | `references/pick-ui-library.md` | Curated frontend library picks (base-ui, Sonner, motion, Virtuoso…). Also installed as the `pick-ui-library` skill |
 | `tools/soft-glow/` | `glow.py` (CLI) + `generator.html` (visual editor) for soft-glow surfaces |
