@@ -50,3 +50,4 @@
 - [ ] Nothing within the safe margin (80px Meta / 64px LinkedIn sides)
 - [ ] Headline legible at 300px thumbnail
 - [ ] The series shares archetype logic, wordmark position and type scale
+- [ ] Background line texture uses the Sarvam mandala (`assets/mandala/`), not generic ripples or concentric circles. It is large, cropped and tone-on-tone, appears in at most 1–2 places, and keeps the text at 4.5:1 contrast.

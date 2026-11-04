@@ -27,6 +27,7 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
    - **Hero layouts are also mirrored standalone** as the `sarvam-hero-layouts` skill; that copy defers to `sarvam-design-system/formats/hero-layouts.md`
    - Social banner: `formats/social-banners.md` (archetypes + exact pixel specs)
    - SVG, illustration or motif: `foundations/07-motifs-and-glyphs.md`, `foundations/06-gradients-and-light.md`
+   - Background line texture (instead of ripples/concentric circles): `foundations/17-mandala-background.md` (assets: `assets/mandala/`)
    - Card or section background glow: `foundations/14-soft-glow-surfaces.md` (tool: `tools/soft-glow/`)
    - Colouring a glyph, emblem or motif with depth: `foundations/15-glyph-color-depth.md` (tool: `tools/color-depth/`)
 5. **Start from a template** in `templates/` rather than a blank file.
@@ -55,6 +56,7 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
 | `foundations/12-anti-slop.md` | What makes output look generic or off-brand, and how to avoid it |
 | `foundations/13-voice-and-tone.md` | Copy voice, naming, headline formulas, examples |
 | `foundations/14-soft-glow-surfaces.md` | Pastel blurred-curve glows for cards, tiles and social posts; presets incl. `sr-dawn`, `sr-spectrum`, `sr-meadow` |
+| `foundations/17-mandala-background.md` | **Sarvam mandala illustration as background.** Replaces generic ripples / concentric circles. Big, cropped, tone-on-tone, 1–2 placements max; banners yes |
 | `foundations/15-glyph-color-depth.md` | Core + rim colour depth for gateway glyphs (4 rim moods, echo), Sarvam `sr-*` palettes |
 | `foundations/16-copywriting.md` | **Write copy before layout.** Word budgets, the 4-element hero, "what happens when", banned words, believable demo data, no placeholders/urgency/emoji, worked before→after examples |
 | `references/pick-ui-library.md` | Curated frontend library picks (base-ui, Sonner, motion, Virtuoso…). Also installed as the `pick-ui-library` skill |
@@ -74,14 +76,15 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
 2. **Headlines are calm.** Season Mix at sarvam.ai's **425 (regular) / 525 (medium)** weights, never bold, with tight tracking (−0.02em) and tight leading (1.05–1.2). Use sentence case. Big and quiet beats small and loud.
 3. **Light canvas by default.** The page background is `#fcfcfc` (`--sf`), cards are `#fff`, text is `#1f1f1f`. Dark surfaces (`--slate`, `--black`, night gradient) are for one CTA panel or a feature moment, not whole pages.
 4. **Colour comes as light, not blocks.** The brand's signature is a continuous **blue→orange spectrum** (indigo/periwinkle meets saffron). Use it as soft glows, auras and gradient fills inside gateway shapes. Never use flat saturated rectangles of brand colour behind UI.
-5. **The Gateway is the core motif.** The cusped multifoil arch (torana) appears as gradient glyphs, as frames that hold headlines, and as silhouettes. Use the official SVGs in `assets/glyphs/` or follow the drawing rules in `07-motifs-and-glyphs.md`.
-6. **One logo in the nav — Sarvam.** Even when the page mentions partners, models or sub-brands. Partner lockups (`sarvam ✦ Partner`) appear only when the user deliberately asks for co-branding, and then in the hero badge or footer, never as a second nav logo. Sarvam sits first unless Sarvam is the guest in someone else's programme (then `aws marketplace ✦ sarvam`). The wordmark is black on light and white on dark, with no colour, gradient or effects. The logomark (mandala monogram) is used **separately**, never locked up with the wordmark.
-7. **Pills and soft corners.** Buttons and chips are fully rounded pills (min height 40px). Cards use 16px radius, large panels 24–32px. No sharp rectangles, and no 4px "bootstrap" corners on cards.
-8. **Shadows are ambient and inset.** Use 40px-blur, 6% black for cards. Buttons get an inset highlight (`inset 0 1px 0 rgba(255,255,255,.4)`), which makes them look tactile. **Every dark button gets a soft white glow that follows the cursor on hover.** Never use hard drop shadows.
-9. **Generous, centred rhythm.** Section titles are centred, 128px between sections on desktop and 96px on mobile. Content is 10/12 of the viewport and capped at 1400px. **The hero holds four things** — badge, h1, sub, 1–2 CTAs — and nothing else; proof, logos, language rows and floating cards start below the first viewport.
-10. **Rooted, not costume.** Indian identity comes through structure (gateways, mandala geometry), Indic scripts, real Indian photography and textile-derived pattern. Never use clichés: no Taj Mahal clip-art, flags, tricolour gradients, paisley wallpaper, diyas or "namaste" emoji.
-11. **Copy is the design.** Say what happens. h1 2–7 words, hero sub ≤ 20 words, card body ≤ 20 words. No invented urgency, no placeholders, no emoji, no meta-annotations ("concept design", "timing: [VERIFY]"). Full rules: `16-copywriting.md`.
-12. **Space, not boxes.** Don't put a card around everything, and never a card inside a card — separate groups with space, and use a card only for a thing the reader acts on. In a non-bento grid every card is the same width and the same height.
+5. **Mandala, not ripples.** For background line texture, use Sarvam's own mandala illustration (`assets/mandala/`, rules in `foundations/17-mandala-background.md`): large, cropped, tone-on-tone, in 1–2 places only. Never draw random ripples or concentric circles.
+6. **The Gateway is the core motif.** The cusped multifoil arch (torana) appears as gradient glyphs, as frames that hold headlines, and as silhouettes. Use the official SVGs in `assets/glyphs/` or follow the drawing rules in `07-motifs-and-glyphs.md`.
+7. **One logo in the nav — Sarvam.** Even when the page mentions partners, models or sub-brands. Partner lockups (`sarvam ✦ Partner`) appear only when the user deliberately asks for co-branding, and then in the hero badge or footer, never as a second nav logo. Sarvam sits first unless Sarvam is the guest in someone else's programme (then `aws marketplace ✦ sarvam`). The wordmark is black on light and white on dark, with no colour, gradient or effects. The logomark (mandala monogram) is used **separately**, never locked up with the wordmark.
+8. **Pills and soft corners.** Buttons and chips are fully rounded pills (min height 40px). Cards use 16px radius, large panels 24–32px. No sharp rectangles, and no 4px "bootstrap" corners on cards.
+9. **Shadows are ambient and inset.** Use 40px-blur, 6% black for cards. Buttons get an inset highlight (`inset 0 1px 0 rgba(255,255,255,.4)`), which makes them look tactile. **Every dark button gets a soft white glow that follows the cursor on hover.** Never use hard drop shadows.
+10. **Generous, centred rhythm.** Section titles are centred, 128px between sections on desktop and 96px on mobile. Content is 10/12 of the viewport and capped at 1400px. **The hero holds four things** — badge, h1, sub, 1–2 CTAs — and nothing else; proof, logos, language rows and floating cards start below the first viewport.
+11. **Rooted, not costume.** Indian identity comes through structure (gateways, mandala geometry), Indic scripts, real Indian photography and textile-derived pattern. Never use clichés: no Taj Mahal clip-art, flags, tricolour gradients, paisley wallpaper, diyas or "namaste" emoji.
+12. **Copy is the design.** Say what happens. h1 2–7 words, hero sub ≤ 20 words, card body ≤ 20 words. No invented urgency, no placeholders, no emoji, no meta-annotations ("concept design", "timing: [VERIFY]"). Full rules: `16-copywriting.md`.
+13. **Space, not boxes.** Don't put a card around everything, and never a card inside a card — separate groups with space, and use a card only for a thing the reader acts on. In a non-bento grid every card is the same width and the same height.
 
 ## 4. Quick reference
 

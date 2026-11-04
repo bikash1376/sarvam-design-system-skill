@@ -62,6 +62,9 @@ Best for customer stories and partner announcements.
 White top zone with the wordmark small top-left, the event name top-right, and a Season Mix headline left. Below sits a **heritage band**: a B&W halftone of Indian architecture plus pixel-textile strips (magenta/marigold checks, saffron squares with concentric pixel circles) in heritage colours. The webinar variant uses a white card with soft lavender scalloped cloud edges, the `sarvam │ [glyph] PRODUCT` lockup centred, the title, and a speaker photo in a 160px circle with name and role.
 Best for conferences, webinars and livestreams.
 
+## Mandala background (Sarvam illustration)
+For banners and posts, the Sarvam mandala (`assets/mandala/`) is the preferred background texture, used instead of ripples or concentric circles. Place it **once per banner**: 110–160% of the canvas width, cropped, rising from the bottom (festive or greeting posts like "Happy New Year 2026") or floating mid-canvas behind chips (product posts like "A Voice Agent with all the little human things"). Make it tone-on-tone: filled `mark` in white at 6–12%, or `outline` in white at 35–60%. Keep the headline in the calm zone above it. Full rules and CSS: `foundations/17-mandala-background.md`.
+
 ## Choosing quickly
 | Message type | Archetype | Hue story |
 |---|---|---|

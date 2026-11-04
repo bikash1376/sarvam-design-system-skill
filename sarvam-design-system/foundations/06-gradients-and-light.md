@@ -48,13 +48,13 @@ Several nested gateway outlines, each step a tone darker/lighter, like ripples i
 
 ## 5. Card gradients (web feature tiles)
 For feature/infra tiles that hold a white icon or glyph:
-`--grad-blue-light`, `--grad-orange-medium`, `--grad-green-light`, `--grad-pink-light` (all 180deg). Add a radial highlight `radial-gradient(circle at 30% 30%, rgba(255,255,255,.15), transparent 70%)` and a concentric hairline-circle pattern at 10–15% white.
+`--grad-blue-light`, `--grad-orange-medium`, `--grad-green-light`, `--grad-pink-light` (all 180deg). Add a radial highlight `radial-gradient(circle at 30% 30%, rgba(255,255,255,.15), transparent 70%)` and the Sarvam mandala (`assets/mandala/`, see `17-mandala-background.md`) at 8–12% white instead of generic concentric circles.
 
 ## 6. Night panel (dark CTA)
 ```css
 background: radial-gradient(60% 90% at 50% 100%, #3d32ab 0%, transparent 70%), linear-gradient(180deg,#14142b,#1e2033);
 ```
-Add a centred white 4-point star glyph and thin concentric arcs (1px white at 8%) radiating from the bottom centre.
+Add a centred white 4-point star glyph and the Sarvam mandala outline (white, ~8–15%) rising from the bottom centre, instead of generic concentric arcs (see `17-mandala-background.md`).
 
 ## Grain
 Banner gradients get **subtle film grain** (3–6% opacity monochrome noise). It removes banding and gives the printed, tactile feel visible in Sarvam's LinkedIn posts. Use the SVG `feTurbulence` snippet in `templates/_partials.md`.

@@ -12,7 +12,8 @@ Sarvam's graphic vocabulary is small, and every element comes from the **Gateway
 | **Star bullet** | `assets/motifs/star-bullet-{green,indigo,orange,pink}.svg` | 4-point lotus star, gradient, inner shadow (from sarvam.ai "Why Sarvam") | List bullets for pillars and features, 18–24px |
 | **Ornament divider** | `assets/motifs/ornament-divider.svg` | Symmetric scroll flourish over a hairline (two mirrored paisley curls) | **Above the hero eyebrow only**, in white or `#f0f0f0` over the aura |
 | **Eyebrow hairlines** | CSS (`--hairline-indigo`) | 1px lines that fade at both ends | Above and below the hero eyebrow text |
-| **Concentric arcs / hairline circles** | CSS / SVG | Thin 1px circles radiating from one point | Dark CTA panel, gradient tiles (10–15% white) |
+| **Sarvam mandala** | `assets/mandala/sarvam-mandala-{mark,outline}.svg` | 9-petal interlocking mandala + centre diamond | **Preferred background line texture**: banners, CTA panel, one hero. See `17-mandala-background.md` |
+| **Concentric arcs / hairline circles** | CSS / SVG | Thin 1px circles radiating from one point | Legacy. Prefer the Sarvam mandala (`17-mandala-background.md`) over generic ripples |
 
 ## Gateway glyph catalogue (official)
 | File | Shape | Gradient |
