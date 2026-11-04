@@ -53,3 +53,6 @@
 - [ ] Headline legible at 300px thumbnail
 - [ ] The series shares archetype logic, wordmark position and type scale
 - [ ] Background line texture uses the Sarvam mandala (`assets/mandala/`), not generic ripples or concentric circles. It is large, cropped and tone-on-tone, appears in at most 1–2 places, and keeps the text at 4.5:1 contrast.
+- [ ] Banners: no mono micro-labels or kicker lines (no "DIWALI 2026", "SARVAM · NEW MODEL", URL footers); only Season Mix + Matter on the `--u` scale
+- [ ] Banners: the ad CTA pill is ≈ 6u tall (64px at 1080); partner logos are official artwork, optically matched to the Sarvam wordmark
+- [ ] Banners: the gateway window holds the whole text block; ornament is the official mandala (thin, faint); no Indic line + emoji afterthoughts

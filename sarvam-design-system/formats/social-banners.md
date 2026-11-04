@@ -29,9 +29,9 @@ Never hand-pick pixel sizes per platform. `templates/banner.html` sets **`--u` =
 | **Headline (Season Mix 425)** `--h` | **9.6u (104px)** | **10.4u (112px)** | **11.2u (121px)** | **12.1u (76px)** | **10u (90px)** |
 | Sub-copy `--sub` | 3u (32px) | 3.15u (34px) | 3.4u (37px) | 4u (25px) | 3.2u (29px) |
 | Wordmark height `--wm` | 3.5u (38px) | 3.7u (40px) | 3.9u (42px) | 4.8u (30px) | 3.8u (34px) |
-| Eyebrow / label | 0.68 × sub | 0.68 × sub | 0.68 × sub | 0.68 × sub | 0.68 × sub |
+| ~~Eyebrow / mono label~~ | **Not used on banners.** No "DIWALI 2026", "SARVAM · NEW MODEL", "COLLABORATION · 2026" or URL footers in Semi Mono caps. They read as filler. |  |  |  |  |
 | Meta (date, venue) | 0.78 × sub | 0.78 × sub | 0.78 × sub | 0.78 × sub | 0.78 × sub |
-| CTA pill | height 1.4 × wm, text 0.55 × wm | same | same | same | same |
+| CTA pill (ads) | **height 6u (≈64px at 1080), text 2.4u (≈26px), padding 0 3u**: big enough to read as the one action at thumbnail size | same | same | 9u tall on LinkedIn (≈56px) | same |
 
 Rules:
 - Landscape formats get a **larger** headline multiplier (12.1u on LinkedIn) because the short side is small and the feed shows them at ~50%. Story gets more vertical padding, not bigger margins at the sides.
@@ -73,11 +73,11 @@ Full-bleed blurred **blue→orange spectrum** (06 §2, motion-field variant) wit
 Best for event teasers, drops and "coming soon".
 
 ### E · Glow Gateway *(Supernova case study)*
-A grainy cream → lavender → violet vertical field with a **blurred cream gateway glow** in the centre (06 §3). Inside the glow: the lockup `sarvam · PARTNER`, then a dark Season Mix 425 headline, centred, 3 lines max.
+A grainy cream → lavender → violet vertical field with a **blurred cream gateway glow** in the centre (06 §3). Inside the glow: the lockup (Sarvam wordmark + separator + the **partner's official logo artwork**, optically matched in height to the wordmark), then a dark Season Mix 425 headline, centred, 3 lines max.
 Best for customer stories and partner announcements.
 
 ### F · Event Key Visual *(Sarvam Epoch, Voice Agents Live)*
-White top zone with the wordmark small top-left, the event name top-right, and a Season Mix headline left. Below sits a **heritage band**: a B&W halftone of Indian architecture plus pixel-textile strips (magenta/marigold checks, saffron squares with concentric pixel circles) in heritage colours. The webinar variant uses a white card with soft lavender scalloped cloud edges, the `sarvam │ [glyph] PRODUCT` lockup centred, the title, and a speaker photo in a 160px circle with name and role.
+White top zone with the wordmark small top-left and a Season Mix headline left (the event name, if needed, goes in the headline or the meta line in Matter, never as a mono caps label). Below sits a **heritage band**: a B&W halftone of Indian architecture plus pixel-textile strips (magenta/marigold checks, saffron squares with concentric pixel circles) in heritage colours. The webinar variant uses a white card with soft lavender scalloped cloud edges, the `sarvam │ [glyph] PRODUCT` lockup centred, the title, and a speaker photo in a 160px circle with name and role.
 Best for conferences, webinars and livestreams.
 
 ## Mandala background (Sarvam illustration)

@@ -108,3 +108,15 @@ Headlines are Season Mix 425/525 in sentence case (the noun-triple and launch mo
 
 ## 8. Evidence
 Distilled from the official posts kept with the project (light demo post, midnight cost and impact ads, the emerald and saffron gateway prompt-bar pair, the crimson telephony launch, Sarvam Circle, Sarvam Campus, Champions Program, the Pixxel, Meta, AWS and HealthPlix partnerships, the Equal, Supernova and HealthPlix webinars, "India's AI Now Arriving", "35 Million", "Happy New Year 2026", "Last Detail", and the Kaze waitlist). Re-derive from the rules; don't trace a post.
+
+## 9. Lessons from review (earlier skill-made banners)
+These come from reviewing six banners the skill produced earlier (Diwali model launch in three directions, Unacademy × Sarvam in two, a Diwali greeting). Apply them as rules.
+
+- **No mono micro-labels or kicker lines.** Small Semi Mono caps like "DIWALI 2026", "SARVAM · NEW MODEL", "COLLABORATION · 2026" or a "sarvam.ai" footer made every banner look worse, and none of the official posts use them. A banner is wordmark + headline + sub (+ one CTA on an ad, + a meta line only for a real date or venue). If the context matters, put it in the headline or sub in the banner's own type.
+- **One type system per banner.** Every text element is Season Mix (headline) or Matter (sub, meta, CTA). A third voice (mono caps, a different size step that doesn't belong to the `--u` scale) reads as a mismatch.
+- **The CTA on an ad must read as the action at thumbnail size:** pill height ≈ 6u (64px at 1080), label ≈ 2.4u. A small 40px pill on a 1080 canvas looks like a UI chip, not an ask.
+- **Partner logos are the partner's official artwork,** taken from their site or brand kit (SVG), never their name typeset in Geist or Semi Mono caps. Size the partner mark **optically** against the Sarvam wordmark: same cap-height or visual weight, with the host's separator. A typeset "UNACADEMY" at a smaller size breaks both the lockup and the hierarchy.
+- **A gateway frame holds the whole message.** Place the gateway (arch or glow window) so the full text block (lockup, headline, sub) sits inside its white window, with comfortable space above the first line. Text spilling below or beside the window means the gateway is too low; move it up rather than shrinking the copy.
+- **Ornament comes from official geometry.** A bottom illustration (the arch tracery on the dark launch banner) should be the official Sarvam mandala, thin and faint, not a newly drawn line ornament.
+- **Festive greeting posts get the mandala as the centrepiece.** Use the official mandala centred behind the motif with a **radial** spectrum glow (saffron core into periwinkle or cream), instead of a flat white field around a single glow.
+- **Indic script and emoji:** don't add a second-language line with an emoji (for example "शुभ दीपावली! 🪔") as an afterthought. If the post is bilingual, the Indic line gets the same hierarchy as the headline, in a matching Devanagari face, with no emoji. Otherwise leave it out.
