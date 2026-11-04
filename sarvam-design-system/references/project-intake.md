@@ -13,7 +13,41 @@ Web pages are **always** built in one of the three framework stacks below. No va
 - **If the user says "just build it", or the run is non-interactive,** use the defaults below and list them in one line at the top of your reply.
 - Don't ask about things the skill already decides: colours, fonts, buttons, cards, gradients. `DECISIONS.md` covers those.
 
-## Round 1: always (one call, 4 questions)
+## Read the prompt first: infer, then ask only what's missing
+Before asking anything, read the prompt for answers. Users rarely say "audience: developers". They describe the product, who it's for or what it does, so understand the meaning, not just keywords. Every question with a clear signal counts as **answered**. Don't ask it. State your reading in the confirmation line instead.
+
+**Audience signals (Q3)**
+| The prompt says something like… | Read it as | Hero direction |
+|---|---|---|
+| "a Sarvam model", "API", "SDK", "for builders", "integrate", model names (Bulbul, Saaras, Sarvam 105B) | Developers | Prompt Bar / Demo Stage / Docs Left |
+| "students", "learners", "50% off for students", "creators", "everyone", an app or consumer product | Individuals / consumers (education) | Visual Top / Aura Statement |
+| "for banks / enterprises / contact centres", "deploy at scale", "ROI", "compliance" | Enterprise | Aura Statement / Benchmark / Editorial Split |
+| "Aadhaar layer for India", "public infrastructure", "citizens", "government", "Bharat-scale", "sovereign" | Government / public infrastructure | Manifesto / Gateway Frame |
+| "research", "paper", "benchmark", "open weights", "community", "hackathon" | Researchers / community | Manifesto / Benchmark |
+
+If two audiences are mentioned (for example "for developers and enterprises"), the **first or most emphasised** one picks the hero. The other gets a section further down. Ask only if the signals truly conflict.
+
+**Section signals (Q4)**
+- If the user **lists sections** ("add navbar, hero, CTA", "hero, features, pricing, footer"), build **exactly those**, in that order mapped to the canonical order in `formats/web-pages.md`. Don't ask Q4, and don't add extra sections. Add a footer only if the list leaves it out and the page would look broken without one, and say so.
+- If the user mentions **content that implies a section** ("show a live demo", "with pricing", "customer logos", "code sample"), include that section, and ask Q4 only if the rest of the page is still unclear.
+
+**Stack and page signals (Q1, Q2)**
+- If a framework is named ("in Next.js", "Astro site") or a project already exists (check `package.json`), Q1 is answered.
+- "Landing page", "a page for X" means a single landing page. "Website with pricing and about" means a multi-page site. "Docs" or "quickstart" means a developer page. If one is given, Q2 is answered.
+
+**Examples**
+| Prompt | Answered | Ask |
+|---|---|---|
+| "Landing page for Bulbul V4, a Sarvam TTS model, 50% off for students" | Pages: single · Audience: students (individuals) first, developers second | Stack, Sections |
+| "Next.js site for Sarvam's Aadhaar-like AI layer for India with navbar, hero, CTA" | Stack · Pages: single · Audience: government/public · Sections: nav, hero, CTA | **Nothing.** Confirm in one line and build |
+| "Make a Sarvam page" | Nothing | All 4 |
+
+**Rules**
+- Never ask about something the prompt already settled, even in different words. Re-asking feels like you didn't read it.
+- Partial answers are fine: ask **only the missing questions** in a single call (1–3 questions, not always 4).
+- If you inferred something, show it in the confirmation line so the user can correct it, for example: "Building: React + Vite · single page · students → Visual Top hero · nav, hero, CTA."
+
+## Round 1: only the unanswered questions (one call, up to 4)
 
 **Q1 · Stack:** "Which stack should I build this in?" (header: `Stack`)
 | Option | When |
