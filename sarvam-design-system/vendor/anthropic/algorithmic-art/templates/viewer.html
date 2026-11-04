@@ -23,17 +23,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Sarvam fonts: copy ../../../../assets/fonts next to the artifact, or rely on the fallbacks -->
+    <style>@font-face{font-family:"Matter";src:url("fonts/MatterUprights-VF.woff2") format("woff2-variations");font-weight:100 1000}@font-face{font-family:"Season Mix";src:url("fonts/SeasonMixVFUprights.woff2") format("woff2-variations");font-weight:300 900}</style>
     <style>
         /* Anthropic Brand Colors */
         :root {
-            --anthropic-dark: #141413;
-            --anthropic-light: #faf9f5;
-            --anthropic-mid-gray: #b0aea5;
-            --anthropic-light-gray: #e8e6dc;
-            --anthropic-orange: #d97757;
-            --anthropic-blue: #6a9bcc;
-            --anthropic-green: #788c5d;
+            --anthropic-dark: #1f1f1f;   /* Sarvam --tx */
+            --anthropic-light: #fcfcfc;  /* Sarvam --sf */
+            --anthropic-mid-gray: #b3b3b3; /* --sr-grey-500 */
+            --anthropic-light-gray: #e6e6e6; /* --st */
+            --anthropic-orange: #e6651b; /* --sr-orange-800 */
+            --anthropic-blue: #556adc;  /* --sr-indigo-600 */
+            --anthropic-green: #6ea335; /* --sr-green-600 */
         }
 
         * {
@@ -43,8 +44,8 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--anthropic-light) 0%, #f5f3ee 100%);
+            font-family: 'Matter', 'Inter Tight', system-ui, sans-serif;
+            background: #fcfcfc;
             min-height: 100vh;
             color: var(--anthropic-dark);
         }
@@ -70,7 +71,7 @@
         }
 
         .sidebar h1 {
-            font-family: 'Lora', serif;
+            font-family: 'Season Mix', Georgia, serif; font-weight: 425;
             font-size: 24px;
             font-weight: 500;
             color: var(--anthropic-dark);
@@ -111,7 +112,7 @@
             background: var(--anthropic-light);
             padding: 12px;
             border-radius: 8px;
-            font-family: 'Courier New', monospace;
+            font-family: 'Matter Mono', ui-monospace, monospace;
             font-size: 14px;
             margin-bottom: 12px;
             border: 1px solid var(--anthropic-light-gray);
@@ -176,7 +177,7 @@
 
         .slider-container input[type="range"]::-webkit-slider-thumb:hover {
             transform: scale(1.1);
-            background: #c86641;
+            background: #2a2c33;
         }
 
         .slider-container input[type="range"]::-moz-range-thumb {
@@ -190,7 +191,7 @@
         }
 
         .value-display {
-            font-family: 'Courier New', monospace;
+            font-family: 'Matter Mono', ui-monospace, monospace;
             font-size: 12px;
             color: var(--anthropic-mid-gray);
             min-width: 60px;
@@ -226,7 +227,7 @@
         }
 
         .color-value {
-            font-family: 'Courier New', monospace;
+            font-family: 'Matter Mono', ui-monospace, monospace;
             font-size: 12px;
             color: var(--anthropic-mid-gray);
         }
@@ -246,7 +247,7 @@
         }
 
         .button:hover {
-            background: #c86641;
+            background: #2a2c33;
             transform: translateY(-1px);
         }
 
@@ -259,7 +260,7 @@
         }
 
         .button.secondary:hover {
-            background: #5a8bb8;
+            background: #556adc;
         }
 
         .button.tertiary {
@@ -267,7 +268,7 @@
         }
 
         .button.tertiary:hover {
-            background: #6b7b52;
+            background: #496d21;
         }
 
         .button-row {
@@ -396,8 +397,8 @@
                 <div class="color-group">
                     <label>Primary Color</label>
                     <div class="color-picker-container">
-                        <input type="color" id="color1" value="#d97757" onchange="updateColor('color1', this.value)">
-                        <span class="color-value" id="color1-value">#d97757</span>
+                        <input type="color" id="color1" value="#e6651b" onchange="updateColor('color1', this.value)">
+                        <span class="color-value" id="color1-value">#e6651b</span>
                     </div>
                 </div>
 
@@ -448,7 +449,7 @@
             flowSpeed: 0.5,
             noiseScale: 0.005,
             trailLength: 8,
-            colorPalette: ['#d97757', '#6a9bcc', '#788c5d']
+            colorPalette: ['#3d4bb8', '#6a88e2', '#f38858', '#e6651b'] /* Sarvam spectrum */
         };
 
         let defaultParams = {...params}; // Store defaults for reset

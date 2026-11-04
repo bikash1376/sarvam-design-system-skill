@@ -1,3 +1,11 @@
+<!-- sarvam-overrides -->
+> **Sarvam overrides (read first).** This file is bundled inside the Sarvam design system skill and adapted to it. Wherever it differs from the Sarvam skill, **Sarvam wins**:
+> - **Easing tokens:** `--ease-brand` `cubic-bezier(.2,0,0,1)` (UI, enter/exit, presses), `--ease-reveal` `cubic-bezier(.25,1,.5,1)` (entrances, section and illustration reveals), `--ease-standard` `cubic-bezier(.4,0,.2,1)` (moving on screen, colour). The curves below have been replaced with these.
+> - **Durations:** use the Sarvam scale `--dur-instant` 100 · `--dur-fast` 150 · `--dur-normal` 200 · `--dur-moderate` 300 · `--dur-btn` 350 · `--dur-slow` 500 · `--dur-entrance` 700 · `--dur-reveal` 800ms. Pick the nearest token to any number below.
+> - **Library:** websites animate with **Motion** (`motion/react`), required by `foundations/10-motion.md`. Translate CSS recipes here into Motion; plain CSS transitions are only for simple colour and shadow hovers.
+> - **Press scale** is `0.96` (cards `0.97`). Springs use `bounce` ≤ 0.15 (Sarvam motion is calm, never bouncy).
+> - Always wrap the app in `MotionConfig reducedMotion="user"`. Recipes for Sarvam surfaces live in `foundations/10-motion.md` and `components/reference/animations.md`.
+
 # Choreography Recipes
 
 Copy-ready patterns for the relationships in [SKILL.md](SKILL.md). The values are starting points, so tune them on a recording.
@@ -17,7 +25,7 @@ For one-shot entrances (a hero, a personal site intro). The delay is computed pe
 
 ```css
 .stagger > * {
-  --step: 120ms;
+  --step: 55ms; /* Sarvam grid stagger (foundations/10-motion.md) */
   animation: enter 0.6s ease both;
   animation-delay: calc(var(--step) * var(--i));
 }
@@ -195,11 +203,11 @@ For small containers or similar views, swap the 110% slide for a crossfade with 
 
 ```css
 .square {
-  animation: draw 0.6s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+  animation: draw 0.6s cubic-bezier(.4, 0, .2, 1) forwards;
 }
 
 .checkmark {
-  animation: draw 0.4s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+  animation: draw 0.4s cubic-bezier(.4, 0, .2, 1) forwards;
   animation-delay: 0.6s; /* = the square's duration */
 }
 

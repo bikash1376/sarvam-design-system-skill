@@ -3,6 +3,17 @@ name: ui-ux-pro-max
 description: "UI/UX design intelligence for web, mobile, and desktop. This skill should be used when designing, building, reviewing, or fixing interfaces, including pages, components, design systems, accessibility, interaction, responsive layout, typography, color, charts, and stack-specific UI implementation. Searchable local data: 79 searchable styles (50 active), 192 product palettes and reasoning profiles, 74 font pairings, 119 UX guidelines, 105 icons, 17 GSAP presets, 25 chart types, and 22 stacks."
 ---
 
+<!-- sarvam-overrides -->
+> **Sarvam overrides (read first).** This file is bundled inside the Sarvam design system skill and adapted to it. Wherever it differs from the Sarvam skill, **Sarvam wins**:
+> - **Fonts:** only Season Mix (display, weights 425/525), Matter (UI and body, 425/525/625), Geist (eyebrows, 500) and Matter Mono (code), from `assets/fonts/`. Never download or substitute other fonts.
+> - **Colour:** only Sarvam tokens (`tokens/tokens.css`): the neutral canvas, indigo `--sr-indigo-*` and orange `--sr-orange-*` brand ramps, the supporting green/pink/yellow ramps and the blue→orange spectrum gradients. Never invent palettes.
+> - **Weights:** never bold headlines (Season Mix 425/525 only). Body 425, emphasis 525.
+> - **Spacing and shape:** 4px base scale (`--space-*`), radius 16px cards / 24px panels / pill buttons. Composition rules from `foundations/` and `formats/` apply.
+> - **Official geometry first:** use the Sarvam mandala (`assets/mandala/`), gateway glyphs (`assets/glyphs/`) and star motifs as source shapes. Generated art never replaces the logo, mandala or glyphs.
+> - **Easing tokens:** `--ease-brand` `cubic-bezier(.2,0,0,1)` (UI, enter/exit, presses), `--ease-reveal` `cubic-bezier(.25,1,.5,1)` (entrances, section and illustration reveals), `--ease-standard` `cubic-bezier(.4,0,.2,1)` (moving on screen, colour). The curves below have been replaced with these.
+> - **Durations:** use the Sarvam scale `--dur-instant` 100 · `--dur-fast` 150 · `--dur-normal` 200 · `--dur-moderate` 300 · `--dur-btn` 350 · `--dur-slow` 500 · `--dur-entrance` 700 · `--dur-reveal` 800ms. Pick the nearest token to any number below.
+> - Ignore its palettes, font pairings, Google Fonts suggestions and `--density` spacing scales. Use its search for UX checks, layout patterns and accessibility only (see `references/ui-ux-pro-max.md`).
+
 # UI/UX Pro Max - Design Intelligence
 
 Searchable local UI/UX guidance: 79 searchable styles (50 active), 192 product palettes and exact reasoning profiles, 74 font pairings, 119 UX guidelines, 105 curated icons, 17 GSAP presets, 25 chart types, and 22 technology stacks.

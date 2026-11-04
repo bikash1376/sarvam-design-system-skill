@@ -3,6 +3,15 @@ name: emil-design-eng
 description: This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great.
 ---
 
+<!-- sarvam-overrides -->
+> **Sarvam overrides (read first).** This file is bundled inside the Sarvam design system skill and adapted to it. Wherever it differs from the Sarvam skill, **Sarvam wins**:
+> - **Easing tokens:** `--ease-brand` `cubic-bezier(.2,0,0,1)` (UI, enter/exit, presses), `--ease-reveal` `cubic-bezier(.25,1,.5,1)` (entrances, section and illustration reveals), `--ease-standard` `cubic-bezier(.4,0,.2,1)` (moving on screen, colour). The curves below have been replaced with these.
+> - **Durations:** use the Sarvam scale `--dur-instant` 100 · `--dur-fast` 150 · `--dur-normal` 200 · `--dur-moderate` 300 · `--dur-btn` 350 · `--dur-slow` 500 · `--dur-entrance` 700 · `--dur-reveal` 800ms. Pick the nearest token to any number below.
+> - **Library:** websites animate with **Motion** (`motion/react`), required by `foundations/10-motion.md`. Translate CSS recipes here into Motion; plain CSS transitions are only for simple colour and shadow hovers.
+> - **Press scale** is `0.96` (cards `0.97`). Springs use `bounce` ≤ 0.15 (Sarvam motion is calm, never bouncy).
+> - Always wrap the app in `MotionConfig reducedMotion="user"`. Recipes for Sarvam surfaces live in `foundations/10-motion.md` and `components/reference/animations.md`.
+> - Visual polish advice here (shadows, radii, type) is superseded by `foundations/05` (soft ambient shadows, 16px cards, pills) and `foundations/03` (typography).
+
 # Design Engineering
 
 ## Initial Response
@@ -109,13 +118,13 @@ Is the element entering or exiting?
 
 ```css
 /* Strong ease-out for UI interactions */
---ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+--ease-out: cubic-bezier(.2, 0, 0, 1);
 
 /* Strong ease-in-out for on-screen movement */
---ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+--ease-in-out: cubic-bezier(.4, 0, .2, 1);
 
 /* iOS-like drawer curve (from Ionic Framework) */
---ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+--ease-drawer: cubic-bezier(.25, 1, .5, 1);
 ```
 
 **Never use ease-in for UI animations.** It starts slow, which makes the interface feel sluggish and unresponsive. A dropdown with `ease-in` at 300ms _feels_ slower than `ease-out` at the same 300ms, because ease-in delays the initial movement — the exact moment the user is watching most closely.
@@ -520,7 +529,7 @@ The Web Animations API gives you JavaScript control with CSS performance. Hardwa
 element.animate([{ clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0 0)' }], {
   duration: 1000,
   fill: 'forwards',
-  easing: 'cubic-bezier(0.77, 0, 0.175, 1)',
+  easing: 'cubic-bezier(.4, 0, .2, 1)',
 });
 ```
 

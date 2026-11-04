@@ -1,3 +1,12 @@
+<!-- sarvam-overrides -->
+> **Sarvam overrides (read first).** This file is bundled inside the Sarvam design system skill and adapted to it. Wherever it differs from the Sarvam skill, **Sarvam wins**:
+> - **Fonts:** only Season Mix (display, weights 425/525), Matter (UI and body, 425/525/625), Geist (eyebrows, 500) and Matter Mono (code), from `assets/fonts/`. Never download or substitute other fonts.
+> - **Colour:** only Sarvam tokens (`tokens/tokens.css`): the neutral canvas, indigo `--sr-indigo-*` and orange `--sr-orange-*` brand ramps, the supporting green/pink/yellow ramps and the blue→orange spectrum gradients. Never invent palettes.
+> - **Weights:** never bold headlines (Season Mix 425/525 only). Body 425, emphasis 525.
+> - **Spacing and shape:** 4px base scale (`--space-*`), radius 16px cards / 24px panels / pill buttons. Composition rules from `foundations/` and `formats/` apply.
+> - **Official geometry first:** use the Sarvam mandala (`assets/mandala/`), gateway glyphs (`assets/glyphs/`) and star motifs as source shapes. Generated art never replaces the logo, mandala or glyphs.
+> - Use the style list only through the Sarvam archetype mapping in `BANNER-DESIGN.md`; off-brand styles (neon, retro, brutalist, anti-design, duotone) are not allowed.
+
 # Banner Sizes & Art Direction Styles Reference
 
 ## Complete Banner Sizes

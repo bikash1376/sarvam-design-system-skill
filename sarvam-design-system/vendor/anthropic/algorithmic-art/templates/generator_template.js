@@ -31,7 +31,7 @@ let params = {
     // - Colors: palette arrays
 
     seed: 12345,
-    // define colorPalette as an array -- choose whatever colors you'd like ['#d97757', '#6a9bcc', '#788c5d', '#b0aea5']
+    // define colorPalette from Sarvam tokens only (spectrum): ['#1c1f4a', '#3d4bb8', '#6a88e2', '#a7c0f1', '#f9bb9e', '#f38858', '#e6651b']
     // Add YOUR parameters here based on your algorithm
 };
 

@@ -3,6 +3,14 @@ name: animate
 description: Build an animation from scratch, making the decisions in the order that determines whether it feels right — should it animate at all, what purpose, which tool, which properties, which curve and duration, how it interrupts, how it exits. Writes the implementation. Use when asked to animate something, add motion, make a component feel alive, or build a transition. For critiquing existing motion use review-animations; for auditing a whole codebase use improve-animations.
 ---
 
+<!-- sarvam-overrides -->
+> **Sarvam overrides (read first).** This file is bundled inside the Sarvam design system skill and adapted to it. Wherever it differs from the Sarvam skill, **Sarvam wins**:
+> - **Easing tokens:** `--ease-brand` `cubic-bezier(.2,0,0,1)` (UI, enter/exit, presses), `--ease-reveal` `cubic-bezier(.25,1,.5,1)` (entrances, section and illustration reveals), `--ease-standard` `cubic-bezier(.4,0,.2,1)` (moving on screen, colour). The curves below have been replaced with these.
+> - **Durations:** use the Sarvam scale `--dur-instant` 100 · `--dur-fast` 150 · `--dur-normal` 200 · `--dur-moderate` 300 · `--dur-btn` 350 · `--dur-slow` 500 · `--dur-entrance` 700 · `--dur-reveal` 800ms. Pick the nearest token to any number below.
+> - **Library:** websites animate with **Motion** (`motion/react`), required by `foundations/10-motion.md`. Translate CSS recipes here into Motion; plain CSS transitions are only for simple colour and shadow hovers.
+> - **Press scale** is `0.96` (cards `0.97`). Springs use `bounce` ≤ 0.15 (Sarvam motion is calm, never bouncy).
+> - Always wrap the app in `MotionConfig reducedMotion="user"`. Recipes for Sarvam surfaces live in `foundations/10-motion.md` and `components/reference/animations.md`.
+
 # Building Animations
 
 ## Initial Response
@@ -29,7 +37,7 @@ Never present motion options as a menu. Make the call, state the reasoning in on
 ## Hard Rules
 
 1. **Run the sequence in order.** Steps 1 and 2 gate everything. Don't reach for a curve before you know whether it animates at all.
-2. **No approximated values.** Every curve, duration, and spring config comes from the tables below. Never invent `cubic-bezier(0.4, 0, 0.2, 1)` because it looks familiar.
+2. **No approximated values.** Every curve, duration, and spring config comes from the tables below. Never invent a curve outside the Sarvam tokens (`cubic-bezier(.4,0,.2,1)` is Sarvam's own `--ease-standard` and is allowed) because it looks familiar.
 3. **Extend the codebase's tokens, don't fork them.** If `--ease-out` or a duration scale already exists, use it. Adding a parallel system is a defect.
 4. **Reduced motion and hover gating ship with the animation**, not as a follow-up.
 5. **Cheapest tool that works.** Don't install a motion library for a fade.
@@ -112,12 +120,12 @@ If the task needs a *component* rather than an animation — a toast, a drawer, 
 Built-in CSS easings are too weak. Use these:
 
 ```css
---ease-out: cubic-bezier(0.23, 1, 0.32, 1);        /* strong ease-out for UI */
---ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);    /* strong ease-in-out for on-screen movement */
---ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);     /* iOS-like drawer curve (Ionic) */
+--ease-out: cubic-bezier(.2, 0, 0, 1);        /* strong ease-out for UI */
+--ease-in-out: cubic-bezier(.4, 0, .2, 1);    /* strong ease-in-out for on-screen movement */
+--ease-drawer: cubic-bezier(.25, 1, .5, 1);     /* iOS-like drawer curve (Ionic) */
 ```
 
-Need a curve that isn't here? Take it from [easing.dev](https://easing.dev/) or [easings.co](https://easings.co/). Don't hand-roll one.
+Need a curve that isn't here? In the Sarvam system there isn't one: use `--ease-brand`, `--ease-reveal` or `--ease-standard`.
 
 **Duration:**
 
@@ -181,7 +189,7 @@ Self-check before you finish. Each of these is an automatic block in `review-ani
 | `transition: all` | Name the exact properties |
 | `transform: scale(0)` entrance | `scale(0.95)` + `opacity: 0` |
 | `ease-in` on a UI element | `ease-out` or a strong custom curve |
-| Built-in `ease-out` on a deliberate animation | `cubic-bezier(0.23, 1, 0.32, 1)` |
+| Built-in `ease-out` on a deliberate animation | `cubic-bezier(.2, 0, 0, 1)` |
 | Animation on a keyboard shortcut or 100+/day action | No animation |
 | UI duration over 300ms with no reason | 150–250ms |
 | `transform-origin: center` on a trigger-anchored popover | `var(--transform-origin)` (modals exempt) |

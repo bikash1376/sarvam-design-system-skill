@@ -17,6 +17,14 @@ Three external skills live inside this one under `vendor/`, so there is still a 
 2. Someone asks for **generative art, ornament or a pattern** (a hero field, a festive motif, a texture) → `algorithmic-art`, rendered in Sarvam hues. Use the official mandala (`assets/mandala/`) and gateway glyphs as source geometry instead of inventing new ornament.
 3. Someone asks for **a designed illustration or poster** → `canvas-design`, then bring it back into a Sarvam format (banner, embed, card).
 
+## Already adapted to Sarvam
+Every bundled file opens with a **"Sarvam overrides"** block, and conflicting values have been replaced in place:
+- **Easing:** their `--ease-out` / `--ease-in-out` / `--ease-drawer` now hold Sarvam's `--ease-brand` / `--ease-standard` / `--ease-reveal` curves. Durations map to the `--dur-*` scale, and the stagger step is 55ms.
+- **Fonts:** Poppins, Lora, Courier and "download whatever fonts" are replaced by Season Mix, Matter, Geist and Matter Mono.
+- **Colour:** the Anthropic UI colours and default art palette in the algorithmic-art viewer and generator are now Sarvam tokens and the spectrum.
+- **Banner styles:** mapped to Sarvam archetypes; off-brand styles (neon, retro, brutalist, anti-design, duotone) are excluded. Type sizes come from the `--u` scale.
+- **ui-ux-pro-max:** its palettes, font pairings and density spacing scales are marked as ignored.
+
 ## Precedence (non-negotiable)
 - **Sarvam wins on brand.** Colours, fonts, easing tokens, radius and copy come only from this skill. Ignore any palette, font or style choice the vendor skills suggest.
 - **Motion is the animation library** on websites (`foundations/10-motion.md`). Vendor recipes written in CSS or another library are translated to Motion (`motion/react`), or to canvas for generative fields.

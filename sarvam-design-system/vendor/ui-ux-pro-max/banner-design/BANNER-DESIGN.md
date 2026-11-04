@@ -8,6 +8,16 @@ metadata:
   version: "1.0.0"
 ---
 
+<!-- sarvam-overrides -->
+> **Sarvam overrides (read first).** This file is bundled inside the Sarvam design system skill and adapted to it. Wherever it differs from the Sarvam skill, **Sarvam wins**:
+> - **Fonts:** only Season Mix (display, weights 425/525), Matter (UI and body, 425/525/625), Geist (eyebrows, 500) and Matter Mono (code), from `assets/fonts/`. Never download or substitute other fonts.
+> - **Colour:** only Sarvam tokens (`tokens/tokens.css`): the neutral canvas, indigo `--sr-indigo-*` and orange `--sr-orange-*` brand ramps, the supporting green/pink/yellow ramps and the blue→orange spectrum gradients. Never invent palettes.
+> - **Weights:** never bold headlines (Season Mix 425/525 only). Body 425, emphasis 525.
+> - **Spacing and shape:** 4px base scale (`--space-*`), radius 16px cards / 24px panels / pill buttons. Composition rules from `foundations/` and `formats/` apply.
+> - **Official geometry first:** use the Sarvam mandala (`assets/mandala/`), gateway glyphs (`assets/glyphs/`) and star motifs as source shapes. Generated art never replaces the logo, mandala or glyphs.
+> - **Styles map to Sarvam archetypes** (`formats/social-banners.md`): minimalist → Editorial Light; gradient → Spectrum Field / Glow Gateway; glassmorphism → glass glyphs (`formats/embed-images.md`); geometric → gateway frames or the mandala. Neon, retro, brutalist, anti-design and duotone photo styles are off-brand.
+> - **Sizes** come from the six Sarvam canvases first; the platform table here is for extra formats only.
+
 # Banner Design - Multi-Format Creative Banner System
 
 Design banners across social, ads, web, and print formats. Generate multiple art direction options with CSS-built, user-supplied, or optionally generated visual elements. This skill handles banner design only. It does not handle video editing, full website design, or print production.
@@ -131,7 +141,7 @@ Full 22 styles: `references/banner-sizes-and-styles.md`
 
 - **Safe zones**: critical content in central 70-80% of canvas
 - **CTA**: one per banner, bottom-right, min 44px height, action verb
-- **Typography**: max 2 fonts, min 16px body, ≥32px headline
+- **Typography**: Sarvam's families only (Season Mix headline 425, Matter body, Geist eyebrow); sizes from the proportional `--u` scale in `formats/social-banners.md`
 - **Text ratio**: under 20% for ads (Meta penalizes heavy text)
 - **Print**: 300 DPI, CMYK, 3-5mm bleed
 - **Brand**: apply only supplied, verified brand guidance and assets

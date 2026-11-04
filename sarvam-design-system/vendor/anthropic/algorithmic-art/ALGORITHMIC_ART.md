@@ -4,6 +4,15 @@ description: Creating algorithmic art using p5.js with seeded randomness and int
 license: Complete terms in LICENSE.txt
 ---
 
+<!-- sarvam-overrides -->
+> **Sarvam overrides (read first).** This file is bundled inside the Sarvam design system skill and adapted to it. Wherever it differs from the Sarvam skill, **Sarvam wins**:
+> - **Fonts:** only Season Mix (display, weights 425/525), Matter (UI and body, 425/525/625), Geist (eyebrows, 500) and Matter Mono (code), from `assets/fonts/`. Never download or substitute other fonts.
+> - **Colour:** only Sarvam tokens (`tokens/tokens.css`): the neutral canvas, indigo `--sr-indigo-*` and orange `--sr-orange-*` brand ramps, the supporting green/pink/yellow ramps and the blue→orange spectrum gradients. Never invent palettes.
+> - **Weights:** never bold headlines (Season Mix 425/525 only). Body 425, emphasis 525.
+> - **Spacing and shape:** 4px base scale (`--space-*`), radius 16px cards / 24px panels / pill buttons. Composition rules from `foundations/` and `formats/` apply.
+> - **Official geometry first:** use the Sarvam mandala (`assets/mandala/`), gateway glyphs (`assets/glyphs/`) and star motifs as source shapes. Generated art never replaces the logo, mandala or glyphs.
+> - Default art palette: `#1c1f4a #3d4bb8 #6a88e2 #a7c0f1 #f9bb9e #f38858 #e6651b` (the spectrum) on `#fcfcfc`; strokes in `#1f1f1f` at low opacity or white over gradients.
+
 Algorithmic philosophies are computational aesthetic movements that are then expressed through code. Output .md files (philosophy), .html files (interactive viewer), and .js files (generative algorithms).
 
 This happens in two steps:
@@ -109,7 +118,7 @@ With the philosophy AND conceptual framework established, express it through cod
 1. **Read** `templates/viewer.html` using the Read tool
 2. **Study** the exact structure, styling, and Anthropic branding
 3. **Use that file as the LITERAL STARTING POINT** - not just inspiration
-4. **Keep all FIXED sections exactly as shown** (header, sidebar structure, Anthropic colors/fonts, seed controls, action buttons)
+4. **Keep all FIXED sections exactly as shown** (header, sidebar structure, Sarvam colours/fonts, seed controls, action buttons)
 5. **Replace only the VARIABLE sections** marked in the file's comments (algorithm, parameters, UI controls for parameters)
 
 **Avoid:**
@@ -120,7 +129,7 @@ With the philosophy AND conceptual framework established, express it through cod
 
 **Follow these practices:**
 - ✅ Copy the template's exact HTML structure
-- ✅ Keep Anthropic branding (Poppins/Lora fonts, light colors, gradient backdrop)
+- ✅ Keep Sarvam branding (Matter/Season Mix fonts, `--sf` light canvas, Sarvam tokens; the viewer template is already converted)
 - ✅ Maintain the sidebar layout (Seed → Parameters → Colors? → Actions)
 - ✅ Replace only the p5.js algorithm and parameter controls
 
@@ -203,7 +212,7 @@ function draw() {
 **CRITICAL**: To achieve mastery, create algorithms that feel like they emerged through countless iterations by a master generative artist. Tune every parameter carefully. Ensure every pattern emerges with purpose. This is NOT random noise - this is CONTROLLED CHAOS refined through deep expertise.
 
 - **Balance**: Complexity without visual noise, order without rigidity
-- **Color Harmony**: Thoughtful palettes, not random RGB values
+- **Color Harmony**: Sarvam palettes only: the blue→orange spectrum, indigo/orange ramps, heritage hues (tokens/tokens.css), never random RGB
 - **Composition**: Even in randomness, maintain visual hierarchy and flow
 - **Performance**: Smooth execution, optimized for real-time if animated
 - **Reproducibility**: Same seed ALWAYS produces identical output
@@ -230,7 +239,7 @@ The `templates/viewer.html` file is the foundation. It contains the exact struct
 
 **FIXED (always include exactly as shown):**
 - Layout structure (header, sidebar, main canvas area)
-- Anthropic branding (UI colors, fonts, gradients)
+- Sarvam branding (UI colours, fonts, gradients from tokens/tokens.css)
 - Seed section in sidebar:
   - Seed display
   - Previous/Next buttons

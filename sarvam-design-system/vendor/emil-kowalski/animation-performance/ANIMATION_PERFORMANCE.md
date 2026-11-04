@@ -3,6 +3,14 @@ name: animation-performance
 description: Keep web animations inside the frame budget — animate composite-only properties, keep motion off the main thread when the page is busy, and find the cause when an animation drops frames. Covers the layout/paint/composite pipeline, cheaper property swaps, CSS vs WAAPI vs requestAnimationFrame, Motion's hardware-accelerated path, React re-rendering per frame, inherited CSS variable recalculation, blur cost, and when `will-change` actually helps. Use when an animation is janky, choppy, stutters, or drops frames; when choosing which property to animate; when deciding between CSS and JS animation on performance grounds; or when reaching for `will-change` or GPU layers. For choosing easing, duration, or whether to animate at all use animate; for reviewing motion as a whole use review-animations.
 ---
 
+<!-- sarvam-overrides -->
+> **Sarvam overrides (read first).** This file is bundled inside the Sarvam design system skill and adapted to it. Wherever it differs from the Sarvam skill, **Sarvam wins**:
+> - **Easing tokens:** `--ease-brand` `cubic-bezier(.2,0,0,1)` (UI, enter/exit, presses), `--ease-reveal` `cubic-bezier(.25,1,.5,1)` (entrances, section and illustration reveals), `--ease-standard` `cubic-bezier(.4,0,.2,1)` (moving on screen, colour). The curves below have been replaced with these.
+> - **Durations:** use the Sarvam scale `--dur-instant` 100 · `--dur-fast` 150 · `--dur-normal` 200 · `--dur-moderate` 300 · `--dur-btn` 350 · `--dur-slow` 500 · `--dur-entrance` 700 · `--dur-reveal` 800ms. Pick the nearest token to any number below.
+> - **Library:** websites animate with **Motion** (`motion/react`), required by `foundations/10-motion.md`. Translate CSS recipes here into Motion; plain CSS transitions are only for simple colour and shadow hovers.
+> - **Press scale** is `0.96` (cards `0.97`). Springs use `bounce` ≤ 0.15 (Sarvam motion is calm, never bouncy).
+> - Always wrap the app in `MotionConfig reducedMotion="user"`. Recipes for Sarvam surfaces live in `foundations/10-motion.md` and `components/reference/animations.md`.
+
 # Animation Performance
 
 ## Initial Response
