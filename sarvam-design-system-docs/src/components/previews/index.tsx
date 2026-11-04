@@ -1,6 +1,7 @@
 "use client";
 import { COMPONENT_PREVIEWS } from "./components";
 import * as B from "./brand";
+import { AnimationsPreview } from "./animations";
 import {
   AntiSlopPreview, BordersPreview, ColorPreview, ElevationPreview, GridPreview, IconographyPreview, IntroPreview,
   MotionPreview, RadiusPreview, SpacePreview, TypographyPreview,
@@ -19,7 +20,7 @@ const PREVIEWS: Record<string, () => React.ReactNode> = {
   "section-header": B.SectionHeaderPreview, "pillar-list": B.PillarListPreview, testimonial: B.TestimonialPreview,
   "logo-marquee": B.LogoMarqueePreview, "integration-card": B.IntegrationCardPreview, panel: B.GlowPanelPreview,
   "cta-banner": COMPONENT_PREVIEWS.panel,
-  "social-banners": B.SocialBannersPreview, "embed-images": B.EmbedImagesPreview, "hero-layouts": B.HeroLayoutsPreview, "web-pages": B.WebPagesPreview,
+  animations: AnimationsPreview, "social-banners": B.SocialBannersPreview, "embed-images": B.EmbedImagesPreview, "hero-layouts": B.HeroLayoutsPreview, "web-pages": B.WebPagesPreview,
 };
 
 /** Live preview for a docs page, rendered inside the `.sarvam` theme scope. */

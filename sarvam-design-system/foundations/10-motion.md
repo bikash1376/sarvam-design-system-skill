@@ -52,6 +52,8 @@ No component appears, disappears, opens or changes state without motion. Use the
 
 All of it runs under `MotionConfig reducedMotion="user"`.
 
+**Animating something that isn't a component** (product illustrations, hero fields, "show how X works"): use the illustration-card grammar and pattern library in `components/reference/animations.md`.
+
 ## Patterns
 - **Press:** buttons `active:scale(.96)` (cards `.97`), 150ms.
 - **Card hover:** `translateY(-2px)` plus `--shadow-card-hover`. Image zoom 1.03 inside an `overflow:hidden` frame.

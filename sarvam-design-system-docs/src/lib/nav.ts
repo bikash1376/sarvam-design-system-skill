@@ -45,6 +45,7 @@ const groups: [string, (string | [string, string])[]][] = [
   ["Data", ["Table", "Filter bar", "Timeline", "Data grid"]],
   ["Code", [["Code block", "components/reference/code-block.md"], "JSON view", "Log viewer"]],
   ["Media and charts", ["Audio player", "Attachment", "Chart"]],
+  ["Animations", ["Animations"]],
   ["AI", ["Message", "Conversation", "Response", "Reasoning", "Tool call", "Activity", ["Prompt input", "components/reference/composer.md"]]],
   ["Formats", [
     ["Social banners", "formats/social-banners.md"],

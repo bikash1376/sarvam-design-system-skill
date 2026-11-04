@@ -31,6 +31,7 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
    - Social banner or post: `formats/social-banners.md` (archetypes, six canvases, **proportional `--u` type scale** so one banner fits every platform). For art-direction options and extra sizes, the bundled `references/ui-ux-pro-max.md`
    - SVG, illustration or motif: `foundations/07-motifs-and-glyphs.md`, `foundations/06-gradients-and-light.md`
    - Embed image (OG / link preview, blog header, glass glyph tile): `formats/embed-images.md` (tool: `tools/embed/embed.py`, examples in `assets/embeds/`)
+   - **Animation of anything that isn't an existing component** (a product illustration, hero motion, "animate how X works"): `components/reference/animations.md` (Token Factory card grammar + 8 patterns), with the bundled animation/illustration skills in `references/animation-and-illustration.md`
    - Background line texture (instead of ripples/concentric circles): `foundations/17-mandala-background.md` (assets: `assets/mandala/`)
    - Card or section background glow: `foundations/14-soft-glow-surfaces.md` (tool: `tools/soft-glow/`)
    - Colouring a glyph, emblem or motif with depth: `foundations/15-glyph-color-depth.md` (tool: `tools/color-depth/`)
@@ -65,6 +66,7 @@ marked **[added]** is a small, deliberate extension and not a rebrand.
 | `foundations/16-copywriting.md` | **Write copy before layout.** Word budgets, the 4-element hero, "what happens when", banned words, believable demo data, no placeholders/urgency/emoji, worked before→after examples |
 | `references/project-intake.md` | **Ask before building a website.** Multiple-choice intake: stack, pages, audience → hero, sections, plus optional round 2 (co-brand, languages, delivery, content) |
 | `references/stack-setup.md` | Scaffold commands for React+Vite+Tailwind+Lenis+Motion (default), Next.js+Tailwind+Motion, Astro+Tailwind+Motion; tokens → Tailwind v4 `@theme` |
+| `references/animation-and-illustration.md` | Bundled Emil Kowalski animation skills (MIT) and Anthropic algorithmic-art / canvas-design (Apache 2.0) in `vendor/`; Sarvam brand and Motion always override |
 | `references/ui-ux-pro-max.md` | Bundled ui-ux-pro-max (MIT) in `vendor/`: banner art direction, extra platform sizes, UX search. Sarvam brand always overrides it |
 | `references/pick-ui-library.md` | Curated frontend library picks (base-ui, Sonner, motion, Virtuoso…). Also installed as the `pick-ui-library` skill |
 | `tools/soft-glow/` | `glow.py` (CLI) + `generator.html` (visual editor) for soft-glow surfaces |
