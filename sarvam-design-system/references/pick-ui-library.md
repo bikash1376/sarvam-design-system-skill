@@ -20,7 +20,7 @@ Use this when a Sarvam page or UI needs a *behaviour* — toasts, dialogs, chart
 | Customisable GUIs / control panels | [Leva](https://github.com/pmndrs/leva) |
 | General animation (springs, layout, enter/exit) | [motion](https://motion.dev) |
 | Animating numbers (counters, prices, stats) | [NumberFlow](https://number-flow.barvian.me) |
-| Animated text | [torph](https://torph.lochie.me/) |
+| Animated text (morphing labels, counts) | [torph](https://torph.lochie.me/) (`npm i torph`, `import { TextMorph } from "torph/react"`). Sarvam uses it for changing button labels and counts |
 | 3D globes | [Cobe](https://cobe.vercel.app) |
 | Dynamic OG images (HTML/CSS → SVG/PNG) | [Satori](https://github.com/vercel/satori) |
 | Syntax highlighting | [shiki](https://shiki.style) |

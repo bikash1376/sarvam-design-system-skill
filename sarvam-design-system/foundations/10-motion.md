@@ -31,6 +31,27 @@ Motion is **calm, eased-out and purposeful**. It reflects "transitions as signal
 | Number count-up (stats) | `animate(0, value, { duration: 1.2, ease: [0.25, 1, 0.5, 1] })` with `useInView` |
 | Smooth scroll | Lenis (React + Vite default; optional in Next/Astro). Motion's `useScroll` reads it fine |
 
+## Every component moves (Motion), never snaps
+No component appears, disappears, opens or changes state without motion. Use these defaults:
+
+| Component behaviour | Motion |
+|---|---|
+| **Disclosure** (Tool call, Reasoning, Collapsible/FAQ, JSON nodes, "Show code", selection bars) | Opens like a dropdown: `AnimatePresence` + `height: 0 → "auto"`, opacity 0 → 1, 300ms `--ease-brand`, `overflow: hidden`. The chevron rotates 180° in 250ms |
+| **Popups** (Dialog, Sheet, Popover, Dropdown menu, Select, Tooltip, Command) | Fade + scale from 0.96 at the trigger's origin, 150–200ms. Base UI/shadcn primitives may use their built-in `data-starting-style` transitions tuned to `--ease-brand`; custom popups use Motion `AnimatePresence` |
+| **Selected indicator** (Segmented control, Tabs, Pagination, sidebar active item, Human/Agent) | A shared `layoutId` pill that slides between items (spring, bounce ≈ 0.15, 400ms) |
+| **Chat message sent** (Conversation, Message) | Pops in from its own corner: `scale 0.6 → 1`, `y 16 → 0`, `transformOrigin: 100% 100%`, spring (stiffness ≈ 420, damping ≈ 28). Show a typing indicator (3 bouncing dots) before the reply, which rises in 400ms `--ease-reveal` |
+| **Chips and filters added/removed** | `AnimatePresence mode="popLayout"` + `layout`: scale 0.8 → 1 in, out the reverse; siblings reflow with `layout` |
+| **Icon swaps** (Copy → Copied, Play → Pause) | `AnimatePresence mode="wait"`, scale 0.6 → 1 + fade, 150ms |
+| **Changing text and numbers** (button labels, counts, "3 selected", percentages) | [torph](https://torph.lochie.me) `<TextMorph>` (`import { TextMorph } from "torph/react"`), 250–350ms, `respectReducedMotion` |
+| **Loading → content** (Skeleton) | Cross-fade with `AnimatePresence mode="wait"`, content rises 4px |
+| **Progress, bars, charts** | Animate `width`/`height` with Motion (300ms `--ease-brand`); chart bars grow in on first view with a 40ms stagger |
+| **Spinners and live indicators** | Motion `animate={{ rotate: 360 }}` with `repeat: Infinity, ease: "linear"`; live pulses scale 1 → 2.2 and fade out over 1.6s |
+| **Buttons and cards** | `whileTap={{ scale: 0.96 }}` (cards 0.97); cards `whileHover={{ y: -2 }}` |
+| **Streams** (log lines, new list rows) | New rows `layout` + fade up 6px in 250ms |
+| **Page and view swaps** | `AnimatePresence mode="wait"`: out `y -6`, in `y 8 → 0`, 250ms |
+
+All of it runs under `MotionConfig reducedMotion="user"`.
+
 ## Patterns
 - **Press:** buttons `active:scale(.96)` (cards `.97`), 150ms.
 - **Card hover:** `translateY(-2px)` plus `--shadow-card-hover`. Image zoom 1.03 inside an `overflow:hidden` frame.

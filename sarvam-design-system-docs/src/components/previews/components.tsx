@@ -886,13 +886,78 @@ function PromptInputDemo() {
   const [sent, setSent] = useState<string | null>(null);
   return <div className="space-y-3"><PromptBox onSend={setSent} />{sent && <p className="text-[13px] text-[var(--tx-tertiary)]">Sent: {sent}</p>}</div>;
 }
+const SAMPLES: Record<string, { label: string; text: string }> = {
+  hi: { label: "हिन्दी", text: "नमस्ते! मैं आपकी कैसे मदद कर सकती हूँ?" },
+  ta: { label: "தமிழ்", text: "வணக்கம்! நான் உங்களுக்கு எப்படி உதவ முடியும்?" },
+  bn: { label: "বাংলা", text: "নমস্কার! আমি আপনাকে কীভাবে সাহায্য করতে পারি?" },
+  en: { label: "English", text: "Hello! How can I help you today?" },
+};
+const COLS = 32, DOT_ROWS = 10, DURATION = 5.2;
+/** Audio player (skill: audio-player.md): slate play pill + dot-matrix visualiser lit bottom-up + language select. */
 function AudioDemo() {
-  const [play, setPlay] = useState(false);
+  const [lang, setLang] = useState("hi");
+  const [playing, setPlaying] = useState(false);
+  const [t, setT] = useState(0); // seconds
+  const [levels, setLevels] = useState<number[]>(() => Array(COLS).fill(0));
+  const raf = useRef<number | null>(null);
+  const start = useRef(0);
+
+  useEffect(() => {
+    if (!playing) return;
+    start.current = performance.now() - t * 1000;
+    const tick = (now: number) => {
+      const el = (now - start.current) / 1000;
+      if (el >= DURATION) { setPlaying(false); setT(0); setLevels(Array(COLS).fill(0)); return; }
+      setT(el);
+      // speech-like envelope: syllable bursts with pauses
+      setLevels(Array.from({ length: COLS }, (_, c) => {
+        const phase = el * 7 + c * 0.55;
+        const burst = 0.35 + 0.65 * Math.abs(Math.sin(el * 2.3));
+        return Math.max(0.08, Math.min(1, (Math.sin(phase) * 0.5 + 0.5) * burst * (0.55 + 0.45 * Math.sin(c * 1.7 + el * 2))));
+      }));
+      raf.current = requestAnimationFrame(tick);
+    };
+    raf.current = requestAnimationFrame(tick);
+    return () => { if (raf.current) cancelAnimationFrame(raf.current); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playing]);
+
+  const head = Math.floor((t / DURATION) * COLS);
+  const fmt = (x: number) => `0:${String(Math.floor(x)).padStart(2, "0")}`;
+
   return (
-    <div className="flex items-center gap-3 rounded-full bg-white p-2 pr-5 shadow-[var(--shadow-track)]">
-      <button onClick={() => setPlay(!play)} aria-label={play ? "Pause" : "Play"} className="grid size-10 place-items-center rounded-full bg-[var(--slate)] text-white"><I icon={play ? PauseIcon : PlayIcon} /></button>
-      <div className="flex flex-1 items-center gap-[3px]">{Array.from({ length: 40 }).map((_, k) => <span key={k} className="w-[3px] rounded-full" style={{ height: 4 + ((k * 7) % 18), background: play && k < 18 ? "var(--dot-active)" : "var(--dot-idle)" }} />)}</div>
-      <span className="s-mono text-[12px] text-[var(--tx-tertiary)]">0:04</span>
+    <div className="space-y-5">
+      <div className="inline-flex max-w-full items-center gap-2.5 rounded-full border border-[var(--stroke-track)] bg-white p-1 shadow-[var(--shadow-track)]">
+        <SButton onClick={() => setPlaying((x) => !x)} aria-label={playing ? "Pause" : "Play"} className="w-[104px] gap-2">
+          <SwapIcon k={playing ? "pause" : "play"}><I icon={playing ? PauseIcon : PlayIcon} size={16} /></SwapIcon>
+          <TextMorph duration={250}>{playing ? "Pause" : "Play"}</TextMorph>
+        </SButton>
+        <button
+          aria-label="Seek"
+          onClick={(e) => { const r = e.currentTarget.getBoundingClientRect(); setT(((e.clientX - r.left) / r.width) * DURATION); }}
+          className="hidden h-10 items-center sm:flex"
+        >
+          <span className="grid gap-[1.5px]" style={{ gridTemplateColumns: `repeat(${COLS}, 2.5px)`, gridTemplateRows: `repeat(${DOT_ROWS}, 2.5px)` }}>
+            {Array.from({ length: DOT_ROWS * COLS }, (_, k) => {
+              const row = Math.floor(k / COLS), col = k % COLS;
+              const lit = playing ? levels[col] * DOT_ROWS >= DOT_ROWS - row : row === DOT_ROWS - 1;
+              const played = col < head;
+              return <span key={k} className="size-[2.5px] rounded-full transition-colors duration-75" style={{ background: lit ? (played || !playing ? "var(--dot-active)" : "#c4c4c4") : "var(--dot-idle)" }} />;
+            })}
+          </span>
+        </button>
+        <span className="s-mono w-9 text-[12px] text-[var(--tx-tertiary)] tabular-nums">{fmt(playing ? t : 0)}</span>
+        <Select value={lang} onValueChange={(v) => { setLang(String(v)); setPlaying(false); setT(0); }} items={Object.entries(SAMPLES).map(([value, x]) => ({ value, label: x.label }))}>
+          <SelectTrigger className="h-10 w-auto gap-1.5 rounded-full border-0 bg-[var(--sf-secondary)] px-4 text-[14px] shadow-[var(--shadow-select)]"><SelectValue /></SelectTrigger>
+          <SelectContent className={pop}>{Object.entries(SAMPLES).map(([k, x]) => <SelectItem key={k} value={k}>{x.label}</SelectItem>)}</SelectContent>
+        </Select>
+      </div>
+      <AnimatePresence mode="wait">
+        <motion.p key={lang} initial={{ opacity: 0, y: 4 }} animate={{ opacity: playing ? 1 : 0.7, y: 0 }} exit={{ opacity: 0, y: -4 }} transition={{ duration: 0.2 }} className="text-[15px] text-[var(--tx-secondary)]">
+          {SAMPLES[lang].text}
+        </motion.p>
+      </AnimatePresence>
+      <p className="text-[12px] text-[var(--tx-tertiary)]">Bulbul V3 · preview. The visualiser follows the voice level; click it to seek.</p>
     </div>
   );
 }

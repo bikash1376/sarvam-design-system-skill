@@ -13,7 +13,7 @@ Every stack follows the same three rules:
 ```bash
 npm create vite@latest sarvam-site -- --template react-ts
 cd sarvam-site
-npm i tailwindcss @tailwindcss/vite motion lenis
+npm i tailwindcss @tailwindcss/vite motion lenis torph
 ```
 `vite.config.ts`
 ```ts
@@ -38,7 +38,7 @@ Lenis notes: anchor links use `lenis.scrollTo("#id")` through `useLenis()`, and 
 ## 2. Next.js + Tailwind + Motion
 ```bash
 npx create-next-app@latest sarvam-site --ts --tailwind --app --eslint
-cd sarvam-site && npm i motion
+cd sarvam-site && npm i motion torph
 ```
 - Put `motion` components in `"use client"` files. Keep sections as server components and wrap only the animated parts.
 - Load the fonts with `next/font/local` pointing at `assets/fonts/*.woff2`, or keep the `@font-face` rules in `tokens.css`.
@@ -50,7 +50,7 @@ cd sarvam-site && npm i motion
 npm create astro@latest sarvam-site
 cd sarvam-site
 npx astro add tailwind react
-npm i motion
+npm i motion torph
 ```
 - Write pages and sections as `.astro` files (zero JS). Make animated parts React components hydrated with `client:visible`.
 - Optional smooth scroll: `npm i lenis`, then `new Lenis({ autoRaf: true })` in a `<script>` in the base layout, skipped when reduced motion is on.
