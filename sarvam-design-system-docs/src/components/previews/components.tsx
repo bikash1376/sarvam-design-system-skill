@@ -16,7 +16,6 @@ import { cn } from "@/lib/utils";
 import { SButton, sbtn } from "@/components/sarvam/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -168,7 +167,7 @@ function ComboboxDemo() {
         <CommandInput placeholder="Search 11 languages…" />
         <CommandList className="max-h-52">
           <CommandEmpty>No language matches.</CommandEmpty>
-          <CommandGroup>{LANGS.map(([k, l]) => <CommandItem key={k} onSelect={() => setV(k)} className="rounded-lg">{l}{v === k && <I icon={Tick02Icon} className="ml-auto" />}</CommandItem>)}</CommandGroup>
+          <CommandGroup>{LANGS.map(([k, l]) => <CommandItem key={k} onSelect={() => setV(k)} data-checked={v === k} className="rounded-lg">{l}</CommandItem>)}</CommandGroup>
         </CommandList>
       </Command>
     </div>
@@ -188,24 +187,47 @@ function RadioDemo() {
   const plans = [["starter", "Starter", "₹0 · 100 free credits to try every API"], ["pro", "Pro", "Pay as you go, higher rate limits"], ["ent", "Enterprise", "Private deployment and SLAs"]];
   const [v, setV] = useState("pro");
   return (
-    <div className="space-y-2" role="group" aria-labelledby="plan-q">
+    <div className="max-w-md" role="group" aria-labelledby="plan-q">
       <p id="plan-q" className="mb-3 text-[14px] [font-weight:var(--fw-medium)]">Choose a plan</p>
       <RadioGroup value={v} onValueChange={(x) => setV(String(x))} className="gap-2">
-        {plans.map(([k, l, d]) => (
-          <label key={k} className={cn("flex cursor-pointer items-start gap-3 rounded-xl border p-4 transition-colors", v === k ? "border-[var(--slate)]" : "border-[var(--st)] hover:bg-[var(--sf)]")}>
-            <RadioGroupItem value={k} className="mt-0.5" />
-            <span><span className="block text-[15px] [font-weight:var(--fw-medium)]">{l}</span><span className="block text-[13px] text-[var(--tx-tertiary)]">{d}</span></span>
-          </label>
-        ))}
+        {plans.map(([k, l, d]) => {
+          const on = v === k;
+          return (
+            <label key={k} className="relative flex cursor-pointer items-start gap-3 rounded-xl border border-[var(--st)] p-4 transition-colors hover:bg-[var(--sf)] has-[:focus-visible]:shadow-[0_0_0_3px_rgba(165,187,252,.6)]">
+              {/* selected outline slides between options */}
+              {on && <motion.span layoutId="radio-outline" className="pointer-events-none absolute -inset-px rounded-xl border-[1.5px] border-[var(--slate)]" transition={{ type: "spring", bounce: 0.15, duration: 0.45 }} />}
+              <span className="relative mt-0.5 grid size-[18px] shrink-0 place-items-center rounded-full border-[1.5px] transition-colors duration-200" style={{ borderColor: on ? "var(--slate)" : "var(--sr-grey-500)" }}>
+                <RadioGroupItem value={k} className="absolute inset-0 size-full opacity-0" />
+                <AnimatePresence>{on && <motion.span key="dot" className="size-2 rounded-full bg-[var(--slate)]" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} transition={{ type: "spring", stiffness: 500, damping: 26 }} />}</AnimatePresence>
+              </span>
+              <span className="relative"><span className="block text-[15px] [font-weight:var(--fw-medium)]">{l}</span><span className="block text-[13px] text-[var(--tx-tertiary)]">{d}</span></span>
+            </label>
+          );
+        })}
       </RadioGroup>
     </div>
+  );
+}
+/** Sarvam switch: 36×20 track, 16px thumb inset 2px, slate when on, Motion spring. */
+function SSwitch({ defaultChecked = false, label }: { defaultChecked?: boolean; label: string }) {
+  const [on, setOn] = useState(defaultChecked);
+  return (
+    <button
+      role="switch" aria-checked={on} aria-label={label} onClick={() => setOn(!on)}
+      className={cn("relative flex h-5 w-9 shrink-0 items-center rounded-full p-0.5 transition-colors duration-200 focus-visible:shadow-[0_0_0_3px_rgba(165,187,252,.6)] outline-none", on ? "justify-end bg-[var(--slate)]" : "justify-start bg-[var(--sr-grey-300)]")}
+    >
+      <motion.span layout transition={{ type: "spring", stiffness: 600, damping: 34 }} className="size-4 rounded-full bg-white shadow-[var(--shadow-elev-sm)]" />
+    </button>
   );
 }
 function SwitchDemo() {
   return (
     <div className="max-w-sm divide-y divide-[var(--st-secondary)]">
-      {[["Autoplay audio", true], ["Email alerts", false], ["Dark code theme", false]].map(([l, on]) => (
-        <label key={l as string} className="flex items-center justify-between py-3 text-[15px]">{l as string}<Switch defaultChecked={on as boolean} /></label>
+      {([["Autoplay audio", "Play Bulbul previews when they load", true], ["Email alerts", "Usage and billing notices", false], ["Dark code theme", "For code blocks in the docs", false]] as const).map(([l, d, on]) => (
+        <div key={l} className="flex items-center justify-between gap-6 py-4">
+          <div className="min-w-0"><p className="text-[15px]">{l}</p><p className="text-[13px] text-[var(--tx-tertiary)]">{d}</p></div>
+          <SSwitch label={l} defaultChecked={on} />
+        </div>
       ))}
     </div>
   );
@@ -231,7 +253,7 @@ function SelectDemo() {
       <Cap>Output language</Cap>
       <Select defaultValue="hi" items={LANGS.map(([value, label]) => ({ value, label }))}>
         <SelectTrigger className="h-11 w-full rounded-full bg-[var(--sf-secondary)] px-4 shadow-[var(--shadow-select)] border-0"><SelectValue /></SelectTrigger>
-        <SelectContent className={pop}>{LANGS.map(([k, l]) => <SelectItem key={k} value={k}>{l}</SelectItem>)}</SelectContent>
+        <SelectContent alignItemWithTrigger={false} sideOffset={6} className={cn(pop, "max-h-72 w-[var(--anchor-width)] min-w-44 p-1")}>{LANGS.map(([k, l]) => <SelectItem key={k} value={k}>{l}</SelectItem>)}</SelectContent>
       </Select>
     </div>
   );
@@ -965,7 +987,7 @@ function AudioDemo() {
         <span className="s-mono w-9 text-[12px] text-[var(--tx-tertiary)] tabular-nums">{fmt(playing ? t : 0)}</span>
         <Select value={lang} onValueChange={(v) => { setLang(String(v)); setPlaying(false); setT(0); }} items={Object.entries(SAMPLES).map(([value, x]) => ({ value, label: x.label }))}>
           <SelectTrigger className="h-10 w-auto gap-1.5 rounded-full border-0 bg-[var(--sf-secondary)] px-4 text-[14px] shadow-[var(--shadow-select)]"><SelectValue /></SelectTrigger>
-          <SelectContent className={pop}>{Object.entries(SAMPLES).map(([k, x]) => <SelectItem key={k} value={k}>{x.label}</SelectItem>)}</SelectContent>
+          <SelectContent alignItemWithTrigger={false} sideOffset={6} className={cn(pop, "max-h-72 w-[var(--anchor-width)] min-w-44 p-1")}>{Object.entries(SAMPLES).map(([k, x]) => <SelectItem key={k} value={k}>{x.label}</SelectItem>)}</SelectContent>
         </Select>
       </div>
       <AnimatePresence mode="wait">
