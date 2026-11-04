@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 125 125" width="384" height="384">
+  <defs>
+    <linearGradient id="forestgold-core" gradientUnits="userSpaceOnUse" x1="62.5" y1="23.1" x2="62.5" y2="128.1"><stop offset="0.000" stop-color="#293a18"/><stop offset="1.000" stop-color="#496d21"/></linearGradient>
+    
+    <clipPath id="forestgold-clip"><path d="M62.5 113C74.4033 113 84.8933 104.109 91.0617 90.6003C104.311 84.4052 113 74.0191 113 62.2518C113 50.3979 104.183 39.9455 90.7681 33.7671C84.5637 20.6141 74.2165 12 62.5 12C50.7835 12 40.4363 20.6141 34.2319 33.7671C20.8174 39.9456 12 50.3979 12 62.2519C12 74.0191 20.6889 84.4052 33.9383 90.6004C40.1067 104.109 50.5967 113 62.5 113Z"/></clipPath>
+    <filter id="forestgold-soft" filterUnits="userSpaceOnUse" x="-32" y="-32" width="188" height="188" color-interpolation-filters="sRGB">
+      <feMorphology operator="erode" radius="7.3"/>
+      <feGaussianBlur stdDeviation="9.8"/>
+    </filter>
+    <mask id="forestgold-coremask" maskUnits="userSpaceOnUse" x="-32" y="-32" width="188" height="188">
+      <path d="M62.5 113C74.4033 113 84.8933 104.109 91.0617 90.6003C104.311 84.4052 113 74.0191 113 62.2518C113 50.3979 104.183 39.9455 90.7681 33.7671C84.5637 20.6141 74.2165 12 62.5 12C50.7835 12 40.4363 20.6141 34.2319 33.7671C20.8174 39.9456 12 50.3979 12 62.2519C12 74.0191 20.6889 84.4052 33.9383 90.6004C40.1067 104.109 50.5967 113 62.5 113Z" fill="#fff" filter="url(#forestgold-soft)" transform="translate(0.0 3.7)"/>
+    </mask>
+  </defs>
+  <g clip-path="url(#forestgold-clip)">
+    <rect x="0" y="0" width="125" height="125" fill="#df9c2a"/>
+    <rect x="0" y="0" width="125" height="125" fill="url(#forestgold-core)" mask="url(#forestgold-coremask)"/>
+    
+  </g>
+</svg>

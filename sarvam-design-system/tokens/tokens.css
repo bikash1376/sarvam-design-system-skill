@@ -1,0 +1,174 @@
+/* ==========================================================================
+   SARVAM DESIGN TOKENS — single source of truth
+   Values extracted from sarvam.ai production CSS (Nov 2026) unless marked
+   [added]. Prefixes follow sarvam.ai's own naming:
+     sr-*  = Sarvam ramp colours     tx-* = text      sf-* = surface
+     st-*  = stroke/border           br-* = brand accents
+   Link this file (or paste it) at the top of every page/banner you build.
+   ========================================================================== */
+
+@font-face { font-family: "Season Mix"; src: url("../assets/fonts/SeasonMixVFUprights.woff2") format("woff2-variations"); font-weight: 300 900; font-display: swap; }
+@font-face { font-family: "Matter"; src: url("../assets/fonts/MatterUprights-VF.woff2") format("woff2-variations"); font-weight: 100 1000; font-display: swap; }
+@font-face { font-family: "Matter Mono"; src: url("../assets/fonts/MatterMono-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Matter Mono"; src: url("../assets/fonts/MatterMono-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Matter Semi Mono"; src: url("../assets/fonts/MatterSemiMonoRegular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+
+:root {
+  /* ---------- Font families ---------- */
+  --font-display: "Season Mix", "Source Serif 4", Georgia, serif;          /* headlines, hero, section titles */
+  --font-sans:    "Matter", "Inter Tight", "Manrope", system-ui, sans-serif; /* UI, body, card titles */
+  --font-mono:    "Matter Mono", ui-monospace, "SF Mono", Menlo, monospace;  /* code */
+  --font-label:   "Matter Semi Mono", "Matter Mono", ui-monospace, monospace;/* eyebrows, footer column heads */
+
+  /* ---------- Neutrals: text ---------- */
+  --tx:            #1f1f1f;  /* primary text */
+  --tx-secondary:  #3d3d3d;  /* sub-headlines, lead paragraphs */
+  --tx-tertiary:   #666666;  /* body copy on cards, captions, meta */
+  --tx-inverse:    #faf8f5;  /* text on dark/colour */
+  --tx-brand:      #29211d;  /* warm near-black (editorial) */
+  --tx-accent:     #c4733d;  /* warm copper accent text (sparingly) */
+
+  /* ---------- Neutrals: surfaces & strokes ---------- */
+  --sf:            #fcfcfc;  /* page background — NOT pure white */
+  --sf-white:      #ffffff;  /* cards on --sf */
+  --sf-secondary:  #f5f5f5;  /* secondary button, chips */
+  --sf-tertiary:   #f0f0f0;  /* code headers, wells */
+  --sf-quaternary: #e6e6e6;
+  --st:            #e6e6e6;  /* default 1px border */
+  --st-secondary:  #f0f0f0;  /* hairline dividers */
+  --slate:         #2a2c33;  /* primary button fill / dark surfaces */
+  --black:         #141414;  /* deepest dark surface */
+
+  /* ---------- Grey ramp ---------- */
+  --sr-grey-50:#f9f9f9; --sr-grey-100:#f5f5f5; --sr-grey-200:#f0f0f0; --sr-grey-300:#e6e6e6;
+  --sr-grey-400:#cccccc; --sr-grey-500:#b3b3b3; --sr-grey-600:#999999; --sr-grey-700:#666666;
+  --sr-grey-800:#525252; --sr-grey-900:#3d3d3d; --sr-grey-950:#292929;
+
+  /* ---------- Indigo — PRIMARY brand hue (the "blue" of blue→orange) ---------- */
+  --sr-indigo-50:#fafcff;  --sr-indigo-100:#e8effc; --sr-indigo-200:#d2dff9; --sr-indigo-300:#a7c0f1;
+  --sr-indigo-400:#81a0e9; --sr-indigo-500:#6a88e2; --sr-indigo-600:#556adc; --sr-indigo-700:#4250d5;
+  --sr-indigo-800:#3333cc; --sr-indigo-900:#212191; --sr-indigo-950:#11115b;
+
+  /* ---------- Orange — SECONDARY brand hue (the "orange" of blue→orange) ---------- */
+  --sr-orange-50:#fffbfa;  --sr-orange-100:#feede6; --sr-orange-200:#fddcce; --sr-orange-300:#f9bb9e;
+  --sr-orange-400:#f59970; --sr-orange-500:#f38858; --sr-orange-600:#ee7944; --sr-orange-700:#e96c2f;
+  --sr-orange-800:#e6651b; --sr-orange-900:#a5460f; --sr-orange-950:#682906;
+  --br-orange:#d5650f;     /* saffron — hero glow core */
+
+  /* ---------- Supporting hues (glyphs, badges, category accents) ---------- */
+  --sr-green-50:#f2f8eb; --sr-green-100:#e3f1d8; --sr-green-200:#c8e4b0; --sr-green-300:#acd587;
+  --sr-green-400:#90c85b; --sr-green-500:#83c040; --sr-green-600:#6ea335; --sr-green-700:#496d21;
+  --sr-green-800:#385418; --sr-green-900:#263d0e; --sr-green-1000:#152605;
+
+  --sr-pink-50:#fceaf0;  --sr-pink-100:#f9d5e1; --sr-pink-200:#efabc5; --sr-pink-300:#e380a8;
+  --sr-pink-400:#d4508e; --sr-pink-500:#b12060; --sr-pink-600:#9d2055; --sr-pink-700:#871f4b;
+  --sr-pink-800:#731e3f; --sr-pink-900:#611c35; --sr-pink-950:#4d192c;
+
+  --sr-yellow-50:#fff8e6; --sr-yellow-100:#fff0cf; --sr-yellow-200:#ffe8b7; --sr-yellow-300:#ffcb79;
+  --sr-yellow-400:#ffb94a; --sr-yellow-500:#feb12b; --sr-yellow-600:#df9c2a; --sr-yellow-700:#c08827;
+  --sr-yellow-800:#a27224; --sr-yellow-900:#6b4c1c; --sr-yellow-950:#362813;
+
+  --sr-red-50:#fde7e2;  --sr-red-100:#f8d1c6; --sr-red-200:#eba18f; --sr-red-300:#db715c;
+  --sr-red-400:#c43d2b; --sr-red-500:#b81514; --sr-red-600:#a21913; --sr-red-700:#781a11;
+  --sr-red-900:#52170e; --sr-red-1000:#3e140b;
+
+  /* ---------- Heritage palette (from brand page photography swatches) ---------- */
+  --heritage-forest:   #293a18;  /* temple-door green */
+  --heritage-marigold: #febf2b;  /* marigold */
+  --heritage-ochre:    #9e5f0a;  /* sandstone / brass */
+  --heritage-sindoor:  #c11317;  /* kumkum red */
+
+  /* ---------- Signature gradients ---------- */
+  /* The SPECTRUM: blue→orange continuous transition — the core of the visual system */
+  --grad-spectrum:        linear-gradient(180deg, #1c1f4a 0%, #3d4bb8 30%, #a7c0f1 55%, #f9bb9e 75%, #f38858 90%, #e6651b 100%);
+  --grad-spectrum-light:  linear-gradient(180deg, #e8effc 0%, #d2dff9 40%, #fddcce 80%, #f9bb9e 100%);
+  --grad-sunrise:         linear-gradient(180deg, #a5460f 0%, #e6651b 35%, #f38858 60%, #d2dff9 100%); /* orange top → periwinkle bottom */
+  /* Hero AURA (sarvam.ai home): orange core cradled by periwinkle wings, dissolving into --sf */
+  --aura-hero: radial-gradient(38% 55% at 50% -8%, #f97316 0%, #fb923c 25%, rgba(253,186,116,.55) 45%, transparent 70%),
+               radial-gradient(70% 60% at 50% 0%, rgba(165,187,252,.85) 0%, rgba(210,223,249,.5) 45%, transparent 75%);
+  /* Card gradients (production) */
+  --grad-blue:   linear-gradient(180deg, #bed2ff 0%, #393cc1 100%);
+  --grad-blue-medium: linear-gradient(180deg, #dde7ff 0%, #a6a7e3 100%);
+  --grad-blue-light:  linear-gradient(180deg, #f4f7ff 0%, #bed2ff 100%);
+  --grad-orange: linear-gradient(180deg, #d5650f 0%, #eaaf1c 100%);
+  --grad-orange-medium: linear-gradient(180deg, #e29357 0%, #f0c760 100%);
+  --grad-orange-light:  linear-gradient(180deg, #f2d1b7 0%, #f9e7bb 100%);
+  --grad-green:  linear-gradient(180deg, #89b95b 0%, #293a18 100%);
+  --grad-green-medium: linear-gradient(180deg, #acce8c 0%, #899380 100%);
+  --grad-green-light:  linear-gradient(180deg, #dceace 0%, #cacec5 100%);
+  --grad-pink:   linear-gradient(180deg, #f581a6 0%, #76123d 100%);
+  --grad-pink-medium:  linear-gradient(180deg, #f8a7c1 0%, #b47d94 100%);
+  --grad-pink-light:   linear-gradient(180deg, #fcd9e4 0%, #ddc4cf 100%);
+  /* Dark CTA panel (home "Build the Future of India's AI") */
+  --grad-night:  radial-gradient(60% 90% at 50% 100%, #3d32ab 0%, transparent 70%), linear-gradient(180deg, #14142b 0%, #1e2033 100%);
+  /* Button gradients (hero) */
+  --grad-btn-dark:  linear-gradient(to bottom, #3a3f5c 0%, #1e2033 100%);
+  --grad-btn-light: linear-gradient(to bottom, #ffffff 0%, #f0f1f5 100%);
+  /* Eyebrow hairline */
+  --hairline-indigo: radial-gradient(circle, #6a88e2 0%, transparent 100%);
+
+  /* ---------- Spacing (4px base) ---------- */
+  --space-0_5:2px; --space-1:4px; --space-1_5:6px; --space-2:8px; --space-2_5:10px; --space-3:12px;
+  --space-4:16px; --space-5:20px; --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px;
+  --space-14:56px; --space-16:64px; --space-20:80px; --space-24:96px; --space-32:128px; --space-40:160px;
+  --section-gap:      128px;  /* desktop gap between sections */
+  --section-gap-sm:    96px;  /* mobile gap between sections */
+  --section-inner:     48px;  /* heading → content, desktop */
+  --section-inner-sm:  32px;  /* heading → content, mobile */
+
+  /* ---------- Layout ---------- */
+  --width-max: 1400px;        /* content cap at ≥1536 */
+  --container-mobile: 88%;    /* < 768 */
+  --container-desktop: 83.333%; /* ≥ 768 (10/12) */
+  --nav-h: 64px; --nav-h-lg: 68px;
+
+  /* ---------- Radius ---------- */
+  --radius-xs:2px; --radius-sm:4px; --radius-md:6px; --radius-lg:8px; --radius-xl:12px;
+  --radius-2xl:16px;  /* --radius-card */
+  --radius-3xl:24px;
+  --radius-4xl:32px;  /* --radius-card-lg */
+  --radius-pill:9999px;
+
+  /* ---------- Elevation (soft, ambient — never hard drop shadows) ---------- */
+  --shadow-stroke-sm: 0 0 1px rgba(0,0,0,.2);
+  --shadow-elev-sm:   0 1px 3px rgba(0,0,0,.08);
+  --shadow-elev-md:   0 4px 24px rgba(0,0,0,.12);
+  --shadow-elev-lg:   0 12px 40px -8px rgba(0,0,0,.12);
+  --shadow-card:      0 0 40px 0 rgba(0,0,0,.06);
+  --shadow-card-hover:0 8px 40px -4px rgba(0,0,0,.12);
+  --shadow-btn-dark:  inset 0 1px 0 rgba(255,255,255,.4), inset 0 -2px 0 rgba(0,0,0,.2);
+  --shadow-btn-light: inset 0 2px 0 rgba(200,200,200,.1), inset 0 -1px 0 rgba(0,0,0,.05);
+  --shadow-glow-indigo: inset 0 0 10px rgba(199,210,254,.8);
+  --ring-focus:       0 0 0 3px rgba(165,187,252,.15);
+  --shadow-track:     0 4px 20px 0 rgba(0,0,0,.05);      /* audio player / control track */
+  --shadow-select:    inset 0 -1px 0 1px rgba(0,0,0,.04); /* language select lip */
+  --shadow-seg-active:0 1px 3px rgba(0,0,0,.08);          /* segmented control active pill */
+  --stroke-track:     #e8e8e8;
+  --dot-idle:         #e5e5e5;  --dot-active: #a3a3a3;   /* dot-matrix visualiser */
+  --glow-cursor:      rgba(255,255,255,.16);              /* cursor-follow glow on dark buttons */
+
+  /* ---------- Motion ---------- */
+  --ease-brand: cubic-bezier(.2, 0, 0, 1);     /* buttons, UI */
+  --ease-reveal: cubic-bezier(.25, 1, .5, 1);  /* section reveals */
+  --ease-standard: cubic-bezier(.4, 0, .2, 1);
+  --dur-instant:100ms; --dur-fast:150ms; --dur-normal:200ms; --dur-moderate:300ms; --dur-btn:350ms;
+  --dur-slow:500ms; --dur-entrance:700ms; --dur-reveal:800ms;
+}
+
+/* ---------- Responsive type tokens (mobile-first; see foundations/03-typography.md) ---------- */
+:root {
+  --fs-display:  44px;  --lh-display: 1.05;   /* hero h1 */
+  --fs-h2:       28px;  --lh-h2: 1.2;         /* section titles */
+  --fs-h3:       20px;  --lh-h3: 1.3;         /* card titles */
+  --fs-lead:     16px;  --lh-lead: 1.75;      /* hero sub */
+  --fs-body:     16px;  --lh-body: 1.55;
+  --fs-small:    14px;  --lh-small: 1.5;
+  --fs-label:    12px;  --ls-label: 2px;
+  --fs-metric:   40px;
+}
+@media (min-width: 768px) {
+  :root { --fs-display: 64px; --fs-h2: 36px; --fs-h3: 21px; --fs-lead: 20px; --fs-metric: 48px; }
+}
+@media (min-width: 1280px) {
+  :root { --fs-display: 72px; --fs-metric: 56px; } /* [added] large-desktop step, used only for landing heroes */
+}

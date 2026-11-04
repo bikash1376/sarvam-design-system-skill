@@ -1,0 +1,99 @@
+---
+name: sarvam-design-system
+description: Sarvam AI brand and design system. Use whenever creating ANYTHING branded as Sarvam / Sarvam AI — web pages, landing pages, UI, social banners (Meta, LinkedIn, X), event key visuals, decks, SVG illustrations, icons, or marketing copy. Encodes Sarvam's real production tokens (colours, Season Mix + Matter type, spacing, radius, gradients), the Gateway / Monogram / mandala visual language, logo rules, responsive behaviour across 375/768/1440, banner archetypes, and tone of voice. Triggers on "Sarvam", "sarvam.ai", "Indus", "Bulbul", "Saaras", "Sarvam 105B", "Sarvam Voice Agents", "AI for all from India", or any request for on-brand Sarvam output.
+---
+
+# Sarvam Design System
+
+> **AI for all from India.** *Sarvam* (सर्वम्) is Sanskrit for "all". The brand
+> should feel **grounded, familiar and modern at the same time, without
+> nostalgia or spectacle**. These are Sarvam's own words. Keep them in mind
+> for every decision.
+
+This skill turns sarvam.ai's live design language into rules an AI can follow.
+Every value here comes from production CSS on sarvam.ai, Sarvam's official
+`/brand` and `/brand-guidelines` pages, or Sarvam's LinkedIn posts. Anything
+marked **[added]** is a small, deliberate extension and not a rebrand.
+
+---
+
+## 1. How to use this skill (workflow)
+
+1. **Identify the format.** Is it a web page, a social banner or an illustration/SVG?
+2. **Read the core files below** (always): `tokens/tokens.css`, `foundations/01-brand-essence.md`, `foundations/12-anti-slop.md`, and **`DECISIONS.md`**. Prompts won't say which badge, icon style, button, card or gradient to use; `DECISIONS.md` decides from context.
+3. **Read the format file**:
+   - Web page or UI: `formats/web-pages.md`, `foundations/04-layout-grid-responsive.md`, `components/*.md`
+   - Social banner: `formats/social-banners.md` (archetypes + exact pixel specs)
+   - SVG, illustration or motif: `foundations/07-motifs-and-glyphs.md`, `foundations/06-gradients-and-light.md`
+   - Card or section background glow: `foundations/14-soft-glow-surfaces.md` (tool: `tools/soft-glow/`)
+   - Colouring a glyph, emblem or motif with depth: `foundations/15-glyph-color-depth.md` (tool: `tools/color-depth/`)
+4. **Start from a template** in `templates/` rather than a blank file.
+5. **Render and check.** `node scripts/render.js <file.html> <out.png> <w> <h>` renders a PNG. Then run through `checklists/qa.md` before calling anything done.
+
+## 2. File map
+
+| File | What it holds |
+|---|---|
+| `DECISIONS.md` | **Which variant to use**: icon style, badge vs tag, button, card, gradient, hue by subject. Read every time |
+| `tokens/tokens.css` | **Source of truth.** All colours, gradients, type, spacing, radius, shadow, motion tokens and @font-face rules |
+| `tokens/tokens.json` | The same tokens for Figma, Tailwind or other tools |
+| `foundations/01-brand-essence.md` | Mission, Gateway idea, mandala logic, brand pillars, personality |
+| `foundations/02-color.md` | Palette roles, ratios, pairings, contrast, the blue→orange spectrum |
+| `foundations/03-typography.md` | Season Mix + Matter, responsive type scale, Indic scripts |
+| `foundations/04-layout-grid-responsive.md` | Breakpoints, containers, grid per size, spacing that scales, reflow rules |
+| `foundations/05-radius-elevation-surfaces.md` | Corners, shadows, surface stack |
+| `foundations/06-gradients-and-light.md` | Aura, spectrum, gateway glow, grain: copy-paste recipes |
+| `foundations/07-motifs-and-glyphs.md` | Monogram, Gateway glyphs, star bullets, ornament divider, how to draw new ones |
+| `foundations/08-iconography.md` | Three icon styles (flat stroke · solid product-hue · depth periwinkle), sizes, hue map |
+| `foundations/09-imagery.md` | Photography, cultural textures, 3D renders, halftone |
+| `foundations/10-motion.md` | Easing, durations, reveals |
+| `foundations/11-logo-usage.md` | Wordmark vs logomark, clear space, co-branding, don'ts |
+| `foundations/12-anti-slop.md` | What makes output look generic or off-brand, and how to avoid it |
+| `foundations/13-voice-and-tone.md` | Copy voice, naming, headline formulas, examples |
+| `foundations/14-soft-glow-surfaces.md` | Pastel blurred-curve glows for cards, tiles and social posts; presets incl. `sr-dawn`, `sr-spectrum`, `sr-meadow` |
+| `foundations/15-glyph-color-depth.md` | Core + rim colour depth for gateway glyphs (4 rim moods, echo), Sarvam `sr-*` palettes |
+| `tools/soft-glow/` | `glow.py` (CLI) + `generator.html` (visual editor) for soft-glow surfaces |
+| `tools/color-depth/` | `color_depth.py` + `sarvam-glyphs.json` (curated Sarvam glyph set) |
+| `components/*.md` | Buttons, eyebrow, nav, cards, feature list, stats, code block, badges (12px radius, not pills), tags, integration card, testimonial, CTA panel, footer; `interactive.md`: cursor-glow button, audio player pill, dot-matrix visualiser, language select, segmented control, copy button |
+| `formats/social-banners.md` | Meta 1080², 1080×1350, LinkedIn 1200×627: archetypes, safe zones, type sizes |
+| `formats/web-pages.md` | Landing page anatomy, section order, per-breakpoint behaviour |
+| `templates/` | Starter HTML for banners and a landing page, already wired to tokens |
+| `assets/` | Fonts, official logos, 19 gateway glyph SVGs, `glyphs-depth/` (12 colour-depth glyphs), `glows/` (9 glow surfaces), icons in three styles (`icons/`, `icons-solid/`, `icons-depth/`), reference screenshots |
+| `checklists/qa.md` | Pre-ship checklist |
+
+## 3. The ten golden rules (memorise these)
+
+1. **Two typefaces, two jobs.** **Season Mix** (soft display serif-sans hybrid) for headlines and big statements. **Matter** (geometric grotesk) for UI, body, card titles and buttons. Use **Matter Semi Mono** in UPPERCASE for small labels. No other fonts.
+2. **Headlines are calm.** Season Mix at **regular to medium weight (400–500)**, never bold, with tight tracking (−0.02em) and tight leading (1.05–1.2). Use sentence case. Big and quiet beats small and loud.
+3. **Light canvas by default.** The page background is `#fcfcfc` (`--sf`), cards are `#fff`, text is `#1f1f1f`. Dark surfaces (`--slate`, `--black`, night gradient) are for one CTA panel or a feature moment, not whole pages.
+4. **Colour comes as light, not blocks.** The brand's signature is a continuous **blue→orange spectrum** (indigo/periwinkle meets saffron). Use it as soft glows, auras and gradient fills inside gateway shapes. Never use flat saturated rectangles of brand colour behind UI.
+5. **The Gateway is the core motif.** The cusped multifoil arch (torana) appears as gradient glyphs, as frames that hold headlines, and as silhouettes. Use the official SVGs in `assets/glyphs/` or follow the drawing rules in `07-motifs-and-glyphs.md`.
+6. **Logo discipline.** The wordmark is black on light and white on dark, with no colour, gradient or effects. The logomark (mandala monogram) is used **separately**, never locked up with the wordmark. Partner lockups use the wordmark only, as `sarvam │ Partner` or `sarvam · PARTNER`.
+7. **Pills and soft corners.** Buttons and chips are fully rounded pills (min height 40px). Cards use 16px radius, large panels 24–32px. No sharp rectangles, and no 4px "bootstrap" corners on cards.
+8. **Shadows are ambient and inset.** Use 40px-blur, 6% black for cards. Buttons get an inset highlight (`inset 0 1px 0 rgba(255,255,255,.4)`), which makes them look tactile. **Every dark button gets a soft white glow that follows the cursor on hover.** Never use hard drop shadows.
+9. **Generous, centred rhythm.** Section titles are centred, 128px between sections on desktop and 96px on mobile. Content is 10/12 of the viewport and capped at 1400px.
+10. **Rooted, not costume.** Indian identity comes through structure (gateways, mandala geometry), Indic scripts, real Indian photography and textile-derived pattern. Never use clichés: no Taj Mahal clip-art, flags, tricolour gradients, paisley wallpaper, diyas or "namaste" emoji.
+
+## 4. Quick reference
+
+```
+Gradients     : surface glow -> 14 (soft-glow) · hero light -> 06 §1 aura · banner field -> 06 §2 spectrum · inside shapes -> 15 (colour depth)
+Display font  : Season Mix 400–500, tracking -0.02em, line-height 1.05–1.2
+UI/body font  : Matter 400 (body) / 500 (titles, buttons)
+Label font    : Matter Semi Mono 400, 12px, UPPERCASE, tracking 2px (or Matter 500 caps)
+Text          : #1f1f1f / #3d3d3d / #666666      Background: #fcfcfc   Card: #ffffff
+Primary btn   : #2a2c33 pill, white Matter 500, inset highlight, cursor-follow white glow on hover (all dark buttons)
+Secondary btn : #f5f5f5 pill (or white + 1px #e6e6e6), #1f1f1f text
+Brand indigo  : #556adc (600) · #212191 (900) · #a7c0f1 (300) · #e8effc (100)
+Brand saffron : #e6651b · #f38858 · #d5650f (glow core)
+Breakpoints   : 640 · 768 (md) · 1024 (lg) · 1280 (xl) · 1536 (2xl)
+Container     : 88% (<768) → 83.33% (≥768) → max 1400px
+Section gap   : 96px mobile → 128px desktop; heading→content 32 → 48px
+Radius        : pill buttons · 12px inputs · 16px cards · 24–32px panels
+```
+
+## 5. When information is missing
+
+- **Product names**: use exact names (Sarvam Voice Agents, Indus, Indus Cowork, Bulbul V4, Saaras V4, Sarvam 105B, Sarvam Translate, Document AI, Work Agents, Content Studio, Sarvam Edge, Token Factory). Never abbreviate them.
+- **Numbers and claims**: only use figures published on sarvam.ai (e.g. "11 Indic languages" for TTS voices, "<500ms real-time latency", "350M+ conversations", "10B+ tokens served", "99.9% uptime SLA"). Don't invent stats; use a placeholder like `[metric]` and flag it.
+- **Imagery**: if there is no real photo, use a gateway glyph composition or a gradient aura. Never use stock-AI people.

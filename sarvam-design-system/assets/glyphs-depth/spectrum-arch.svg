@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="384" height="480">
+  <defs>
+    <linearGradient id="spectrumarch-core" gradientUnits="userSpaceOnUse" x1="200.0" y1="124.0" x2="200.0" y2="460.0"><stop offset="0.000" stop-color="#a7c0f1"/><stop offset="1.000" stop-color="#fddcce"/></linearGradient>
+    <linearGradient id="spectrumarch-rim" gradientUnits="userSpaceOnUse" x1="200.0" y1="82.0" x2="200.0" y2="418.0"><stop offset="0.000" stop-color="#ee7944"/><stop offset="1.000" stop-color="#556adc"/></linearGradient>
+    <clipPath id="spectrumarch-clip"><path d="M0 500V262C0 222 28 194 64 190C72 154 102 130 138 130C150 98 172 72 190 44C196 32 199 16 200 0C201 16 204 32 210 44C228 72 250 98 262 130C298 130 328 154 336 190C372 194 400 222 400 262V500Z"/></clipPath>
+    <filter id="spectrumarch-soft" filterUnits="userSpaceOnUse" x="-101" y="-101" width="602" height="702" color-interpolation-filters="sRGB">
+      <feMorphology operator="erode" radius="19.5"/>
+      <feGaussianBlur stdDeviation="26.0"/>
+    </filter>
+    <mask id="spectrumarch-coremask" maskUnits="userSpaceOnUse" x="-101" y="-101" width="602" height="702">
+      <path d="M0 500V262C0 222 28 194 64 190C72 154 102 130 138 130C150 98 172 72 190 44C196 32 199 16 200 0C201 16 204 32 210 44C228 72 250 98 262 130C298 130 328 154 336 190C372 194 400 222 400 262V500Z" fill="#fff" filter="url(#spectrumarch-soft)" transform="translate(0.0 11.8)"/>
+    </mask>
+  </defs>
+  <g clip-path="url(#spectrumarch-clip)">
+    <rect x="0" y="0" width="400" height="500" fill="url(#spectrumarch-rim)"/>
+    <rect x="0" y="0" width="400" height="500" fill="url(#spectrumarch-core)" mask="url(#spectrumarch-coremask)"/>
+    
+  </g>
+</svg>

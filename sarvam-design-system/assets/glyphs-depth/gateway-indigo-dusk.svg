@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="384" height="480">
+  <defs>
+    <linearGradient id="gatewayindigodusk-core" gradientUnits="userSpaceOnUse" x1="200.0" y1="40.0" x2="200.0" y2="376.0"><stop offset="0.000" stop-color="#11115b"/><stop offset="0.500" stop-color="#4250d5"/><stop offset="1.000" stop-color="#f9bb9e"/></linearGradient>
+    
+    <clipPath id="gatewayindigodusk-clip"><path d="M0 500V262C0 222 28 194 64 190C72 154 102 130 138 130C150 98 172 72 190 44C196 32 199 16 200 0C201 16 204 32 210 44C228 72 250 98 262 130C298 130 328 154 336 190C372 194 400 222 400 262V500Z"/></clipPath>
+    <filter id="gatewayindigodusk-soft" filterUnits="userSpaceOnUse" x="-101" y="-101" width="602" height="702" color-interpolation-filters="sRGB">
+      <feMorphology operator="erode" radius="17.5"/>
+      <feGaussianBlur stdDeviation="23.4"/>
+    </filter>
+    <mask id="gatewayindigodusk-coremask" maskUnits="userSpaceOnUse" x="-101" y="-101" width="602" height="702">
+      <path d="M0 500V262C0 222 28 194 64 190C72 154 102 130 138 130C150 98 172 72 190 44C196 32 199 16 200 0C201 16 204 32 210 44C228 72 250 98 262 130C298 130 328 154 336 190C372 194 400 222 400 262V500Z" fill="#fff" filter="url(#gatewayindigodusk-soft)" transform="translate(0.0 -11.8)"/>
+    </mask>
+  </defs>
+  <g clip-path="url(#gatewayindigodusk-clip)">
+    <rect x="0" y="0" width="400" height="500" fill="#f9bb9e"/>
+    <rect x="0" y="0" width="400" height="500" fill="url(#gatewayindigodusk-core)" mask="url(#gatewayindigodusk-coremask)"/>
+    
+  </g>
+</svg>

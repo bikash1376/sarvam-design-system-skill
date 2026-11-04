@@ -1,0 +1,485 @@
+[
+  {
+    "name": "gateway-periwinkle-pink",
+    "spec": {
+      "name": "gateway-periwinkle-pink",
+      "shape": {
+        "svg": "assets/glyphs/voice-motif-01.svg"
+      },
+      "core": {
+        "colors": [
+          "#ffffff",
+          "#8196f8"
+        ],
+        "type": "linear",
+        "angle": 180,
+        "focus": "below"
+      },
+      "rim": {
+        "colors": [
+          "#efabc5"
+        ],
+        "width": 0.22,
+        "softness": 0.6
+      }
+    },
+    "resolved": {
+      "shape": "voice-motif-01",
+      "core_input": [
+        "#ffffff",
+        "#8196f8"
+      ],
+      "core_colors": [
+        "#ffffff",
+        "#8196f8"
+      ],
+      "rim_colors": [
+        "#efabc5"
+      ]
+    },
+    "png": true
+  },
+  {
+    "name": "gateway-indigo-dusk",
+    "spec": {
+      "name": "gateway-indigo-dusk",
+      "shape": {
+        "svg": "assets/motifs/gateway-arch.svg"
+      },
+      "core": {
+        "colors": [
+          "#11115b",
+          "#4250d5",
+          "#81a0e9"
+        ],
+        "type": "linear",
+        "angle": 180,
+        "focus": "above",
+        "echo_rim": true
+      },
+      "rim": {
+        "colors": [
+          "#f9bb9e"
+        ],
+        "width": 0.18,
+        "softness": 0.7
+      }
+    },
+    "resolved": {
+      "shape": "gateway-arch",
+      "core_input": [
+        "#11115b",
+        "#4250d5",
+        "#81a0e9"
+      ],
+      "core_colors": [
+        "#11115b",
+        "#4250d5",
+        "#f9bb9e"
+      ],
+      "rim_colors": [
+        "#f9bb9e"
+      ]
+    },
+    "png": true
+  },
+  {
+    "name": "saffron-luminous",
+    "spec": {
+      "name": "saffron-luminous",
+      "shape": {
+        "svg": "assets/glyphs/voice-motif-02.svg"
+      },
+      "core": {
+        "colors": [
+          "#d5650f",
+          "#ee7944"
+        ],
+        "type": "radial",
+        "focus": "center"
+      },
+      "rim": {
+        "colors": [
+          "#ffcb79"
+        ],
+        "width": 0.24,
+        "softness": 0.7
+      }
+    },
+    "resolved": {
+      "shape": "voice-motif-02",
+      "core_input": [
+        "#d5650f",
+        "#ee7944"
+      ],
+      "core_colors": [
+        "#d5650f",
+        "#ee7944"
+      ],
+      "rim_colors": [
+        "#ffcb79"
+      ]
+    },
+    "png": true
+  },
+  {
+    "name": "forest-gold",
+    "spec": {
+      "name": "forest-gold",
+      "shape": {
+        "svg": "assets/glyphs/model-04.svg"
+      },
+      "core": {
+        "colors": [
+          "#293a18",
+          "#496d21"
+        ],
+        "type": "linear",
+        "angle": 180,
+        "focus": "below"
+      },
+      "rim": {
+        "colors": [
+          "#df9c2a"
+        ],
+        "width": 0.24,
+        "softness": 0.7
+      }
+    },
+    "resolved": {
+      "shape": "model-04",
+      "core_input": [
+        "#293a18",
+        "#496d21"
+      ],
+      "core_colors": [
+        "#293a18",
+        "#496d21"
+      ],
+      "rim_colors": [
+        "#df9c2a"
+      ]
+    },
+    "png": true
+  },
+  {
+    "name": "sky-white",
+    "spec": {
+      "name": "sky-white",
+      "shape": {
+        "svg": "assets/glyphs/model-03.svg"
+      },
+      "core": {
+        "colors": [
+          "#a7c0f1",
+          "#556adc"
+        ],
+        "type": "linear",
+        "angle": 180,
+        "focus": "below"
+      },
+      "rim": {
+        "mood": "white",
+        "width": 0.22,
+        "softness": 0.6
+      }
+    },
+    "resolved": {
+      "shape": "model-03",
+      "core_input": [
+        "#a7c0f1",
+        "#556adc"
+      ],
+      "core_colors": [
+        "#a7c0f1",
+        "#556adc"
+      ],
+      "rim_colors": [
+        "#e6ecff"
+      ]
+    },
+    "png": true
+  },
+  {
+    "name": "rose-shadow",
+    "spec": {
+      "name": "rose-shadow",
+      "shape": {
+        "svg": "assets/glyphs/model-11.svg"
+      },
+      "core": {
+        "colors": [
+          "#fceaf0",
+          "#ea669f"
+        ],
+        "type": "linear",
+        "angle": 180,
+        "focus": "above"
+      },
+      "rim": {
+        "colors": [
+          "#871f4b"
+        ],
+        "width": 0.14,
+        "softness": 0.6
+      }
+    },
+    "resolved": {
+      "shape": "model-11",
+      "core_input": [
+        "#fceaf0",
+        "#ea669f"
+      ],
+      "core_colors": [
+        "#fceaf0",
+        "#ea669f"
+      ],
+      "rim_colors": [
+        "#871f4b"
+      ]
+    },
+    "png": true
+  },
+  {
+    "name": "leaf-sky",
+    "spec": {
+      "name": "leaf-sky",
+      "shape": {
+        "svg": "assets/glyphs/voice-motif-03.svg"
+      },
+      "core": {
+        "colors": [
+          "#90c85b",
+          "#e3f1d8"
+        ],
+        "type": "linear",
+        "angle": 180,
+        "focus": "below"
+      },
+      "rim": {
+        "colors": [
+          "#a7c0f1"
+        ],
+        "width": 0.24,
+        "softness": 0.6
+      }
+    },
+    "resolved": {
+      "shape": "voice-motif-03",
+      "core_input": [
+        "#90c85b",
+        "#e3f1d8"
+      ],
+      "core_colors": [
+        "#90c85b",
+        "#e3f1d8"
+      ],
+      "rim_colors": [
+        "#a7c0f1"
+      ]
+    },
+    "png": true
+  },
+  {
+    "name": "sindoor-marigold",
+    "spec": {
+      "name": "sindoor-marigold",
+      "shape": {
+        "svg": "assets/glyphs/model-07.svg"
+      },
+      "core": {
+        "colors": [
+          "#b81514",
+          "#ee7944"
+        ],
+        "type": "linear",
+        "angle": 180,
+        "focus": "below"
+      },
+      "rim": {
+        "colors": [
+          "#ffcb79"
+        ],
+        "width": 0.14,
+        "softness": 0.6
+      }
+    },
+    "resolved": {
+      "shape": "model-07",
+      "core_input": [
+        "#b81514",
+        "#ee7944"
+      ],
+      "core_colors": [
+        "#b81514",
+        "#ee7944"
+      ],
+      "rim_colors": [
+        "#ffcb79"
+      ]
+    },
+    "png": true
+  },
+  {
+    "name": "spectrum-arch",
+    "spec": {
+      "name": "spectrum-arch",
+      "shape": {
+        "svg": "assets/motifs/gateway-arch.svg"
+      },
+      "core": {
+        "colors": [
+          "#a7c0f1",
+          "#fddcce"
+        ],
+        "type": "linear",
+        "angle": 180,
+        "focus": "below"
+      },
+      "rim": {
+        "colors": [
+          "#ee7944",
+          "#556adc"
+        ],
+        "angle": 180,
+        "width": 0.2,
+        "softness": 0.7
+      }
+    },
+    "resolved": {
+      "shape": "gateway-arch",
+      "core_input": [
+        "#a7c0f1",
+        "#fddcce"
+      ],
+      "core_colors": [
+        "#a7c0f1",
+        "#fddcce"
+      ],
+      "rim_colors": [
+        "#ee7944",
+        "#556adc"
+      ]
+    },
+    "png": true
+  },
+  {
+    "name": "marigold-cream",
+    "spec": {
+      "name": "marigold-cream",
+      "shape": {
+        "svg": "assets/glyphs/model-09.svg"
+      },
+      "core": {
+        "colors": [
+          "#fff0cf",
+          "#fecd7c"
+        ],
+        "type": "radial",
+        "focus": "below"
+      },
+      "rim": {
+        "colors": [
+          "#e96c2f"
+        ],
+        "width": 0.2,
+        "softness": 0.6
+      }
+    },
+    "resolved": {
+      "shape": "model-09",
+      "core_input": [
+        "#fff0cf",
+        "#fecd7c"
+      ],
+      "core_colors": [
+        "#fff0cf",
+        "#fecd7c"
+      ],
+      "rim_colors": [
+        "#e96c2f"
+      ]
+    },
+    "png": true
+  },
+  {
+    "name": "deep-indigo-violet",
+    "spec": {
+      "name": "deep-indigo-violet",
+      "shape": {
+        "svg": "assets/glyphs/model-10.svg"
+      },
+      "core": {
+        "colors": [
+          "#2225a9",
+          "#4250d5"
+        ],
+        "type": "linear",
+        "angle": 180,
+        "focus": "center"
+      },
+      "rim": {
+        "colors": [
+          "#a5bbfc"
+        ],
+        "width": 0.24,
+        "softness": 0.7
+      }
+    },
+    "resolved": {
+      "shape": "model-10",
+      "core_input": [
+        "#2225a9",
+        "#4250d5"
+      ],
+      "core_colors": [
+        "#2225a9",
+        "#4250d5"
+      ],
+      "rim_colors": [
+        "#a5bbfc"
+      ]
+    },
+    "png": true
+  },
+  {
+    "name": "blush-coral",
+    "spec": {
+      "name": "blush-coral",
+      "shape": {
+        "svg": "assets/glyphs/model-01.svg"
+      },
+      "core": {
+        "colors": [
+          "#fceaf0",
+          "#efabc5"
+        ],
+        "type": "linear",
+        "angle": 180,
+        "focus": "above"
+      },
+      "rim": {
+        "colors": [
+          "#e6651b"
+        ],
+        "width": 0.16,
+        "softness": 0.6
+      }
+    },
+    "resolved": {
+      "shape": "model-01",
+      "core_input": [
+        "#fceaf0",
+        "#efabc5"
+      ],
+      "core_colors": [
+        "#fceaf0",
+        "#efabc5"
+      ],
+      "rim_colors": [
+        "#e6651b"
+      ]
+    },
+    "png": true
+  }
+]

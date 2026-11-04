@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Soft Glow Generator</title>
+<style>
+:root{
+  --bg:#f4f4f5; --panel:#ffffff; --line:#e4e4e7; --text:#18181b; --muted:#71717a;
+  --accent:#4f46e5; --accent-ink:#fff; --field:#fafafa; --check:#e9e9ec;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f0f11; --panel:#18181b; --line:#2a2a30; --text:#f4f4f5; --muted:#a1a1aa;
+    --accent:#818cf8; --accent-ink:#0f0f11; --field:#1f1f23; --check:#26262b;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f0f11; --panel:#18181b; --line:#2a2a30; --text:#f4f4f5; --muted:#a1a1aa;
+  --accent:#818cf8; --accent-ink:#0f0f11; --field:#1f1f23; --check:#26262b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.app{display:grid;grid-template-columns:340px 1fr;min-height:100vh}
+aside{background:var(--panel);border-right:1px solid var(--line);padding:18px 16px 40px;overflow:auto;max-height:100vh;position:sticky;top:0}
+main{padding:24px;display:flex;flex-direction:column;gap:20px;min-width:0}
+h1{font-size:16px;margin:0 0 2px}
+.sub{color:var(--muted);font-size:12px;margin:0 0 16px}
+h2{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:20px 0 8px;font-weight:600}
+label.row{display:grid;grid-template-columns:72px 1fr 44px;align-items:center;gap:8px;margin:6px 0;font-size:13px}
+label.row output{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;font-size:12px}
+select,input[type=number],input[type=text]{width:100%;background:var(--field);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font:inherit}
+input[type=range]{width:100%;accent-color:var(--accent)}
+input[type=color]{width:34px;height:30px;border:1px solid var(--line);border-radius:8px;padding:2px;background:var(--field)}
+.btn{appearance:none;border:1px solid var(--line);background:var(--field);color:var(--text);border-radius:8px;padding:7px 10px;font:inherit;font-size:13px;cursor:pointer}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+.btns{display:flex;flex-wrap:wrap;gap:6px}
+.layer{border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0;background:var(--field)}
+.layer-head{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.layer-head input[type=text]{flex:1;font-family:ui-monospace,Consolas,monospace;font-size:12px}
+.layer-head .x{border:0;background:none;color:var(--muted);cursor:pointer;font-size:16px;padding:2px 6px}
+.swatches{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0 6px}
+.sw{width:20px;height:20px;border-radius:50%;border:1px solid rgba(0,0,0,.12);cursor:pointer;padding:0}
+.chk{display:flex;align-items:center;gap:6px;font-size:13px;margin:6px 0}
+.stage{background:
+  repeating-conic-gradient(var(--check) 0 25%, transparent 0 50%) 0 0/16px 16px;
+  border:1px solid var(--line);border-radius:14px;padding:28px;display:flex;align-items:center;justify-content:center;min-height:420px}
+#preview{max-width:100%;max-height:70vh;display:block}
+#preview svg{display:block;max-width:100%;max-height:70vh;width:auto;height:auto}
+.meta{color:var(--muted);font-size:12px}
+.set{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.set button{border:2px solid transparent;border-radius:16px;padding:0;background:none;cursor:pointer}
+.set button.on{border-color:var(--accent)}
+.set svg{display:block;width:100%;height:auto}
+textarea{width:100%;height:120px;background:var(--field);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px;font:12px/1.4 ui-monospace,Consolas,monospace;resize:vertical}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+@media (max-width:820px){
+  .app{grid-template-columns:1fr}
+  aside{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--line)}
+  main{padding:16px}
+  .stage{padding:16px;min-height:260px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<aside>
+  <h1>Soft Glow Generator</h1>
+  <p class="sub">A blurred curved shape, not a linear or radial gradient. Shapes and colors are calibrated to the reference cards.</p>
+
+  <h2>Preset</h2>
+  <select id="preset"></select>
+
+  <h2>Canvas</h2>
+  <label class="row"><span>Size</span>
+    <select id="size">
+      <option value="480x524">Card 480×524</option>
+      <option value="1080x1080">Square 1080</option>
+      <option value="1080x1350">Portrait 1080×1350</option>
+      <option value="1080x1920">Story 1080×1920</option>
+      <option value="1600x900">Hero 1600×900</option>
+      <option value="1920x1080">Wide 1920×1080</option>
+      <option value="custom">Custom…</option>
+    </select><span></span></label>
+  <div id="customSize" hidden>
+    <label class="row"><span>Width</span><input type="number" id="w" min="64" max="4096" value="480"><span></span></label>
+    <label class="row"><span>Height</span><input type="number" id="h" min="64" max="4096" value="524"><span></span></label>
+  </div>
+  <label class="row"><span>Background</span><input type="text" id="bg" value="#FFFFFF"><input type="color" id="bgPick" value="#ffffff"></label>
+  <label class="row"><span>Radius</span><input type="range" id="radius" min="0" max="20" step="0.5" value="8"><output id="radiusO"></output></label>
+  <label class="chk"><input type="checkbox" id="border" checked> Hairline border (#ECECEC)</label>
+  <label class="chk"><input type="checkbox" id="mirrorAll"> Mirror all layers</label>
+
+  <h2>Layers <span style="text-transform:none;letter-spacing:0;font-weight:400">(first = bottom)</span></h2>
+  <div id="layers"></div>
+  <div class="btns">
+    <button class="btn" id="addLayer">+ Add layer</button>
+    <button class="btn" id="addCore">+ Deep core</button>
+    <button class="btn" id="shuffle">Shuffle</button>
+  </div>
+
+  <h2>Export</h2>
+  <div class="btns">
+    <button class="btn primary" id="dlPng">PNG @2x</button>
+    <button class="btn" id="dlSvg">SVG</button>
+    <button class="btn" id="cpInline">Copy inline SVG</button>
+    <button class="btn" id="cpCss">Copy CSS</button>
+    <button class="btn" id="cpCli">Copy CLI</button>
+  </div>
+</aside>
+
+<main>
+  <div class="stage"><div id="preview"></div></div>
+  <div class="meta" id="meta"></div>
+
+  <section>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+      <strong style="font-size:14px">Card set</strong>
+      <label class="chk" style="margin:0">Count <input type="number" id="setN" min="2" max="8" value="5" style="width:60px"></label>
+      <button class="btn" id="genSet">Generate set</button>
+      <button class="btn" id="cpSet">Copy set HTML</button>
+      <span class="meta">One hue per card, a different shape per neighbor. Click a card to edit it.</span>
+    </div>
+    <div class="set" id="set"></div>
+  </section>
+
+  <section>
+    <strong style="font-size:14px">Code</strong>
+    <textarea id="code" readonly></textarea>
+  </section>
+</main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ---- Calibrated data: keep in sync with scripts/glow.py ----
+const PALETTES = {
+  lilac:"#BBC3F1", sage:"#D7EAC1", peach:"#FDE7DC", rose:"#E0A6BF", honey:"#FFE0AA",
+  ice:"#C9D8FD", indigo:"#5B63C9", mint:"#BFE8DA", sky:"#BEDCF4", lavender:"#D8C8F2",
+  coral:"#F7C3B5", sand:"#EBDDC7",
+  // Sarvam token aliases (keep in sync with glow.py)
+  "sr-indigo-100":"#E8EFFC", "sr-indigo-200":"#D2DFF9", "sr-indigo-300":"#A7C0F1", "sr-indigo-500":"#6A88E2",
+  "sr-orange-100":"#FEEDE6", "sr-orange-200":"#FDDCCE", "sr-orange-500":"#F38858",
+  "sr-green-100":"#E3F1D8", "sr-green-400":"#90C85B", "sr-pink-100":"#F9D5E1", "sr-pink-300":"#E380A8", "sr-yellow-200":"#FFE8B7"
+};
+const XS = [5,15,25,35,45,55,65,75,85,95];
+const CONTOURS = {
+  hill:   {ys:[72.7,63.4,57.3,55.3,56.7,61.1,66.8,71.2,74.4,76.5], sigma:8.6},
+  valley: {ys:[52.5,57.1,64.9,72.9,79.2,83.0,83.4,82.4,80.5,78.6], sigma:6.8},
+  ramp:   {ys:[91.0,89.0,85.0,79.9,75.1,71.6,71.3,73.0,73.4,72.2], sigma:8.6},
+  dome:   {ys:[78.2,73.6,70.1,68.2,66.3,65.1,65.3,66.7,68.8,70.7], sigma:8.6},
+  whisper:{ys:[80.1,84.0,88.0,88.5,86.4,82.4,78.7,76.6,75.1,75.3], sigma:7.6},
+  flat:   {ys:[74.0,73.5,73.0,73.0,73.2,73.5,73.8,74.0,74.0,74.0], sigma:8.6},
+};
+const L = (o) => Object.assign({color:"#BBC3F1", contour:"hill", points:"", sigma:null, lift:0, amp:1, opacity:1, mirror:false}, o);
+const PRESETS = {
+  "lilac-hill":   {bg:"#FFFFFF", layers:[L({color:"#BBC3F1", contour:"hill"})]},
+  "sage-valley":  {bg:"#FFFFFF", layers:[L({color:"#D7EAC1", contour:"valley"})]},
+  "peach-whisper":{bg:"#FFFFFF", layers:[L({color:"#FDE7DC", contour:"whisper"})]},
+  "rose-ramp":    {bg:"#FFFFFF", layers:[L({color:"#E0A6BF", contour:"ramp"})]},
+  "honey-dome":   {bg:"#FFFFFF", layers:[L({color:"#FFE0AA", contour:"dome"})]},
+  "horizon":      {bg:"#FAFAFA", layers:[
+                     L({color:"#C9D8FD", contour:"flat", points:"69/69/69/69/69", sigma:11}),
+                     L({color:"#5B63C9", contour:"dome", points:"100/97/94.5/93/92/92/93/94.5/97/100", sigma:6.5})]},
+  // Sarvam presets (keep in sync with glow.py)
+  "sr-dawn":     {bg:"#FCFCFC", layers:[L({color:"#FDDCCE", contour:"flat", points:"70/70/70/70/70", sigma:11}),
+                    L({color:"#F38858", contour:"dome", points:"100/97/94.5/93/92/92/93/94.5/97/100", sigma:6.5})]},
+  "sr-spectrum": {bg:"#FCFCFC", layers:[L({color:"#D2DFF9", contour:"flat", points:"68/68/68/68/68", sigma:11}),
+                    L({color:"#6A88E2", contour:"dome", points:"92/94/97/101/106", sigma:6.5}),
+                    L({color:"#F59970", contour:"dome", points:"106/101/97/94/92", sigma:6.5})]},
+  "sr-meadow":   {bg:"#FCFCFC", layers:[L({color:"#E3F1D8", contour:"flat", points:"70/70/70/70/70", sigma:11}),
+                    L({color:"#90C85B", contour:"dome", points:"100/97/94.5/93/92/92/93/94.5/97/100", sigma:6.5})]},
+};
+
+// ---- Geometry (same math as glow.py) ----
+function resample(raw){
+  const src = raw.map((_,i)=>5+90*i/(raw.length-1));
+  return XS.map(x=>{
+    let j=0; while(j<src.length-2 && src[j+1]<x) j++;
+    const t=(x-src[j])/(src[j+1]-src[j]); return raw[j]+(raw[j+1]-raw[j])*t;
+  });
+}
+function parsePoints(s){
+  const v=String(s||"").split(/[\/,\s]+/).map(Number).filter(n=>Number.isFinite(n));
+  return v.length>=2 && v.length<=10 ? v : null;
+}
+function edgeYs(layer, mirrorAll){
+  let ys = CONTOURS[layer.contour].ys.slice();
+  const pts = parsePoints(layer.points); if(pts) ys = resample(pts);
+  const mean = ys.reduce((a,b)=>a+b,0)/ys.length;
+  ys = ys.map(y=>mean+(y-mean)*layer.amp-layer.lift);
+  if(mirrorAll !== !!layer.mirror) ys.reverse();
+  return ys;
+}
+function sigmaOf(layer){ return layer.sigma ?? CONTOURS[layer.contour].sigma; }
+function pathD(ys){
+  const pts=[[-40,ys[0]],[-15,ys[0]],...XS.map((x,i)=>[x,ys[i]]),[115,ys[ys.length-1]],[140,ys[ys.length-1]]];
+  const p=[pts[0],...pts,pts[pts.length-1]]; const f=n=>n.toFixed(2);
+  let d=`M${f(pts[0][0])},${f(pts[0][1])}`;
+  for(let i=1;i<p.length-2;i++){
+    const [p0,p1,p2,p3]=[p[i-1],p[i],p[i+1],p[i+2]];
+    const c1=[p1[0]+(p2[0]-p0[0])/6, p1[1]+(p2[1]-p0[1])/6];
+    const c2=[p2[0]-(p3[0]-p1[0])/6, p2[1]-(p3[1]-p1[1])/6];
+    d+=` C${f(c1[0])},${f(c1[1])} ${f(c2[0])},${f(c2[1])} ${f(p2[0])},${f(p2[1])}`;
+  }
+  return d+" L140,240 L-40,240 Z";
+}
+
+// Pixel-space SVG (blur stays round). Used for preview + SVG/PNG export.
+function svgPixel(st, w, h, uid){
+  const sx=w/100, sy=h/100, r=st.radius/100*w;
+  let defs=`<clipPath id="${uid}-clip"><rect width="${w}" height="${h}" rx="${r}" ry="${r}"/></clipPath>`, body="";
+  st.layers.forEach((ly,i)=>{
+    defs+=`<filter id="${uid}-${i}" filterUnits="userSpaceOnUse" x="${-w}" y="${-h}" width="${3*w}" height="${3*h}" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="${(sigmaOf(ly)*sy).toFixed(1)}"/></filter>`;
+    const op = ly.opacity<1 ? ` fill-opacity="${ly.opacity}"` : "";
+    body+=`<g filter="url(#${uid}-${i})"><path transform="scale(${sx.toFixed(4)} ${sy.toFixed(4)})" d="${pathD(edgeYs(ly, st.mirrorAll))}" fill="${ly.color}"${op}/></g>`;
+  });
+  const border = st.border ? `<rect x="0.5" y="0.5" width="${w-1}" height="${h-1}" rx="${Math.max(0,r-0.5)}" ry="${Math.max(0,r-0.5)}" fill="none" stroke="#ECECEC"/>` : "";
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><defs>${defs}</defs><g clip-path="url(#${uid}-clip)"><rect width="${w}" height="${h}" fill="${st.bg}"/>${body}</g>${border}</svg>`;
+}
+// Responsive inline SVG (stretches to its container; sigma stays a % of height).
+function svgInline(st, uid){
+  let defs="", body="";
+  st.layers.forEach((ly,i)=>{
+    defs+=`<filter id="${uid}-${i}" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="${sigmaOf(ly)}"/></filter>`;
+    const op = ly.opacity<1 ? ` fill-opacity="${ly.opacity}"` : "";
+    body+=`<path d="${pathD(edgeYs(ly, st.mirrorAll))}" fill="${ly.color}"${op} filter="url(#${uid}-${i})"/>`;
+  });
+  return `<svg class="glow" aria-hidden="true" focusable="false" style="position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><defs>${defs}</defs>${body}</svg>`;
+}
+function cssFor(st){
+  const s = {...st, radius:0, border:false};
+  const svg = svgPixel(s, st.w, st.h, "g").replace(/"/g,"'");
+  const enc = encodeURIComponent(svg).replace(/%20/g," ").replace(/%3D/g,"=").replace(/%3A/g,":").replace(/%2F/g,"/").replace(/%2C/g,",").replace(/%27/g,"'");
+  return `background-color:${st.bg};\nbackground-image:url("data:image/svg+xml,${enc}");\nbackground-size:100% 100%;\nbackground-repeat:no-repeat;`;
+}
+function cliFor(st){
+  const ly = st.layers.map(l=>{
+    const kv=[`color=${l.color}`, `contour=${l.contour}`];
+    if(parsePoints(l.points)) kv.push(`points=${parsePoints(l.points).join("/")}`);
+    if(l.sigma!=null) kv.push(`sigma=${l.sigma}`);
+    if(l.lift) kv.push(`lift=${l.lift}`);
+    if(l.amp!==1) kv.push(`amp=${l.amp}`);
+    if(l.opacity<1) kv.push(`opacity=${l.opacity}`);
+    if(l.mirror) kv.push(`mirror=1`);
+    return `--layer ${kv.join(",")}`;
+  }).join(" ");
+  return `python scripts/glow.py ${ly}${st.mirrorAll?" --mirror":""} --bg "${st.bg}" --format svg --width ${st.w} --height ${st.h} -o glow.svg`;
+}
+
+// ---- State + UI ----
+const $=id=>document.getElementById(id);
+let state = {preset:"lilac-hill", w:480, h:524, bg:"#FFFFFF", radius:8, border:true, mirrorAll:false, layers:[]};
+let setCards=[], setActive=-1;
+
+function loadPreset(name){
+  const p=PRESETS[name]; state.preset=name; state.bg=p.bg;
+  state.layers=p.layers.map(l=>({...l}));
+  if(name==="horizon"||name.startsWith("sr-")){ state.radius=0; state.border=false; setSize("1080x1080"); }
+  syncCanvasUI(); renderLayers(); render();
+}
+function setSize(v){
+  $("size").value=v;
+  if(v!=="custom"){ const [w,h]=v.split("x").map(Number); state.w=w; state.h=h; $("w").value=w; $("h").value=h; }
+  $("customSize").hidden = v!=="custom";
+}
+function syncCanvasUI(){
+  $("bg").value=state.bg; $("bgPick").value=toHex6(state.bg);
+  $("radius").value=state.radius; $("radiusO").textContent=state.radius+"%";
+  $("border").checked=state.border; $("mirrorAll").checked=state.mirrorAll;
+  $("preset").value = state.preset in PRESETS ? state.preset : "";
+}
+function toHex6(c){ return /^#[0-9a-f]{6}$/i.test(c)?c.toLowerCase():"#ffffff"; }
+
+function renderLayers(){
+  const box=$("layers"); box.innerHTML="";
+  state.layers.forEach((ly,i)=>{
+    const el=document.createElement("div"); el.className="layer";
+    const sig = sigmaOf(ly);
+    el.innerHTML=`
+      <div class="layer-head">
+        <input type="color" data-k="colorPick" value="${toHex6(ly.color)}">
+        <input type="text" data-k="color" value="${ly.color}">
+        ${state.layers.length>1?`<button class="x" title="Remove layer" data-k="remove">×</button>`:""}
+      </div>
+      <div class="swatches">${Object.entries(PALETTES).map(([n,c])=>`<button class="sw" title="${n} ${c}" style="background:${c}" data-sw="${c}"></button>`).join("")}</div>
+      <label class="row"><span>Contour</span><select data-k="contour">${Object.keys(CONTOURS).map(c=>`<option ${c===ly.contour?"selected":""}>${c}</option>`).join("")}</select><span></span></label>
+      <label class="row"><span>Points</span><input type="text" data-k="points" placeholder="custom e.g. 80/62/58/70/78" value="${ly.points||""}"><span></span></label>
+      <label class="row"><span>Lift</span><input type="range" data-k="lift" min="-30" max="40" step="0.5" value="${ly.lift}"><output>${ly.lift}</output></label>
+      <label class="row"><span>Waviness</span><input type="range" data-k="amp" min="0" max="2.5" step="0.05" value="${ly.amp}"><output>${ly.amp}</output></label>
+      <label class="row"><span>Blur σ</span><input type="range" data-k="sigma" min="2" max="18" step="0.1" value="${sig}"><output>${sig}</output></label>
+      <label class="row"><span>Opacity</span><input type="range" data-k="opacity" min="0.1" max="1" step="0.05" value="${ly.opacity}"><output>${ly.opacity}</output></label>
+      <label class="chk"><input type="checkbox" data-k="mirror" ${ly.mirror?"checked":""}> Mirror this layer</label>`;
+    el.addEventListener("input", e=>onLayerInput(i, e.target, el));
+    el.addEventListener("click", e=>{
+      if(e.target.dataset.sw){ ly.color=e.target.dataset.sw; dirty(); renderLayers(); render(); }
+      if(e.target.dataset.k==="remove"){ state.layers.splice(i,1); dirty(); renderLayers(); render(); }
+    });
+    box.appendChild(el);
+  });
+}
+function onLayerInput(i, t, el){
+  const ly=state.layers[i], k=t.dataset.k; if(!k) return;
+  if(k==="colorPick"){ ly.color=t.value.toUpperCase(); el.querySelector('[data-k=color]').value=ly.color; }
+  else if(k==="color"){ if(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(t.value)){ ly.color=t.value; el.querySelector('[data-k=colorPick]').value=toHex6(t.value);} else return; }
+  else if(k==="contour"){ ly.contour=t.value; ly.points=""; ly.sigma=null; dirty(); renderLayers(); render(); return; }
+  else if(k==="points"){ ly.points=t.value; }
+  else if(k==="mirror"){ ly.mirror=t.checked; }
+  else { ly[k]=parseFloat(t.value); if(t.nextElementSibling) t.nextElementSibling.textContent=t.value; }
+  dirty(); render();
+}
+function dirty(){ state.preset="custom"; $("preset").value=""; }
+
+let uidN=0;
+function render(){
+  const uid="p"+(uidN++);
+  $("preview").innerHTML = svgPixel(state, state.w, state.h, uid);
+  $("meta").textContent = `${state.w}×${state.h} · ${state.layers.length} layer${state.layers.length>1?"s":""} · fade width ≈ ${state.layers.map(l=>(2.56*sigmaOf(l)).toFixed(0)+"%").join(" / ")} of height`;
+  $("code").value = svgInline(state, "glow");
+  if(setActive>=0 && setCards[setActive]){ setCards[setActive]=JSON.parse(JSON.stringify(state)); drawSet(); }
+}
+
+// ---- Set generator ----
+const SET_HUES=["lilac","sage","peach","rose","honey","mint","sky","lavender","coral","sand"];
+const SET_SHAPES=["hill","valley","ramp","dome","whisper"];
+function rnd(a,b){ return a+Math.random()*(b-a); }
+function shuffleArr(a){ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+function genSet(){
+  const n=Math.max(2,Math.min(8,parseInt($("setN").value)||5));
+  const hues=shuffleArr(SET_HUES.filter(h=>h!=="peach")).slice(0,n);
+  if(n>=4) hues[Math.floor(Math.random()*n)]="peach"; // one whisper-light card, like the reference row
+  // whisper is reserved for the light peach card; the rest rotate through a shuffled cycle
+  const cycle=shuffleArr(["hill","valley","ramp","dome"]); let k=0;
+  setCards=hues.map((hue)=>{
+    const c = hue==="peach" ? "whisper" : cycle[k++ % cycle.length];
+    return {preset:"custom", w:480, h:524, bg:"#FFFFFF", radius:8, border:true, mirrorAll:false,
+      layers:[L({color:PALETTES[hue], contour:c, lift:+rnd(-4,4).toFixed(1), amp:+rnd(.85,1.2).toFixed(2), mirror:Math.random()<.35})]};
+  });
+  setActive=-1; drawSet();
+}
+function drawSet(){
+  const box=$("set"); box.innerHTML="";
+  setCards.forEach((st,i)=>{
+    const b=document.createElement("button"); if(i===setActive) b.className="on";
+    b.innerHTML=svgPixel(st, st.w, st.h, "s"+i+"_"+(uidN++)); b.title="Edit this card";
+    b.onclick=()=>{ setActive=i; state=JSON.parse(JSON.stringify(st)); setSize(`${st.w}x${st.h}`); syncCanvasUI(); renderLayers(); render(); };
+    box.appendChild(b);
+  });
+}
+function setHtml(){
+  const cards=setCards.map((st,i)=>`  <div class="glow-card">\n    ${svgInline(st,"glow-"+(i+1))}\n    <!-- your content -->\n  </div>`).join("\n");
+  return `<style>\n.glow-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px}\n.glow-card{position:relative;isolation:isolate;overflow:hidden;aspect-ratio:480/524;border-radius:40px;background:#fff;border:1px solid #ECECEC}\n</style>\n<div class="glow-grid">\n${cards}\n</div>`;
+}
+
+// ---- Export helpers ----
+function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove("show"),1600); }
+async function copy(text,msg){ try{ await navigator.clipboard.writeText(text); toast(msg||"Copied"); }catch{ $("code").value=text; $("code").select(); toast("Clipboard blocked: text is in the Code box"); } }
+function download(blob,name){ const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},500); }
+function fileBase(){ return `soft-glow-${state.preset!=="custom"?state.preset:"custom"}-${state.w}x${state.h}`; }
+
+// ---- Wire up ----
+$("preset").innerHTML = `<option value="" disabled>custom</option>` + Object.keys(PRESETS).map(p=>`<option value="${p}">${p}</option>`).join("");
+$("preset").onchange=e=>{ if(e.target.value){ setActive=-1; loadPreset(e.target.value);} };
+$("size").onchange=e=>{ setSize(e.target.value); render(); };
+$("w").oninput=e=>{ state.w=Math.max(64,Math.min(4096,parseInt(e.target.value)||480)); render(); };
+$("h").oninput=e=>{ state.h=Math.max(64,Math.min(4096,parseInt(e.target.value)||524)); render(); };
+$("bg").oninput=e=>{ if(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(e.target.value)){ state.bg=e.target.value; $("bgPick").value=toHex6(state.bg); render(); } };
+$("bgPick").oninput=e=>{ state.bg=e.target.value.toUpperCase(); $("bg").value=state.bg; render(); };
+$("radius").oninput=e=>{ state.radius=parseFloat(e.target.value); $("radiusO").textContent=state.radius+"%"; render(); };
+$("border").onchange=e=>{ state.border=e.target.checked; render(); };
+$("mirrorAll").onchange=e=>{ state.mirrorAll=e.target.checked; render(); };
+$("addLayer").onclick=()=>{ state.layers.push(L({color:"#D8C8F2", contour:"dome", lift:-6})); dirty(); renderLayers(); render(); };
+$("addCore").onclick=()=>{ state.layers.push(L({color:"#5B63C9", contour:"dome", points:"100/97/94.5/93/92/92/93/94.5/97/100", sigma:6.5})); dirty(); renderLayers(); render(); };
+$("shuffle").onclick=()=>{
+  state.layers.forEach((ly,i)=>{ if(i===0||!parsePoints(ly.points)){ const cs=Object.keys(CONTOURS).filter(c=>c!=="flat"); ly.contour=cs[Math.floor(Math.random()*cs.length)]; ly.points=""; ly.sigma=null; ly.lift=+rnd(-5,5).toFixed(1); ly.amp=+rnd(.8,1.3).toFixed(2); ly.mirror=Math.random()<.4; } });
+  dirty(); renderLayers(); render();
+};
+$("dlSvg").onclick=()=>download(new Blob([svgPixel(state,state.w,state.h,"g")],{type:"image/svg+xml"}), fileBase()+".svg");
+$("dlPng").onclick=()=>{
+  const svg=svgPixel(state,state.w,state.h,"g"); const img=new Image();
+  img.onload=()=>{ const c=document.createElement("canvas"); c.width=state.w*2; c.height=state.h*2; const x=c.getContext("2d"); x.scale(2,2); x.drawImage(img,0,0,state.w,state.h); c.toBlob(b=>download(b,fileBase()+"@2x.png"),"image/png"); };
+  img.onerror=()=>toast("PNG render failed: try SVG");
+  img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg);
+};
+$("cpInline").onclick=()=>copy(svgInline(state,"glow"),"Inline SVG copied: parent needs position:relative; overflow:hidden; isolation:isolate");
+$("cpCss").onclick=()=>copy(cssFor(state),"CSS copied");
+$("cpCli").onclick=()=>copy(cliFor(state),"CLI command copied");
+$("genSet").onclick=genSet;
+$("cpSet").onclick=()=>{ if(!setCards.length) genSet(); copy(setHtml(),"Set HTML copied"); };
+
+setSize("480x524"); loadPreset("lilac-hill"); genSet();
+</script>
+</body>
+</html>

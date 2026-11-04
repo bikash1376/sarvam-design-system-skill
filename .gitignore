@@ -1,0 +1,22 @@
+# dependencies & build output
+node_modules/
+.next/
+out/
+__pycache__/
+*.pyc
+
+# deploy staging copies (rebuilt from sources)
+dist-ds/
+deploy-docs/
+.netlify/
+
+# docs site: copied from the skill at build time (scripts/sync.mjs)
+sarvam-docs/public/assets/
+sarvam-docs/public/tokens/
+sarvam-docs/public/tools/
+sarvam-docs/public/sarvam-design-system.zip
+
+# local
+.DS_Store
+Thumbs.db
+.env*

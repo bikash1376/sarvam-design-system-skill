@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sarvam Design System</title>
+<link rel="icon" href="assets/logos/sarvam-logo-black.svg">
+<link rel="stylesheet" href="tokens/tokens.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:var(--sf);color:var(--tx);font:400 16px/1.55 var(--font-sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+/* shell */
+.top{position:sticky;top:0;z-index:50;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(252,252,252,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--st-secondary)}
+.top img{height:18px;display:block}
+.top .tag{font:400 12px var(--font-label);text-transform:uppercase;letter-spacing:.12em;color:var(--tx-tertiary)}
+.menu-btn{display:none;border:0;background:var(--sf-secondary);border-radius:999px;padding:8px 14px;font:500 14px var(--font-sans)}
+.shell{display:grid;grid-template-columns:248px 1fr;min-height:calc(100vh - 64px)}
+nav.side{position:sticky;top:64px;height:calc(100vh - 64px);overflow:auto;padding:24px 16px 48px;border-right:1px solid var(--st-secondary)}
+nav.side h4{font:400 11px var(--font-label);text-transform:uppercase;letter-spacing:.14em;color:var(--tx-tertiary);margin:20px 10px 8px}
+nav.side a{display:block;padding:6px 10px;border-radius:8px;text-decoration:none;font-size:14px;color:var(--tx-secondary)}
+nav.side a:hover,nav.side a.on{background:var(--sf-secondary);color:var(--tx)}
+main{min-width:0}
+section.s{width:88%;max-width:1100px;margin:0 auto;padding:72px 0;border-bottom:1px solid var(--st-secondary)}
+@media(min-width:768px){section.s{width:83.333%;padding:96px 0}}
+.label{font:500 12px var(--font-sans);text-transform:uppercase;letter-spacing:2px;color:var(--tx-tertiary);margin:0 0 12px}
+h2.t{font:500 var(--fs-h2)/1.2 var(--font-display);letter-spacing:-.02em;margin:0 0 12px}
+p.lede{color:var(--tx-tertiary);max-width:640px;margin:0 0 40px;font-size:17px}
+h3.sub{font:500 18px/1.3 var(--font-sans);letter-spacing:-.015em;margin:40px 0 16px}
+@media(max-width:900px){.shell{grid-template-columns:1fr}nav.side{display:none;position:fixed;inset:64px 0 0 0;background:var(--sf);z-index:40;height:auto}nav.side.open{display:block}.menu-btn{display:inline-flex}}
+/* hero */
+.hero{position:relative;overflow:hidden;text-align:center;padding:120px 24px 96px}
+.aura{position:absolute;inset:0 0 auto 0;height:560px;z-index:-1;background:radial-gradient(30% 34% at 50% 0%,rgba(249,115,22,1) 0%,rgba(251,146,60,.8) 35%,transparent 75%),radial-gradient(40% 55% at 18% 6%,rgba(165,187,252,.9) 0%,rgba(210,223,249,.4) 50%,transparent 80%),radial-gradient(40% 55% at 82% 6%,rgba(165,187,252,.9) 0%,rgba(210,223,249,.4) 50%,transparent 80%),linear-gradient(180deg,#ffe9d6 0%,#fcfcfc 75%);filter:blur(24px)}
+.eyebrow{display:flex;flex-direction:column;align-items:center;gap:10px;width:fit-content;margin:0 auto}
+.eyebrow i{display:block;width:100%;height:1px;background:var(--hairline-indigo)}
+.eyebrow p{margin:0;padding:0 32px;font-size:15px;letter-spacing:.025em;color:var(--sr-indigo-900)}
+.hero h1{font:400 var(--fs-display)/1.05 var(--font-display);letter-spacing:-.025em;margin:28px auto 14px;max-width:900px}
+.hero .lead{font-size:var(--fs-lead);line-height:1.75;color:var(--tx-secondary);max-width:640px;margin:0 auto}
+.row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:32px}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:10px 20px;border-radius:999px;font:500 16px/1 var(--font-sans);border:0;cursor:pointer;text-decoration:none;transition:background-color .35s var(--ease-brand),transform .15s}
+.btn:active{transform:scale(.96)}
+.btn-primary{background:var(--slate);color:#fff;box-shadow:var(--shadow-btn-dark)}
+.btn-secondary{background:var(--sf-secondary);color:var(--tx);box-shadow:var(--shadow-btn-light)}.btn-secondary:hover{background:#fff}
+.btn-outline{background:#fff;color:var(--tx);border:1px solid var(--st);font-size:14px}
+.btn-hero-d{min-height:52px;padding:14px 24px;font-family:var(--font-display);color:#fff;background:var(--grad-btn-dark)}
+.btn-hero-l{min-height:52px;padding:14px 24px;font-family:var(--font-display);color:#1e2033;background:var(--grad-btn-light);box-shadow:inset 0 0 0 1px rgba(30,32,51,.14)}
+/* swatches */
+.ramp{display:grid;grid-template-columns:repeat(11,1fr);border-radius:12px;overflow:hidden;margin-bottom:10px;border:1px solid var(--st-secondary)}
+.ramp div{height:64px;display:flex;align-items:flex-end;padding:6px;font:400 10px var(--font-mono)}
+.ramp-name{font:500 14px var(--font-sans);margin:18px 0 8px}
+@media(max-width:700px){.ramp{grid-template-columns:repeat(6,1fr)}}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.chip{border:1px solid var(--st);border-radius:16px;overflow:hidden;background:#fff}
+.chip .c{height:84px}
+.chip .m{padding:10px 12px;font-size:13px}.chip .m b{display:block;font-weight:500}.chip .m code{font:400 11px var(--font-mono);color:var(--tx-tertiary)}
+.grads{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.grad{border-radius:16px;height:180px;position:relative;overflow:hidden;border:1px solid var(--st-secondary)}
+.grad span{position:absolute;left:12px;bottom:10px;font:400 11px var(--font-mono);background:rgba(255,255,255,.85);padding:3px 8px;border-radius:999px}
+/* type */
+.spec{display:grid;grid-template-columns:160px 1fr;gap:24px;align-items:baseline;padding:22px 0;border-top:1px solid var(--st-secondary)}
+.spec small{font:400 12px var(--font-mono);color:var(--tx-tertiary);line-height:1.6}
+@media(max-width:700px){.spec{grid-template-columns:1fr;gap:6px}}
+.fonts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.font-card{background:#fff;border:1px solid var(--st);border-radius:16px;padding:24px}
+.font-card .big{font-size:72px;line-height:1;margin:8px 0 16px}
+table.bp{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border:1px solid var(--st);border-radius:16px;overflow:hidden}
+table.bp th,table.bp td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--st-secondary)}
+table.bp th{font:400 11px var(--font-label);text-transform:uppercase;letter-spacing:.1em;color:var(--tx-tertiary);background:var(--sf)}
+.tbl-wrap{overflow-x:auto}
+/* spacing */
+.space-row{display:flex;align-items:center;gap:16px;margin:6px 0;font:400 12px var(--font-mono);color:var(--tx-tertiary)}
+.space-row i{display:block;height:14px;background:var(--sr-indigo-300);border-radius:3px}
+.radii{display:flex;flex-wrap:wrap;gap:20px}
+.radii div{width:110px;height:110px;background:#fff;border:1px solid var(--st);display:flex;align-items:flex-end;padding:10px;font:400 11px var(--font-mono);color:var(--tx-tertiary)}
+.elev{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:24px}
+.elev div{height:120px;background:#fff;border-radius:16px;display:flex;align-items:flex-end;padding:12px;font:400 11px var(--font-mono);color:var(--tx-tertiary)}
+/* glyphs */
+.glyphs{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+.glyphs figure{margin:0;background:#fff;border:1px solid var(--st-secondary);border-radius:16px;padding:16px 12px 10px;text-align:center}
+.glyphs img{width:84px;height:84px;object-fit:contain}
+.glyphs figcaption{font:400 10px var(--font-mono);color:var(--tx-tertiary);margin-top:6px;word-break:break-all}
+.glyphs.dark figure{background:var(--slate)}
+/* components */
+.cards{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:768px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1100px){.cards{grid-template-columns:repeat(3,1fr)}}
+.card{background:#fff;border:1px solid var(--st);border-radius:16px;padding:24px;transition:box-shadow .3s,transform .3s}
+.card:hover{box-shadow:var(--shadow-card-hover);transform:translateY(-2px)}
+.card h4{font:500 20px/1.3 var(--font-sans);letter-spacing:-.015em;margin:14px 0 6px}
+.card p{margin:0;color:var(--tx-tertiary);font-size:15px}
+.pillars{display:grid;gap:28px;max-width:520px}
+.pillar{display:grid;grid-template-columns:24px 1fr;gap:12px}
+.pillar b{font:500 20px/1.3 var(--font-sans)}.pillar p{margin:4px 0 0;color:var(--tx-tertiary);line-height:1.65}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);background:#fff;border:1px solid var(--st);border-radius:16px}
+.stats div{padding:28px 24px;border-bottom:1px solid var(--st-secondary)}
+.stats div:nth-child(odd){border-right:1px solid var(--st-secondary)}
+@media(min-width:900px){.stats{grid-template-columns:repeat(4,1fr)}.stats div{border-bottom:0;border-right:1px solid var(--st-secondary)}.stats div:last-child{border-right:0}}
+.stats b{display:block;font:400 var(--fs-metric)/1 var(--font-display);letter-spacing:-.02em;color:var(--sr-indigo-900)}
+.stats span{font-size:14px;color:var(--tx-tertiary)}
+.badges{display:flex;flex-wrap:wrap;gap:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;font:500 13px var(--font-sans);border:1px solid}
+.cta-panel{border-radius:32px;background:var(--grad-night);color:#fff;text-align:center;padding:80px 32px;position:relative;overflow:hidden}
+.cta-panel h3{font:400 clamp(28px,3vw,40px)/1.2 var(--font-display);letter-spacing:-.02em;margin:0 0 28px}
+.cta-panel::after{content:"";position:absolute;left:50%;bottom:-420px;width:900px;height:900px;transform:translateX(-50%);border-radius:50%;background:repeating-radial-gradient(circle,transparent 0 58px,rgba(255,255,255,.07) 58px 59px)}
+.horizon{border-radius:16px;overflow:hidden;aspect-ratio:16/10;max-width:520px;background:linear-gradient(180deg,#7f93ec 0%,#c3cdf7 55%,#e3e8fb 100%);position:relative}
+/* banners */
+.banners{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.bframe{background:#fff;border:1px solid var(--st);border-radius:16px;overflow:hidden}
+.bframe .vp{position:relative;overflow:hidden}
+.bframe iframe{border:0;transform-origin:0 0;position:absolute;top:0;left:0}
+.bframe p{margin:0;padding:12px 14px;font-size:13px;color:var(--tx-tertiary);border-top:1px solid var(--st-secondary)}
+/* docs */
+.doc-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.doc-tabs button{border:1px solid var(--st);background:#fff;border-radius:999px;padding:7px 14px;font:400 13px var(--font-sans);cursor:pointer}
+.doc-tabs button.on{background:var(--slate);color:#fff;border-color:var(--slate)}
+.md{background:#fff;border:1px solid var(--st);border-radius:16px;padding:clamp(20px,4vw,48px);overflow-x:auto}
+.md h1{font:400 40px/1.1 var(--font-display);letter-spacing:-.02em;margin-top:0}
+.md h2{font:500 26px/1.2 var(--font-display);letter-spacing:-.02em;margin-top:40px}
+.md h3{font:500 18px var(--font-sans)}
+.md table{border-collapse:collapse;font-size:14px;margin:16px 0;display:block;overflow-x:auto}
+.md th,.md td{border-bottom:1px solid var(--st-secondary);padding:8px 10px;text-align:left;vertical-align:top}
+.md th{background:var(--sf);font-weight:500}
+.md code{font:400 13px var(--font-mono);background:var(--sf-tertiary);padding:1px 5px;border-radius:6px}
+.md pre{background:#fafafa;border:1px solid var(--st);border-radius:12px;padding:16px;overflow:auto}
+.md pre code{background:none;padding:0}
+.md blockquote{margin:16px 0;padding:4px 20px;border-left:2px solid var(--sr-indigo-300);color:var(--tx-secondary)}
+.glyphs.depth figure{background:#fff}
+.hue-key{display:flex;flex-wrap:wrap;gap:10px;margin:-16px 0 32px}.hue-key span{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--st);border-radius:999px;padding:6px 14px 6px 6px;font-size:13px}.hue-key i{width:22px;height:22px;border-radius:50%;display:block}.hue-key code{font:400 11px var(--font-mono);color:var(--tx-tertiary)}
+.depth-compare{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.depth-compare .dc{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--st-secondary);border-radius:16px;padding:14px 16px}
+.depth-compare .dc span{font:400 11px var(--font-mono);color:var(--tx-tertiary);margin-left:auto}
+.depth-compare img{display:block}
+
+.mi{display:inline-block;width:16px;height:16px;background:currentColor;-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat;flex:none}
+.badge2{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:12px;font:625 14px/1 var(--font-sans);border:1px solid}
+.b-indigo{background:var(--sr-indigo-50);border-color:rgb(210 223 249/.75);color:var(--sr-indigo-600);box-shadow:inset 0 -.5px 1px var(--sr-indigo-200)}
+.b-green{background:rgb(242 248 235/.75);border-color:rgb(200 228 176/.75);color:var(--sr-green-600);box-shadow:inset 0 -.5px 1px var(--sr-green-200)}
+.b-orange{background:var(--sr-orange-50);border-color:rgb(253 220 206/.75);color:var(--sr-orange-600);box-shadow:inset 0 -.5px 1px var(--sr-orange-200)}
+.b-pink{background:rgb(252 234 240/.5);border-color:var(--sr-pink-100);color:var(--sr-pink-400);box-shadow:inset 0 -.5px 1px var(--sr-pink-100)}
+.b-yellow{background:rgb(255 248 230/.5);border-color:var(--sr-yellow-200);color:rgb(192 136 39/.9);box-shadow:inset 0 -.5px 1px var(--sr-yellow-300)}
+.b-red{background:rgb(253 231 226/.5);border-color:var(--sr-red-100);color:var(--sr-red-300);box-shadow:inset 0 -.5px 1px var(--sr-red-100)}
+.tag{display:inline-flex;align-items:center;border-radius:999px;padding:4px 10px;font:525 12px/16px var(--font-sans)}
+.t-cap{background:var(--sf-secondary);border:1px solid var(--st);color:var(--tx-tertiary);font-weight:425}
+.t-cat-indigo{background:var(--sr-indigo-100);color:var(--sr-indigo-800)}.t-cat-orange{background:var(--sr-orange-100);color:var(--sr-orange-900)}.t-cat-green{background:var(--sr-green-100);color:var(--sr-green-800)}
+.player{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--stroke-track);border-radius:999px;padding:4px;box-shadow:var(--shadow-track);max-width:100%}
+.btn-glow{position:relative;overflow:hidden;--gx:50%;--gy:50%;display:inline-flex;align-items:center;min-height:40px;padding:8px 20px;border:0;border-radius:999px;background:var(--slate);color:#fff;font:525 15px/1 var(--font-sans);cursor:pointer;box-shadow:var(--shadow-btn-dark);transition:transform .15s}
+.btn-glow:active{transform:scale(.96)}
+.btn-glow .glow{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;background:radial-gradient(circle 80px at var(--gx) var(--gy),var(--glow-cursor) 0%,transparent 100%);transition:opacity .3s var(--ease-brand)}
+.btn-glow:hover .glow{opacity:1}.btn-glow .lbl{position:relative;z-index:1;display:flex;align-items:center;gap:8px}
+.dots{display:grid;grid-template-columns:repeat(32,2.5px);grid-template-rows:repeat(10,2.5px);gap:1.5px;padding:0 6px}
+.dots i{width:2.5px;height:2.5px;border-radius:50%;background:var(--dot-idle);transition:background-color .15s}
+.dots i.on{background:var(--dot-active)}
+@media(max-width:767px){.dots{grid-template-columns:repeat(14,2.5px)}}
+.lang{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border:0;border-radius:999px;background:var(--sf-secondary);box-shadow:var(--shadow-select);font:425 16px/1 var(--font-sans);color:#000;cursor:pointer}
+.lang:hover{background:#f0f0f0}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:var(--sf-secondary);max-width:100%;overflow-x:auto}
+.seg button{border:0;background:none;border-radius:999px;padding:8px 16px;font:425 14px/1.2 var(--font-sans);color:var(--tx-tertiary);cursor:pointer;white-space:nowrap;transition:background-color .2s var(--ease-brand),color .2s}
+.seg button:hover{color:var(--tx-secondary)}.seg button.on{background:#fff;color:var(--tx);font-weight:525;box-shadow:var(--shadow-seg-active)}
+.copy{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:0;border-radius:12px;background:none;color:var(--tx-tertiary);font:425 14px/1 var(--font-sans);cursor:pointer;transition:background-color .15s,color .15s}
+.copy:hover,.copy.done{background:var(--sf-secondary);color:var(--tx-secondary)}
+.icard{display:flex;flex-direction:column;background:#fff;border:1px solid var(--st-secondary);border-radius:16px;padding:24px;transition:box-shadow .3s,border-color .3s,transform .15s;cursor:pointer}
+.icard:hover{box-shadow:var(--shadow-card-hover);border-color:var(--st)}.icard:active{transform:scale(.99)}
+.icard .well{height:144px;border-radius:16px;border:1px solid var(--st-secondary);background:linear-gradient(to bottom right,var(--t),#fff);display:flex;align-items:center;justify-content:center}
+@media(min-width:768px){.icard .well{height:176px}}
+.icard h4{font:525 18px/1.3 var(--font-sans);margin:16px 0 6px}.icard p{margin:0 0 20px;font:425 13px/1.6 var(--font-sans);color:var(--tx-secondary);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.icard .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+.glow-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.gcard{margin:0}.gcard img{display:block;width:100%;aspect-ratio:480/524;object-fit:cover;border-radius:16px;border:1px solid var(--st-secondary);background:#fff}
+.gcard.sq img{aspect-ratio:1}.gcard figcaption{font:400 11px var(--font-mono);color:var(--tx-tertiary);margin-top:8px}
+.glyphs.gd img{width:104px;height:104px}
+.gl-card{position:relative;overflow:hidden;isolation:isolate;background:#fff;border:1px solid var(--st-secondary);border-radius:16px;padding:24px;min-height:300px;display:flex;flex-direction:column}
+.gl-card h4{font:525 20px/1.3 var(--font-sans);margin:14px 0 6px}.gl-card p{margin:0;color:var(--tx-tertiary);font-size:15px}
+.btn-primary,.btn-hero-d{position:relative;overflow:hidden;--gx:50%;--gy:50%}
+.btn-primary::after,.btn-hero-d::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;background:radial-gradient(circle 80px at var(--gx) var(--gy),rgba(255,255,255,.16) 0%,transparent 100%);transition:opacity .3s var(--ease-brand)}
+.btn-primary:hover::after,.btn-hero-d:hover::after{opacity:1}
+footer.f{padding:48px 24px;text-align:center;color:var(--tx-tertiary);font-size:13px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div style="display:flex;align-items:center;gap:14px"><img src="assets/logos/sarvam-wordmark-black.svg" alt="sarvam"><span class="tag">Design System</span></div>
+  <button class="menu-btn" onclick="document.querySelector('nav.side').classList.toggle('open')">Menu</button>
+</header>
+<div class="shell">
+<nav class="side" onclick="if(event.target.tagName==='A')this.classList.remove('open')">
+  <h4>Overview</h4><a href="#intro">Introduction</a><a href="#principles">Golden rules</a>
+  <h4>Foundations</h4><a href="#color">Colour</a><a href="#gradients">Gradients &amp; light</a><a href="#type">Typography</a><a href="#layout">Layout &amp; breakpoints</a><a href="#spacing">Spacing, radius, elevation</a><a href="#motifs">Motifs &amp; glyphs</a><a href="#glows">Soft-glow surfaces</a><a href="#glyph-depth">Glyph colour depth</a><a href="#icons">Icons · flat</a><a href="#icons-solid">Icons · solid</a><a href="#icons-depth">Icons · depth</a>
+  <h4>Components</h4><a href="#components">Buttons &amp; blocks</a><a href="#interactive">Players &amp; controls</a>
+  <h4>Formats</h4><a href="#banners">Banner archetypes</a>
+  <h4>Reference</h4><a href="#docs">All markdown docs</a>
+</nav>
+<main>
+<div class="hero" id="intro">
+  <div class="aura"></div>
+  <img src="assets/motifs/ornament-divider.svg" alt="" style="width:208px;margin-bottom:22px">
+  <div class="eyebrow"><i></i><p>Sarvam Design System · v1</p><i></i></div>
+  <h1>AI for all from India</h1>
+  <p class="lead">A brand system AI tools can use: tokens, rules, motifs and templates extracted from sarvam.ai, its brand guidelines and its social channels.</p>
+  <div class="row"><a class="btn btn-hero-d" href="#color">Explore foundations</a><a class="btn btn-hero-l" href="#docs">Read the skill</a></div>
+</div>
+
+<section class="s" id="principles">
+  <p class="label">Golden rules</p><h2 class="t">Ten rules every output follows</h2>
+  <p class="lede">The short version of SKILL.md. If an output breaks one of these, it isn't Sarvam.</p>
+  <div class="cards" id="rules"></div>
+</section>
+
+<section class="s" id="color">
+  <p class="label">Foundations · 02</p><h2 class="t">Colour</h2>
+  <p class="lede">A neutral, light-first canvas. Brand colour arrives as light: indigo meets saffron. About 85% neutrals, 10% spectrum, 4% slate, 1% accents.</p>
+  <h3 class="sub">Neutrals &amp; roles</h3><div class="chips" id="neutrals"></div>
+  <h3 class="sub">Brand ramps</h3><div id="ramps"></div>
+  <h3 class="sub">Heritage palette (from brand photography)</h3><div class="chips" id="heritage"></div>
+</section>
+
+<section class="s" id="gradients">
+  <p class="label">Foundations · 06</p><h2 class="t">Gradients &amp; light</h2>
+  <p class="lede">"A blue-to-orange spectrum… continuous transitions in light and tone." Gradients are vertical or radial, sit behind content, and carry grain.</p>
+  <div class="grads" id="grads"></div>
+</section>
+
+<section class="s" id="type">
+  <p class="label">Foundations · 03</p><h2 class="t">Typography</h2>
+  <p class="lede">Season Mix speaks; Matter works. Sizes below are live tokens, so resize the window to see the responsive steps (44→64 for h1, 28→36 for h2).</p>
+  <div class="fonts">
+    <div class="font-card"><p class="label">Display</p><div class="big" style="font-family:var(--font-display)">Aa</div><b>Season Mix</b><p style="color:var(--tx-tertiary);margin:4px 0 0;font-size:14px">400 hero · 500 section titles</p></div>
+    <div class="font-card"><p class="label">UI &amp; body</p><div class="big" style="font-family:var(--font-sans)">Aa</div><b>Matter</b><p style="color:var(--tx-tertiary);margin:4px 0 0;font-size:14px">400 body · 500 titles, buttons</p></div>
+    <div class="font-card"><p class="label">Labels &amp; code</p><div class="big" style="font-family:var(--font-label)">Aa</div><b>Matter Semi Mono / Mono</b><p style="color:var(--tx-tertiary);margin:4px 0 0;font-size:14px">12px uppercase, 2px tracking</p></div>
+  </div>
+  <div style="margin-top:40px">
+    <div class="spec"><small>display · Season Mix 400<br>44 → 64 → 72 / 1.05</small><div style="font:400 var(--fs-display)/1.05 var(--font-display);letter-spacing:-.025em">AI for all from India</div></div>
+    <div class="spec"><small>h2 · Season Mix 500<br>28 → 36 / 1.2</small><div style="font:500 var(--fs-h2)/1.2 var(--font-display);letter-spacing:-.02em">The AI Platform India Builds On</div></div>
+    <div class="spec"><small>two-tone · indigo 900 / 400</small><div style="font:400 var(--fs-h2)/1.1 var(--font-display);letter-spacing:-.02em"><span style="color:var(--sr-indigo-900)">Champions</span><br><span style="color:var(--sr-indigo-400)">Program</span></div></div>
+    <div class="spec"><small>h3 · Matter 500<br>18 → 20 → 21 / 1.3</small><div style="font:500 var(--fs-h3)/1.3 var(--font-sans);letter-spacing:-.015em">Sovereign by design</div></div>
+    <div class="spec"><small>lead · Matter 400 #3d3d3d<br>16 → 20 / 1.75</small><div style="font-size:var(--fs-lead);line-height:1.75;color:var(--tx-secondary)">Built on sovereign compute. Powered by frontier-class models.</div></div>
+    <div class="spec"><small>body · Matter 400 #666<br>15 → 16 / 1.55</small><div style="color:var(--tx-tertiary)">Natural voices across 11 Indic languages, ready for production in minutes.</div></div>
+    <div class="spec"><small>label · Semi Mono 12 caps</small><div style="font:400 12px var(--font-label);letter-spacing:2px;text-transform:uppercase;color:var(--tx-tertiary)">India builds with Sarvam</div></div>
+    <div class="spec"><small>Indic display · indigo 700</small><div style="font:500 34px/1.5 'Noto Serif Devanagari',var(--font-display);color:var(--sr-indigo-700)">भारत के लिए, भारत से</div></div>
+  </div>
+</section>
+
+<section class="s" id="layout">
+  <p class="label">Foundations · 04</p><h2 class="t">Layout &amp; breakpoints</h2>
+  <p class="lede">Mobile-first. 768px is the main switch. Content is 88% wide on mobile, 10/12 from tablet up, and capped at 1400px.</p>
+  <div class="tbl-wrap"><table class="bp">
+    <tr><th>Size</th><th>Container</th><th>Cols</th><th>Cards</th><th>h1 / h2</th><th>Section gap</th><th>Nav</th></tr>
+    <tr><td><b>375</b> mobile</td><td>330px (88%)</td><td>4</td><td>1-up</td><td>44 / 28</td><td>96</td><td>wordmark · Log In · ☰</td></tr>
+    <tr><td><b>768</b> tablet</td><td>640px (83.3%)</td><td>8</td><td>2-up</td><td>64 / 36</td><td>128</td><td>same as mobile</td></tr>
+    <tr><td><b>1024</b> laptop</td><td>853px</td><td>12</td><td>3-up</td><td>64 / 36</td><td>128</td><td>full links + 2 pills</td></tr>
+    <tr><td><b>1440</b> desktop</td><td>1200px</td><td>12</td><td>3-up</td><td>64–72 / 36</td><td>128</td><td>full</td></tr>
+    <tr><td><b>1536+</b></td><td>max 1400px</td><td>12</td><td>3–4-up</td><td>72 / 36</td><td>128</td><td>full</td></tr>
+  </table></div>
+</section>
+
+<section class="s" id="spacing">
+  <p class="label">Foundations · 04 / 05</p><h2 class="t">Spacing, radius, elevation</h2>
+  <p class="lede">4px base unit. Pills for actions, 16px cards, 32px hero panels. Shadows are ambient and buttons get a tactile inset highlight.</p>
+  <div id="spaces"></div>
+  <h3 class="sub">Radius</h3>
+  <div class="radii"><div style="border-radius:6px">md · 6</div><div style="border-radius:12px">xl · 12</div><div style="border-radius:16px">card · 16</div><div style="border-radius:24px">3xl · 24</div><div style="border-radius:32px">card-lg · 32</div><div style="border-radius:999px;width:180px;height:56px;align-items:center;justify-content:center;padding:0">pill</div></div>
+  <h3 class="sub">Elevation</h3>
+  <div class="elev"><div style="border:1px solid var(--st)">0 · border</div><div style="box-shadow:var(--shadow-elev-sm)">elev-sm</div><div style="box-shadow:var(--shadow-card)">card</div><div style="box-shadow:var(--shadow-card-hover)">card-hover</div><div style="box-shadow:var(--shadow-elev-md)">elev-md</div><div style="box-shadow:var(--shadow-elev-lg)">elev-lg</div></div>
+</section>
+
+<section class="s" id="motifs">
+  <p class="label">Foundations · 07</p><h2 class="t">Motifs &amp; glyphs</h2>
+  <p class="lede">Everything comes from the Gateway (torana) and mandala construction. The official glyphs come from sarvam.ai; frames marked "derived" were drawn from the same rules.</p>
+  <h3 class="sub">Marks</h3>
+  <div class="glyphs" id="marks"></div>
+  <h3 class="sub">Official gateway glyphs</h3>
+  <div class="glyphs" id="glyphs"></div>
+  <h3 class="sub">Derived frames, glow, bullets, ornament</h3>
+  <div class="glyphs" id="motifs-list"></div>
+</section>
+
+<section class="s" id="glows">
+  <p class="label">Foundations · 14</p><h2 class="t">Soft-glow surfaces</h2>
+  <p class="lede">The pastel haze at the bottom of Sarvam's cards and posts: a solid single-hue shape with a curved top edge, put through a Gaussian blur, so the fade follows the curve. It is not a linear or radial gradient. Made with <code>tools/soft-glow/</code> (CLI + visual generator).</p>
+  <h3 class="sub">Card set: one hue per card, different contour per neighbour</h3>
+  <div class="glow-row"><figure class="gcard"><img src="assets/glows/lilac-hill.svg" alt=""><figcaption>lilac-hill</figcaption></figure><figure class="gcard"><img src="assets/glows/sage-valley.svg" alt=""><figcaption>sage-valley</figcaption></figure><figure class="gcard"><img src="assets/glows/peach-whisper.svg" alt=""><figcaption>peach-whisper</figcaption></figure><figure class="gcard"><img src="assets/glows/rose-ramp.svg" alt=""><figcaption>rose-ramp</figcaption></figure><figure class="gcard"><img src="assets/glows/honey-dome.svg" alt=""><figcaption>honey-dome</figcaption></figure></div>
+  <h3 class="sub">Two-tone horizons (posts, section bands)</h3>
+  <div class="glow-row"><figure class="gcard sq"><img src="assets/glows/horizon.svg" alt=""><figcaption>horizon</figcaption></figure><figure class="gcard sq"><img src="assets/glows/sr-dawn.svg" alt=""><figcaption>sr-dawn · added</figcaption></figure><figure class="gcard sq"><img src="assets/glows/sr-spectrum.svg" alt=""><figcaption>sr-spectrum · added</figcaption></figure><figure class="gcard sq"><img src="assets/glows/sr-meadow.svg" alt=""><figcaption>sr-meadow · added</figcaption></figure></div>
+  <h3 class="sub">Live: glow as a card background</h3>
+  <div class="cards" id="glow-live"></div>
+  <p style="margin-top:20px"><a class="btn btn-outline" href="tools/soft-glow/generator.html" target="_blank">Open the visual glow generator →</a></p>
+</section>
+
+<section class="s" id="glyph-depth">
+  <p class="label">Foundations · 15</p><h2 class="t">Glyph colour depth</h2>
+  <p class="lede">New colourways for Sarvam's gateway shapes using colour alone: a gradient core plus a soft rim that follows every lobe and cusp. Four rim moods: <b>white</b> (outer depth), <b>colour</b> (inner depth), <b>shadow</b> (form curves away) and <b>luminous</b> (the edge glows). Plus <b>echo</b>, dusk inside a gateway. Shapes are the official glyphs and the gateway arch; palettes are <code>sr-*</code> tokens. Made with <code>tools/color-depth/</code>.</p>
+  <div class="glyphs gd"><figure><img src="assets/glyphs-depth/gateway-periwinkle-pink.svg" alt=""><figcaption>gateway-periwinkle-pink<br><b style="font-weight:500;color:var(--tx-secondary)">color rim</b></figcaption></figure><figure><img src="assets/glyphs-depth/gateway-indigo-dusk.svg" alt=""><figcaption>gateway-indigo-dusk<br><b style="font-weight:500;color:var(--tx-secondary)">echo</b></figcaption></figure><figure><img src="assets/glyphs-depth/saffron-luminous.svg" alt=""><figcaption>saffron-luminous<br><b style="font-weight:500;color:var(--tx-secondary)">luminous</b></figcaption></figure><figure><img src="assets/glyphs-depth/forest-gold.svg" alt=""><figcaption>forest-gold<br><b style="font-weight:500;color:var(--tx-secondary)">luminous</b></figcaption></figure><figure><img src="assets/glyphs-depth/sky-white.svg" alt=""><figcaption>sky-white<br><b style="font-weight:500;color:var(--tx-secondary)">white rim</b></figcaption></figure><figure><img src="assets/glyphs-depth/rose-shadow.svg" alt=""><figcaption>rose-shadow<br><b style="font-weight:500;color:var(--tx-secondary)">shadow</b></figcaption></figure><figure><img src="assets/glyphs-depth/leaf-sky.svg" alt=""><figcaption>leaf-sky<br><b style="font-weight:500;color:var(--tx-secondary)">color rim</b></figcaption></figure><figure><img src="assets/glyphs-depth/sindoor-marigold.svg" alt=""><figcaption>sindoor-marigold<br><b style="font-weight:500;color:var(--tx-secondary)">luminous</b></figcaption></figure><figure><img src="assets/glyphs-depth/spectrum-arch.svg" alt=""><figcaption>spectrum-arch<br><b style="font-weight:500;color:var(--tx-secondary)">two-tone rim</b></figcaption></figure><figure><img src="assets/glyphs-depth/marigold-cream.svg" alt=""><figcaption>marigold-cream<br><b style="font-weight:500;color:var(--tx-secondary)">color rim</b></figcaption></figure><figure><img src="assets/glyphs-depth/deep-indigo-violet.svg" alt=""><figcaption>deep-indigo-violet<br><b style="font-weight:500;color:var(--tx-secondary)">luminous</b></figcaption></figure><figure><img src="assets/glyphs-depth/blush-coral.svg" alt=""><figcaption>blush-coral<br><b style="font-weight:500;color:var(--tx-secondary)">color rim</b></figcaption></figure></div>
+</section>
+
+<section class="s" id="icons">
+  <p class="label">Foundations · 08 · style 1</p><h2 class="t">Icons · flat stroke</h2>
+  <p class="lede">Hugeicons (confirmed in sarvam.ai's bundles), 1.5px stroke in <code>currentColor</code>. For dense UI: nav, rows, buttons, tabs. Iconify supplies third-party logos.</p>
+  <div class="glyphs" id="icon-list"></div>
+</section>
+
+<section class="s" id="icons-solid">
+  <p class="label">Foundations · 08 · style 2</p><h2 class="t">Icons · solid product hue</h2>
+  <p class="lede">One flat fill in the product's hue, with inner details knocked out. This is how sarvam.ai colour-codes products: TTS periwinkle, STT coral, Translation orange, Parse pink, verified indigo. Use for product tiles, feature lists and badges.</p>
+  <div class="hue-key">
+    <span><i style="background:#818cf8"></i>Text to Speech<code>#818cf8</code></span>
+    <span><i style="background:#f87171"></i>Speech to Text<code>#f87171</code></span>
+    <span><i style="background:#f97316"></i>Translation<code>#f97316</code></span>
+    <span><i style="background:#e879a0"></i>Parse / Docs<code>#e879a0</code></span>
+    <span><i style="background:#556adc"></i>Verified / UI<code>indigo-600</code></span>
+    <span><i style="background:#e96c2f"></i>Mic<code>orange-700</code></span>
+    <span><i style="background:#ee7944"></i>Data / DPDP<code>orange-600</code></span>
+  </div>
+  <div class="glyphs" id="icon-solid-list"></div>
+  <h3 class="sub">Check-badge colourways</h3>
+  <div class="glyphs" id="icon-solid-badges"></div>
+</section>
+
+<section class="s" id="icons-depth">
+  <p class="label">Foundations · 08 · style 3</p><h2 class="t">Icons · depth (periwinkle)</h2>
+  <p class="lede">Matches sarvam.ai: <b>always one periwinkle</b>, never tinted per product. One 172° gradient across the icon box (<code>#a8b6ef</code> → <code>#859ae7</code> → <code>#627ddf</code>), a white top sheen, a subtle inner rim, and white knock-outs. For illustrations, use-case cards and marketing at 40px and above. To colour-code, use the solid style.</p>
+  <div class="glyphs depth" id="icon-depth-list"></div>
+  <h3 class="sub">The three styles side by side</h3>
+  <div class="depth-compare" id="depth-compare"></div>
+</section>
+
+<section class="s" id="components">
+  <p class="label">Components</p><h2 class="t">Buttons &amp; content blocks</h2>
+  <p class="lede">Live components built only from tokens.</p>
+  <h3 class="sub">Buttons <span style="font:400 13px var(--font-sans);color:var(--tx-tertiary)">· hover the dark ones and move your cursor</span></h3>
+  <div class="row" style="justify-content:flex-start"><a class="btn btn-primary">Get Started</a><a class="btn btn-secondary">Contact Us</a><a class="btn btn-outline">Explore Indus Cowork →</a><a class="btn btn-hero-d">Sign up</a><a class="btn btn-hero-l">Contact Us</a></div>
+  <h3 class="sub">Feature cards</h3>
+  <div class="cards">
+    <div class="card"><img src="assets/icons-solid/tts.svg" width="28" height="28" alt=""><h4>Text to Speech</h4><p>Natural voices across 11 Indic languages</p></div>
+    <div class="card"><img src="assets/icons-solid/stt.svg" width="28" height="28" alt=""><h4>Speech to Text</h4><p>High-accuracy ASR across 12 Indic languages</p></div>
+    <div class="card"><img src="assets/icons-solid/translation.svg" width="28" height="28" alt=""><h4>Translation</h4><p>State-of-the-art translation across 23 languages</p></div>
+  </div>
+  <h3 class="sub">Illustrated card + pillar list</h3>
+  <div style="display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:center">
+    <div class="horizon"><img src="assets/logos/sarvam-logo-white.svg" style="position:absolute;left:50%;top:14%;width:22%;transform:translateX(-50%)"><img src="assets/motifs/gateway-arch-indigo.svg" style="position:absolute;left:50%;bottom:-38%;width:70%;transform:translateX(-50%)"></div>
+    <div class="pillars">
+      <div class="pillar"><img src="assets/motifs/star-bullet-green.svg" width="22"><div><b>Sovereign by design</b><p>build, deploy, and run AI with full control, developed and operated entirely in India</p></div></div>
+      <div class="pillar"><img src="assets/motifs/star-bullet-indigo.svg" width="22"><div><b>State of the art models</b><p>built for India's languages, culture, and context</p></div></div>
+      <div class="pillar"><img src="assets/motifs/star-bullet-orange.svg" width="22"><div><b>Human at the core</b><p>forward deployed engineers work alongside your teams</p></div></div>
+    </div>
+  </div>
+  <h3 class="sub">Stats</h3>
+  <div class="stats"><div><b>&lt;500ms</b><span>Real-time latency</span></div><div><b>350M+</b><span>Conversations</span></div><div><b>10B+</b><span>Tokens served</span></div><div><b>99.9%</b><span>Uptime SLA</span></div></div>
+  <h3 class="sub">Compliance badges (12px radius · 14px · weight 625 · solid hue icon)</h3>
+  <div class="badges"><span class="badge2 b-indigo"><i class="mi" style="--i:url(assets/icons/doc-ai.svg)"></i>SOC 2 Type I</span><span class="badge2 b-green"><i class="mi" style="--i:url(assets/icons/check-badge.svg)"></i>ISO 27001</span><span class="badge2 b-orange"><i class="mi" style="--i:url(assets/icons/database.svg)"></i>DPDP compliant</span><span class="badge2 b-pink"><i class="mi" style="--i:url(assets/icons/ui-research_side-panel.svg)"></i>Role-based access</span><span class="badge2 b-yellow"><i class="mi" style="--i:url(assets/icons/parse.svg)"></i>Full audit trail</span><span class="badge2 b-red"><i class="mi" style="--i:url(assets/icons/database.svg)"></i>Data residency controls</span></div>
+  <h3 class="sub">Tags</h3>
+  <div class="badges"><span class="tag t-cat-indigo">Voice Infra</span><span class="tag t-cat-orange">Agent Framework</span><span class="tag t-cat-green">Automation</span><span class="tag t-cap">STT</span><span class="tag t-cap">TTS</span></div>
+  <h3 class="sub">Dark CTA panel</h3>
+  <div class="cta-panel"><h3>Build the Future of India's AI<br>with Sarvam</h3><img src="assets/motifs/star-bullet-indigo.svg" width="32" style="filter:brightness(0) invert(1);display:block;margin:0 auto 28px"><a class="btn" style="background:#fff;color:var(--tx);position:relative;z-index:1">Get Started</a></div>
+</section>
+
+<section class="s" id="interactive">
+  <p class="label">Components · interactive</p><h2 class="t">Players, controls &amp; cards</h2>
+  <p class="lede">Measured from sarvam.ai's API and Integrations pages. Hover the dark button and move your cursor: the glow follows it.</p>
+
+  <h3 class="sub">Audio player pill (cursor-glow button + dot-matrix + language select)</h3>
+  <div class="player" id="player">
+    <button class="btn-glow" id="playBtn"><span class="glow"></span><span class="lbl"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5Z" fill="#fff"/></svg><span id="playLbl">Play Audio</span></span></button>
+    <div class="dots" id="dots"></div>
+    <button class="lang"><span style="font-family:'Noto Sans Devanagari','Nirmala UI',sans-serif">हिन्दी</span> Hindi <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="1.8" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
+  </div>
+
+  <h3 class="sub">Segmented control</h3>
+  <div class="row" style="justify-content:flex-start;gap:20px">
+    <div class="seg" data-seg><button class="on">olmOCR Overall</button><button>Word Accuracy</button><button>Character Accuracy</button></div>
+    <div class="seg" data-seg><button class="on">Python</button><button>JavaScript</button><button>cURL</button></div>
+  </div>
+
+  <h3 class="sub">Copy button (default · hover · copied)</h3>
+  <div class="row" style="justify-content:flex-start;gap:12px">
+    <button class="copy" id="copyBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="3"/><path d="M16 8V6a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3v7a3 3 0 0 0 3 3h2"/></svg><span>Copy</span></button>
+    <span style="font-size:13px;color:var(--tx-tertiary)">← hover it, then click it</span>
+  </div>
+
+  <h3 class="sub">Integration cards</h3>
+  <div class="cards">
+    <div class="icard"><div class="well" style="--t:var(--sr-indigo-100)"><img src="https://api.iconify.design/logos/python.svg" alt="" height="44"></div><h4>Python SDK</h4><p>Install the Sarvam SDK and call speech, translation and chat APIs from any Python service in a few lines.</p><div class="tags"><span class="tag t-cat-indigo">Developer</span><span class="tag t-cap">STT</span><span class="tag t-cap">TTS</span></div></div>
+    <div class="icard"><div class="well" style="--t:var(--sr-orange-100)"><img src="https://api.iconify.design/logos/slack-icon.svg" alt="" height="44"></div><h4>Slack</h4><p>Bring Indic-language agents into team channels: summaries, translation and voice notes, right where work happens.</p><div class="tags"><span class="tag t-cat-orange">Workspace</span><span class="tag t-cap">Chat</span></div></div>
+    <div class="icard"><div class="well" style="--t:var(--sr-green-100)"><img src="https://api.iconify.design/logos/notion-icon.svg" alt="" height="44"></div><h4>Notion</h4><p>Let agents read, translate and cite your Notion pages across 23 Indian languages with source links.</p><div class="tags"><span class="tag t-cat-green">Knowledge</span><span class="tag t-cap">Translate</span></div></div>
+  </div>
+</section>
+
+<section class="s" id="banners">
+  <p class="label">Formats</p><h2 class="t">Banner archetypes</h2>
+  <p class="lede">Six archetypes taken from Sarvam's LinkedIn. Shown here is the live <code>templates/banner.html</code> at each required size. The final 6 banners will be produced from these.</p>
+  <div class="banners" id="banner-list"></div>
+</section>
+
+<section class="s" id="docs">
+  <p class="label">Reference</p><h2 class="t">The skill, file by file</h2>
+  <p class="lede">These are the markdown files an AI agent reads. Pick one.</p>
+  <div class="doc-tabs" id="doc-tabs"></div>
+  <article class="md" id="doc"></article>
+</section>
+<footer class="f">Sarvam Design System · built from sarvam.ai production CSS, /brand, /brand-guidelines and Sarvam's LinkedIn · Nov 2026</footer>
+</main>
+</div>
+
+<script>
+const cs=getComputedStyle(document.documentElement), v=n=>cs.getPropertyValue('--'+n).trim();
+const lum=h=>{h=h.replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');const c=[0,2,4].map(i=>parseInt(h.substr(i,2),16)/255).map(x=>x<=.03928?x/12.92:((x+.055)/1.055)**2.4);return .2126*c[0]+.7152*c[1]+.0722*c[2]};
+const rules=[["Two typefaces","Season Mix for headlines, Matter for everything functional, Semi Mono caps for labels."],["Calm headlines","Season Mix 400–500, sentence case, −0.02em, never bold."],["Light canvas","#fcfcfc page, #fff cards, #1f1f1f text. One dark moment per page."],["Colour as light","Blue→orange spectrum as glows and gradients, never flat blocks."],["The Gateway","Cusped torana arches and gradient glyphs are the core motif."],["Logo discipline","Wordmark black or white, never next to the logomark."],["Pills & soft corners","Pill buttons, 16px cards, 24–32px panels."],["Ambient shadows","40px soft blur; tactile inset highlights on buttons."],["Generous rhythm","Centred titles, 128px between sections (96 on mobile)."],["Rooted, not costume","Structure, scripts and real photography. No clip-art India."]];
+document.getElementById('rules').innerHTML=rules.map((r,i)=>`<div class="card"><p class="label" style="margin:0">${String(i+1).padStart(2,'0')}</p><h4>${r[0]}</h4><p>${r[1]}</p></div>`).join('');
+const chip=(name,tok,role)=>{const hex=tok.startsWith('#')?tok:v(tok);return `<div class="chip"><div class="c" style="background:${hex}"></div><div class="m"><b>${name}</b><code>${tok.startsWith('#')?'':'--'+tok+' · '}${hex}</code>${role?`<div style="color:var(--tx-tertiary);font-size:12px;margin-top:2px">${role}</div>`:''}</div></div>`};
+document.getElementById('neutrals').innerHTML=[['Canvas','sf','page bg'],['Card','sf-white','cards'],['Secondary','sf-secondary','chips, btn'],['Stroke','st','borders'],['Text','tx','headlines'],['Text 2','tx-secondary','lead'],['Text 3','tx-tertiary','body'],['Slate','slate','primary btn'],['Black','black','dark panels']].map(a=>chip(...a)).join('');
+document.getElementById('heritage').innerHTML=[['Forest','heritage-forest'],['Marigold','heritage-marigold'],['Ochre','heritage-ochre'],['Sindoor','heritage-sindoor']].map(a=>chip(...a)).join('');
+const steps=['50','100','200','300','400','500','600','700','800','900','950'];
+document.getElementById('ramps').innerHTML=['indigo','orange','green','pink','yellow','red','grey'].map(h=>`<div class="ramp-name">${h}${h==='indigo'?' · primary':h==='orange'?' · secondary':''}</div><div class="ramp">${steps.map(s=>{const c=v(`sr-${h}-${s}`)||'#fff';return `<div style="background:${c};color:${lum(c)>.4?'#1f1f1f':'#fff'}">${s}</div>`}).join('')}</div>`).join('');
+document.getElementById('grads').innerHTML=['aura-hero','grad-spectrum','grad-sunrise','grad-spectrum-light','grad-night','grad-blue','grad-blue-light','grad-orange','grad-orange-medium','grad-green','grad-green-light','grad-pink','grad-pink-light'].map(g=>`<div class="grad" style="background:${v(g)}${g==='aura-hero'?',#fcfcfc':''}"><span>--${g}</span></div>`).join('');
+document.getElementById('spaces').innerHTML=[4,8,12,16,20,24,32,40,48,64,96,128].map(n=>`<div class="space-row"><span style="width:44px">${n}</span><i style="width:${n*2}px"></i></div>`).join('');
+const fig=(src,cap)=>`<figure><img src="${src}" alt=""><figcaption>${cap}</figcaption></figure>`;
+document.getElementById('marks').innerHTML=fig('assets/logos/sarvam-wordmark-black.svg','wordmark')+fig('assets/logos/sarvam-logo-black.svg','logomark')+`<figure style="background:linear-gradient(180deg,#fb923c,#a5bbfc)"><img src="assets/motifs/ornament-divider.svg"><figcaption style="color:#fff">ornament divider (on aura)</figcaption></figure>`;
+document.getElementById('glyphs').innerHTML=[...Array(16)].map((_,i)=>`model-${String(i+1).padStart(2,'0')}`).concat(['voice-motif-01','voice-motif-02','voice-motif-03']).map(n=>fig(`assets/glyphs/${n}.svg`,n)).join('');
+document.getElementById('motifs-list').innerHTML=['gateway-arch','gateway-arch-indigo','gateway-concentric-indigo','gateway-concentric-saffron','gateway-concentric-leaf','gateway-glow','star-bullet-green','star-bullet-indigo','star-bullet-orange','star-bullet-pink'].map(n=>n==='gateway-glow'?`<figure style="background:var(--slate)"><img src="assets/motifs/${n}.svg"><figcaption style="color:#ccc">${n}</figcaption></figure>`:fig(`assets/motifs/${n}.svg`,n)).join('');
+document.getElementById('icon-list').innerHTML=['tts','stt','translation','parse','voice','doc-ai','database','check-badge','ui-plus','ui-presentations_mic','ui-presentations_send','ui-presentations_attach','ui-research_chevron','ui-workflows_calendar','ui-research_side-panel'].map(n=>fig(`assets/icons/${n}.svg`,n)).join('');
+const ICONS=['tts','stt','translation','parse','voice','doc-ai','database','check-badge','ui-plus','ui-presentations_mic','ui-presentations_send','ui-presentations_attach','ui-research_chevron','ui-workflows_calendar','ui-research_side-panel'];
+document.getElementById('icon-depth-list').innerHTML=ICONS.map(n=>fig(`assets/icons-depth/${n}.svg`,n)).join('');
+document.getElementById('icon-solid-list').innerHTML=ICONS.map(n=>fig(`assets/icons-solid/${n}.svg`,n)).join('');
+document.getElementById('icon-solid-badges').innerHTML=['indigo','green','pink','orange'].map(c=>fig(`assets/icons-solid/check-badge-${c}.svg`,'check-badge-'+c)).join('');
+document.getElementById('depth-compare').innerHTML=['tts','stt','translation','parse','database','check-badge'].map(n=>`<div class="dc"><img src="assets/icons/${n}.svg" width="28" height="28" alt=""><img src="assets/icons-solid/${n}.svg" width="28" height="28" alt=""><img src="assets/icons-depth/${n}.svg" width="40" height="40" alt=""><span>${n} · flat / solid / depth</span></div>`).join('');
+// interactive demos
+(()=>{const b=document.getElementById('playBtn');if(!b)return;
+ b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.setProperty('--gx',e.clientX-r.left+'px');b.style.setProperty('--gy',e.clientY-r.top+'px')});
+ const d=document.getElementById('dots');const C=32,R=10;d.innerHTML='<i></i>'.repeat(C*R);const cells=[...d.children];let t=null,ph=0;
+ const draw=on=>{cells.forEach((c,i)=>{const col=i%C,row=Math.floor(i/C);const lvl=on?Math.round((Math.sin(col*.55+ph)*.5+.5)*(Math.sin(col*.21-ph*1.7)*.5+.5)*R):0;c.classList.toggle('on',R-row<=lvl)})};
+ b.addEventListener('click',()=>{if(t){clearInterval(t);t=null;draw(false);document.getElementById('playLbl').textContent='Play Audio'}else{t=setInterval(()=>{ph+=.35;draw(true)},90);document.getElementById('playLbl').textContent='Pause'}});
+ document.querySelectorAll('[data-seg]').forEach(g=>g.addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')return;g.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===e.target))}));
+ const cp=document.getElementById('copyBtn');cp.addEventListener('click',()=>{cp.classList.add('done');cp.querySelector('span').textContent='Copied';cp.querySelector('svg').innerHTML='<rect x="8" y="8" width="13" height="13" rx="3"/><path d="M16 8V6a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3v7a3 3 0 0 0 3 3h2"/><path d="m11.5 14.5 2 2 4-4.5"/>';setTimeout(()=>{cp.classList.remove('done');cp.querySelector('span').textContent='Copy';cp.querySelector('svg').innerHTML='<rect x="8" y="8" width="13" height="13" rx="3"/><path d="M16 8V6a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3v7a3 3 0 0 0 3 3h2"/>'},2000)});
+})();
+// glow live cards (inline svg via same model as glow.py)
+(()=>{const host=document.getElementById('glow-live');if(!host)return;
+ const XS=[5,15,25,35,45,55,65,75,85,95];
+ const C={hill:[72.7,63.4,57.3,55.3,56.7,61.1,66.8,71.2,74.4,76.5],valley:[52.5,57.1,64.9,72.9,79.2,83.0,83.4,82.4,80.5,78.6],dome:[78.2,73.6,70.1,68.2,66.3,65.1,65.3,66.7,68.8,70.7]};
+ const path=ys=>{const pts=[[-40,ys[0]],[-15,ys[0]],...XS.map((x,i)=>[x,ys[i]]),[115,ys[9]],[140,ys[9]]];const p=[pts[0],...pts,pts[pts.length-1]];let d=`M${pts[0][0]},${pts[0][1]}`;for(let i=1;i<p.length-2;i++){const[a,b,c,e]=[p[i-1],p[i],p[i+1],p[i+2]];d+=` C${b[0]+(c[0]-a[0])/6},${b[1]+(c[1]-a[1])/6} ${c[0]-(e[0]-b[0])/6},${c[1]-(e[1]-b[1])/6} ${c[0]},${c[1]}`}return d+' L140,240 L-40,240 Z'};
+ const items=[['#BBC3F1','hill',8.6,'tts','Text to Speech','Natural voices across 11 Indic languages'],['#D7EAC1','valley',6.8,'check-badge','Sovereign by design','Built, deployed and operated entirely in India'],['#FFE0AA','dome',8.6,'translation','Translation','State-of-the-art translation across 23 languages']];
+ host.innerHTML=items.map(([c,k,sg,ic,t,d],i)=>`<div class="gl-card"><svg aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;z-index:-1" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><filter id="gl${i}" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="${sg}"/></filter></defs><path d="${path(C[k])}" fill="${c}" filter="url(#gl${i})"/></svg><img src="assets/icons-solid/${ic}.svg" width="28" height="28" alt=""><h4>${t}</h4><p>${d}</p></div>`).join('')})();
+// cursor glow for every dark button
+document.addEventListener('pointermove',e=>{const b=e.target.closest&&e.target.closest('.btn-primary,.btn-hero-d,.btn-glow');if(!b)return;const r=b.getBoundingClientRect();b.style.setProperty('--gx',e.clientX-r.left+'px');b.style.setProperty('--gy',e.clientY-r.top+'px')});
+// banners: live template at 3 sizes
+const sizes=[['size-sq',1080,1080,'Meta square 1080 × 1080'],['size-pt',1080,1350,'Meta portrait 1080 × 1350'],['size-li',1200,627,'LinkedIn 1200 × 627']];
+const bl=document.getElementById('banner-list');
+fetch('templates/banner.html').then(r=>r.text()).then(src=>{
+  sizes.forEach(([cls,w,h,label])=>{
+    const html=src.replace(/<body class="[^"]*"/,`<body class="${cls} arch-a"`).replace('<head>','<head><base href="templates/">');
+    const box=document.createElement('div');box.className='bframe';
+    box.innerHTML=`<div class="vp"></div><p>${label} · archetype A</p>`;bl.appendChild(box);
+    const vp=box.querySelector('.vp'),f=document.createElement('iframe');f.width=w;f.height=h;f.srcdoc=html;vp.appendChild(f);
+    const fit=()=>{const s=vp.clientWidth/w;f.style.transform=`scale(${s})`;vp.style.height=h*s+'px'};new ResizeObserver(fit).observe(vp);fit();
+  });
+});
+// docs
+const docs=[['SKILL.md','SKILL.md'],['Decisions','DECISIONS.md'],['Brand essence','foundations/01-brand-essence.md'],['Colour','foundations/02-color.md'],['Typography','foundations/03-typography.md'],['Layout & responsive','foundations/04-layout-grid-responsive.md'],['Radius & elevation','foundations/05-radius-elevation-surfaces.md'],['Gradients','foundations/06-gradients-and-light.md'],['Motifs','foundations/07-motifs-and-glyphs.md'],['Icons','foundations/08-iconography.md'],['Imagery','foundations/09-imagery.md'],['Motion','foundations/10-motion.md'],['Logo','foundations/11-logo-usage.md'],['Anti-slop','foundations/12-anti-slop.md'],['Voice & tone','foundations/13-voice-and-tone.md'],['Soft-glow','foundations/14-soft-glow-surfaces.md'],['Glyph depth','foundations/15-glyph-color-depth.md'],['Actions','components/actions.md'],['Content blocks','components/content-blocks.md'],['Nav & footer','components/navigation-and-footer.md'],['Interactive','components/interactive.md'],['Social banners','formats/social-banners.md'],['Web pages','formats/web-pages.md'],['QA checklist','checklists/qa.md']];
+const tabs=document.getElementById('doc-tabs'),doc=document.getElementById('doc');
+const load=(p,btn)=>{tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b===btn));fetch(p).then(r=>r.text()).then(t=>{t=t.replace(/^---[\s\S]*?---\n/,'');doc.innerHTML=window.marked?marked.parse(t):'<pre>'+t.replace(/</g,'&lt;')+'</pre>'})};
+docs.forEach(([n,p],i)=>{const b=document.createElement('button');b.textContent=n;b.onclick=()=>load(p,b);tabs.appendChild(b);if(!i)load(p,b)});
+// active nav
+const links=[...document.querySelectorAll('nav.side a')];
+new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-40% 0px -55% 0px'}).observe&&document.querySelectorAll('section.s,.hero').forEach(s=>new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-40% 0px -55% 0px'}).observe(s));
+</script>
+</body>
+</html>

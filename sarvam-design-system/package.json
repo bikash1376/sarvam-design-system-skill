@@ -1,0 +1,8 @@
+{
+  "name": "sarvam-design-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sarvam AI brand & design system skill: tokens, rules, templates and render tooling.",
+  "scripts": { "render": "node scripts/render.js" },
+  "dependencies": { "puppeteer-core": "23.11.1" }
+}
