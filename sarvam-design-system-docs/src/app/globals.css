@@ -161,6 +161,7 @@
 @media (width < 640px) { :root { --gutter-site: 1rem; } }
 
 :root { --docs-top: 140px; } /* space above the docs grid (lowered) */
+@media (width < 1024px) { :root { --docs-top: 96px; } }
 
 /* scrollable without a visible scrollbar */
 @utility no-scrollbar {
